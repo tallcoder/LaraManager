@@ -9,14 +9,13 @@
 	<div id="container">
 
 		<div id="header">
-			{{ HTML::link('/', 'Make It Snappy Q&A') }}
+			{{ HTML::link('/', 'Project Manager') }}
 		</div><!-- end header -->
 
 		<div id="nav">
 			<ul>
-				<li>{{ HTML::linkRoute('home', 'Home') }}
-				<li>{{ HTML::link('register', 'Register') }}
-				<li>{{ HTML::link('/', 'Login') }}
+				<li>{{ HTML::link('home', 'Home') }}</li>
+				<li>{{-- HTML::link('login', 'Login') --}}</li>
 			</ul>
 		</div><!-- end nav -->
 
@@ -29,7 +28,7 @@
 		</div><!-- end content -->
 
 		<div id="footer">
-			&copy; Make It Snappy Q&A {{ date('Y') }}
+			&copy; Project Manager {{ date('Y') }}
 		</div><!-- end footer -->
 
 	</div><!-- end container -->

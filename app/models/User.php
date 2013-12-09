@@ -11,7 +11,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		'password_confirmation'=>'required|alpha_num|between:4,8'
 		);
 
-
+	protected $fillable = array('username','email','usertype');
 	/**
 	 * The database table used by the model.
 	 *

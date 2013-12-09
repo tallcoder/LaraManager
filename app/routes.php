@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', array('as'=> 'home','uses'=>'QuestionsController@getIndex'));
-Route::get('register', array('as' => 'register', 'uses' => 'UserController@getNew'));
-Route::post('register', array('before'=>'csrf', 'uses'=>'UserController@create'));
+Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
+Route::get('login','SessionsController@create');
+Route::get('logout','SessionsController@destroy');
+Route::resource('sessions', 'SessionsController');
