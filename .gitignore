@@ -1,0 +1,11 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+CONTRIBUTING.md
+readme.md
+*.sublime-project
+*.sublime-workspace
+sftp-config.json
