@@ -14,8 +14,8 @@
 
 		<div id="nav">
 			<ul>
-				<li>{{ HTML::link('/', 'Home') }}
-				<li>{{ HTML::link('/', 'Register') }}
+				<li>{{ HTML::linkRoute('home', 'Home') }}
+				<li>{{ HTML::link('register', 'Register') }}
 				<li>{{ HTML::link('/', 'Login') }}
 			</ul>
 		</div><!-- end nav -->

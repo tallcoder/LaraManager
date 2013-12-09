@@ -1,5 +1,5 @@
-@layout('layouts.default')
+@extends('layouts.default')
 
 @section('content')
 Home Page
-@endsection
+@stop
