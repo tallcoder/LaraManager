@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://lara.dev',
+	'url' => 'http://lara.icwebdev.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -113,8 +113,12 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+<<<<<<< HEAD
 		'Way\Generators\GeneratorsServiceProvider',
 
+=======
+		'Way\Generators\GeneratorsServiceProvider'
+>>>>>>> 055d46d7fce46d173b775aabeb8f09f60a2b205f
 	),
 
 	/*
