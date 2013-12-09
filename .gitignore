@@ -9,3 +9,5 @@ readme.md
 *.sublime-project
 *.sublime-workspace
 sftp-config.json
+ide_helper.php
+*-notes.php
