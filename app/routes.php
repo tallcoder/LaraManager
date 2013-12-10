@@ -12,6 +12,8 @@
 */
 
 Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
-Route::get('login','SessionsController@create');
+Route::get('login','SessionsController@index');
 Route::get('logout','SessionsController@destroy');
 Route::resource('sessions', 'SessionsController');
+
+Route::get('projects', 'ProjectsController@index')->before('auth');

@@ -2,10 +2,14 @@
 
 class ProjectsController extends BaseController {
 
-	public function getIndex() {
+	public function index() {
 		$data = array(
-			'title' => 'Project Manager'
+			'title' => 'ProMan',
+			'up' => Auth::user()->userperm
 			);
+		if(Auth::user()->usertype != "client") {
 		return View::make('projects.index', $data);
+	  }
+	  	else return View::make('projects.single', $data);
 	}
 }

@@ -1,5 +1,5 @@
 	<div id="footer">
-		<p>&copy; Project Manager {{ date('Y') }}</p>
+		<p>&copy; ProMan {{ date('Y') }}</p>
 	</div>
 	</div>{{-- end container --}}
 </body>

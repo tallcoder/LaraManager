@@ -1,5 +1,7 @@
-<h1>Login</h1>
+@extends('defaults.layout')
 
+@section('content')
+<h2>ProMan Login</h2>
 {{ Form::open(array('route' => 'sessions.store')) }}
 	<ul>
 		<li>
@@ -23,3 +25,5 @@
 		</li>
 	</ul>
 {{ Form::close() }}
+
+@stop

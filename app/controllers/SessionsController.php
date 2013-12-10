@@ -40,9 +40,12 @@ class SessionsController extends BaseController {
 		'password' => $input['password']
 		]);
 
-		if($input) return Redirect::intended('/');
-
-		dd('problem');
+		if($login) {
+			return Redirect::intended('projects')->with('flash_message', 'ProMan has successfully logged you in!');
+		}
+		else {
+		return Redirect::back()->with('flash_message', 'Invalid Login Credentials')->withInput();
+	}
 	}
 
 	/**
@@ -84,9 +87,11 @@ class SessionsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		Auth::logout();
+
+		return Redirect::home()->with('flash_message','ProMan has logged you out successfully!');
 	}
 
 }

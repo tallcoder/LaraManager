@@ -1,6 +1,6 @@
-@include('layouts.header')
-
-<h2>Project Manager Login</h2>
+@extends('layouts.default')
+@section('content')
+<h2>ProMan Login</h2>
 
 {{ Form::open(array('route' => 'sessions.store')) }}
 	<ul>
@@ -20,5 +20,4 @@
 		</li>
 	</ul>
 {{ Form::close() }}
-
-@include('layouts.footer')
+@stop
