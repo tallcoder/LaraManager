@@ -5,7 +5,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends BaseModel implements UserInterface, RemindableInterface {
 
-	public static $rule = array(
+	public static $rules = array(
 		'username' =>'required|unique:users|alpha_dash|min:4',
 		'password'=>'required|alpha_num|between:4,8|confirm',
 		'password_confirmation'=>'required|alpha_num|between:4,8'
