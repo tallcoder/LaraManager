@@ -56,4 +56,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+	public function project() {
+		return $this->belongsTo('Project', 'client_id');
+	}
+
 }

@@ -13,10 +13,13 @@ class Project extends BaseModel {
 
 	protected $table = 'projects';
 	
+	public function user() {
+		return $this->hasOne('User');
+	}
+
 	public function getProjectName() {
 		return $this->name;
 	}
-
 	
 	public function getClientId($p) {
 		return $this->client_id;
