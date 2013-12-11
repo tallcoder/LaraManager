@@ -61,7 +61,7 @@ table {
 /* General Tags */
 
 body {
-	text-align: center;
+	text-align: left;
 }
 
 h1, h2, h3 {
@@ -93,155 +93,32 @@ a:hover, a:active {
 	color: darkblue;
 }
 
-/* Container */
-
 #container {
-	text-align: left;
-	width: 600px;
-	margin: 10px auto 10px auto;
+	margin: 5% auto;
+	width: 70%;
 }
 
-/* Header */
-
-#header {
-	background-color: #236BB2;
-	color: #fff;
-	height: 50px;
-	padding: 18px;
-	border-radius: 10px 10px 0 0;
-	-moz-border-radius: 10px 10px 0 0;
-	-webkit-border-radius: 10px 10px 0 0;
+/*projects table */
+th {
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 2px solid black;
 }
 
-#header a {
-	color: #FFF;
-	text-decoration: none;
-	font-size: 220%;
+td {
+	border-left: 1px solid black;
+	padding-left: 5px;
 }
 
-/* Searchbar */
-
-#searchbar {
-	float: right;
-}
-/* Nav */
-
-#nav {
-	position: relative;
-	overflow: hidden;
-	float: left;
-	width: 600px;
-	background-color: #88B8E7;
+td:first-child {
+	border-left: none;
 }
 
-#nav ul {
-	margin: 0;
-	padding: 0;
+tr {
+	border-bottom: 1px solid black;
 }
 
-#nav ul li {
-	display: inline;
+td[colspan="5"] {
+	padding-top: 1%;
 }
 
-#nav li a {
-	float: left;
-	display: block;
-	padding: 12px 12px;
-	color: #fff;
-	border-right: 1px solid #fff;
-}
-
-#nav li a:hover {
-	color: #236BB2;
-}
-
-/* Content */
-
-#content {
-	clear: both;
-	padding: 18px;
-	background-color: #fff;
-	border-left: 1px solid #1144AA;
-	border-right: 1px solid #1144AA;
-	overflow: hidden;
-}
-
-#content ul {
-	list-style-type: square;
-	margin-left: 20px;
-}
-
-#content li {
-	margin-bottom: 5px;
-}
-
-/* Flash Message */
-#message {
-	background-color: #FCDDBB ;
-	border: 1px solid #555;
-	color: #000;
-	padding: 10px;
-}
-
-/* Form Errors */
-
-#form-errors {
-	margin-bottom: 20px;
-	margin-left: 30px;
-	list-style-type: square;
-}
-
-/* Form Input Styles */
-
-#question, #username, #password, #password_confirmation, #answer {
-	width: 250px;
-}
-
-#form-errors li {
-	color: red;
-}
-
-/* Ask div */
-
-#ask {
-	margin-bottom: 30px;
-	border-bottom: 1px solid #ccc;
-}
-
-/* Answers div */
-
-#answers {
-	border-top: 1px solid #ccc;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-/* post-answer div */
-
-#post-answer {
-	border-top: 1px solid #ccc;
-	padding-top: 20px;
-}
-
-/* Footer */
-
-#footer {
-	background-color: #236BB2;
-	color: #fff;
-	text-align: center;
-	padding: 1em;
-	border-radius: 0 0 10px 10px;
-	-moz-border-radius: 0 0 10px 10px;
-	-webkit-border-radius: 0 0 10px 10px;
-}
-
-/* Misc. Class Styles */
-
-.pagination {
-	margin-top: 20px;
-}
-
-.pagination ul li {
-	margin: 0 2px;
-	display: inline;
-}

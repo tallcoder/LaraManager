@@ -1,6 +1,8 @@
 <?php
 
 class Project extends BaseModel {
+	protected $table = 'projects';
+
 	protected $fillable = array('name, client_id, budget_used, budget_total, completed, description');
 
 	protected $rules = array(
@@ -11,7 +13,9 @@ class Project extends BaseModel {
 		'budget_total' => 'min:0|numeric'
 		);
 
-	protected $table = 'projects';
+	public function getProjects() {
+		return Project::all();
+	}
 	
 	public function user() {
 		return $this->hasOne('User');

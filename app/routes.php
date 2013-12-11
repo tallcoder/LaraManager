@@ -17,11 +17,12 @@ Route::get('logout','SessionsController@destroy');
 Route::resource('sessions', 'SessionsController');
 
 Route::get('projects', 'ProjectsController@index')->before('auth');
-
+Route::get('projects.create', 'ProjectsController@create')->before('auth');
+Route::get('projects.delete', 'ProjectsController@deleteSelect')->before('auth');
 Route::group(array('prefix' => 'projects', 'before','auth'), function() {
 
 	Route::get('{project}', 'ProjectsController@single');
-	Route::get('create', array('as' => 'new', 'uses' => 'ProjectsController@create'));
+//	Route::get('create', array('as' => 'new', 'uses' => 'ProjectsController@create'));
 	Route::get('{project}.edit', 'ProjectsController@edit');
 	Route::get('{project}.delete', 'ProjectsController@delete');
 });
