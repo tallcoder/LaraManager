@@ -20,6 +20,7 @@
 		<td>{{ $project->budget_total }}</td>
 		<td>{{ $project->budget_total - $project->budget_used }}</td>
 		<td><a href="{{ $project->url }}">Link</a></td>
+		<td><a href="/projects/edit/{{ $project->id }}">Edit</a></td>
 	</tr>
 	<tr class="description">
 		<td colspan="5">{{ $project->description }}</td>

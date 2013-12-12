@@ -53,6 +53,20 @@ class ProjectsController extends BaseController {
 		}
 	}
 
+	public function edit($id) {
+		$p = Project::find($id);
+		$data = array(
+			'title' => 'Edit Project',
+			'user' => Auth::user(),
+			'project' => $p
+			);
+		return View::make('projects.edit', $data);
+	}
+
+	public function patch($id) {
+		return "hi";
+	}
+
 	public function store() {
 		$p = new Project;
 		$p->name = Input::get('name');
@@ -61,7 +75,6 @@ class ProjectsController extends BaseController {
 		$p->description = Input::get('description');
 		$p->url = "http://" . Input::get('link') . ".icwebdev.com";
 		$p->save();
-
 		Redirect::to('projects');
 	}
 }

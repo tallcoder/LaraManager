@@ -24,3 +24,5 @@ Route::resource('sessions', 'SessionsController');
 Route::get('projects/{project}', array('as'=>'projects/{project}', 'uses' => 'ProjectsController@show'));
 
 Route::get('users/{user}', array('as' => 'users/{user}', 'uses' => 'UserController@show'));
+Route::get('projects/edit/{project}', array('as' => 'projects/edit/{project}', 'uses' =>'ProjectsController@edit'));
+Route::patch('projects/patch', array('as' => 'projects/patch', 'uses' => 'ProjectsController@patch'));
