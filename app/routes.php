@@ -21,3 +21,6 @@ Route::get('projects', array('as' => 'projects', 'uses' => 'ProjectsController@i
 Route::get('projects/create', array('as' => 'projects/create', 'uses' => 'ProjectsController@create'));
 Route::post('projects/store', array('as' => 'projects.store', 'uses' => 'ProjectsController@store'));
 Route::resource('sessions', 'SessionsController');
+Route::get('projects/{project}', array('as'=>'projects/{project}', 'uses' => 'ProjectsController@show'));
+
+Route::get('users/{user}', array('as' => 'users/{user}', 'uses' => 'UserController@show'));

@@ -10,14 +10,16 @@
 		<th>Budget Used</th>
 		<th>Budget Total</th>
 		<th>Budget Remaining</th>
+		<th>Dev Site</th>
 	</tr>
 @foreach($projects as $project)
 	<tr class="project">
-		<td>{{ $project->name}}</td>
+		<td><a href="/projects/{{ $project->id }}">{{ $project->name }}</a></td>
 		<td>{{ $project->client_name }}</td>
 		<td>{{ $project->budget_used }}</td>
 		<td>{{ $project->budget_total }}</td>
 		<td>{{ $project->budget_total - $project->budget_used }}</td>
+		<td><a href="{{ $project->url }}">Link</a></td>
 	</tr>
 	<tr class="description">
 		<td colspan="5">{{ $project->description }}</td>

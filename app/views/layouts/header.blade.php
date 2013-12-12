@@ -15,8 +15,10 @@
 			</div>
 			<div id="nav">
 				<h1>Project Manager</h1>
-				@if($user->usertype == "admin")
-				{{ link_to_route('projects/create', 'Create Project') }}
-				{{ link_to_route('users/new', 'Create User') }}
+				@if($user)
+					@if($user->usertype == "admin")
+					{{ link_to_route('projects/create', 'Create Project') }}
+					{{ link_to_route('users/new', 'Create User') }}
+					@endif
 				@endif
 			</div>

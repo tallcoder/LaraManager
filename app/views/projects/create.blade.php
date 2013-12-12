@@ -5,7 +5,14 @@
 {{ Form::label('name', 'Name:') }}
 {{ Form::text('name') }}<br />
 {{ Form::label('client_name', 'Client Name:') }}
-{{ Form::text('client_name') }}<br />
+
+<select id="user" name="user">
+@foreach($users as $user)
+	<option value="{{ $user->id }}">{{ $user->username }}</option>
+@endforeach
+</select>
+{{ Form::label('link', 'Dev Site Address:') }}
+&nbsp;http://{{ Form::text('link') }}.icwebdev.com<br />
 {{ Form::label('budget', 'Budget:') }}
 $<input type="number" name="budget" id="budget" min="0" max="50000" step="10" value="0" /><br />
 {{ Form::label('description', 'Description:') }}<br />

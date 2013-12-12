@@ -38,4 +38,15 @@ class UserController extends BaseController {
 			$u->save();
 			return Redirect::to('/')->with('message', 'Thanks for registering!');
 	}
+
+	public function show() {
+		$data = array(
+			'user' => Auth::user(),
+			'title' => 'User Overview'
+			);
+
+		if(Auth::user()->usertype == "client") {
+			$data = array_add($data, 'projects', Project::where('client_id', '=', Project::find(1)->user));
+		}
+	}
 }
