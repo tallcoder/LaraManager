@@ -38,4 +38,15 @@ class ProjectsController extends BaseController {
 			return View::make('errors.401', $data);
 		}
 	}
+
+	public function store() {
+		$p = new Project;
+		$p->name = Input::get('name');
+		$p->client_name = Input::get('client_name');
+		$p->budget_total = Input::get('budget');
+		$p->description = Input::get('description');
+		$p->save();
+
+		Redirect::to('projects');
+	}
 }

@@ -11,11 +11,19 @@
 		</ul>
 	@endif
 
-	{{ Form::open(array('url' => 'register', 'method' => 'POST')) }}
+	{{ Form::open(array('url' => 'register', 'method' => 'POST', 'id' => 'new_user')) }}
 
 	<p>
 		{{ Form::label('username', 'Username') }}<br />
 		{{ Form::text('username', Input::old('username')) }}
+	</p>
+	<p>
+		{{ Form::label('email', 'Email') }}<br />
+		{{ Form::email('email') }}
+	</p>
+	<p>
+		{{ Form::label('usertype', 'User Type') }}
+		{{ Form::select('usertype', array('admin' => 'Admin', 'staff' => 'Staff', 'client' => 'Client'), 'client') }}
 	</p>
 	<p>
 		{{ Form::label('password', 'Password') }}<br />

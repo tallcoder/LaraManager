@@ -4,7 +4,8 @@ class UserController extends BaseController {
 
 	public function getNew() {
 		$data = array (
-			'title' => 'Snappy - Register'
+			'title' => 'Add User',
+			'user' => Auth::user()
 			);
 		return View::make('users.new', $data);
 	}
@@ -14,19 +15,27 @@ class UserController extends BaseController {
 	}
 
 	public function postCreate() {
-		$validation = User::validate(Input::all());
 
-		if($validation->passes()) {
-			User::create(array(
-				'username' => Input::get('username'),
-				'password' => Hash::make(Input::get('password'))
-				));
+			$u = new User;
+			$u->username = Input::get('username');
+			$u->email = Input::get('email');
+			$u->password = Hash::make(Input::get('password'));
+			$u->usertype = Input::get('usertype');
 
-			return Redirect::to_route('home')->with('message', 'Thanks for registering!');
-		}
+			if($u->usertype == "client") {
+				$u->userperms = "333";
+			}
 
-		else {
-			return Redirect::to_route('register')->with_errors($validation)->with_input();
-		}
+			else if ($u->usertype == "staff") {
+				$u->userperms = "555";
+			}
+
+			else if ($u->usertype == "admin") {
+				$u->userperms = "777";
+			}
+
+			else $u->userperms = "111";
+			$u->save();
+			return Redirect::to('/')->with('message', 'Thanks for registering!');
 	}
 }

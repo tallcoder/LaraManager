@@ -16,6 +16,7 @@
 			<div id="nav">
 				<h1>Project Manager</h1>
 				@if($user->usertype == "admin")
-				<a href="{{ link_to_route('projects.create') }}">Create Project</a>
+				{{ link_to_route('projects/create', 'Create Project') }}
+				{{ link_to_route('users/new', 'Create User') }}
 				@endif
 			</div>

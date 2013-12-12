@@ -1,11 +1,16 @@
 @extends('layouts.default')
-@section('content')
-{{ Form::open(array('route' => 'projects.store')) }}
-<label for="name">Project Name:</label><input type="text" id="name" name="name" maxlength="60" />
-<label for="client_name">Client Name:</label><input type="text" id="client_name" name="client_name" maxlength="60" />
-<label for="budget">Budget:</label><input type="number" id="budget" name="budget" />
-<label for="description">Description:</label><textarea id="description" name="description"></textarea>
-{{ Form::submit() }}
 
+@section('content')
+{{ Form::open(array('route' => 'projects.store', 'id' => 'create_project')) }}
+{{ Form::label('name', 'Name:') }}
+{{ Form::text('name') }}<br />
+{{ Form::label('client_name', 'Client Name:') }}
+{{ Form::text('client_name') }}<br />
+{{ Form::label('budget', 'Budget:') }}
+$<input type="number" name="budget" id="budget" min="0" max="50000" step="10" value="0" /><br />
+{{ Form::label('description', 'Description:') }}<br />
+{{ Form::textarea('description') }}<br />
+{{ Form::submit() }}
 {{ Form::close() }}
+
 @stop
