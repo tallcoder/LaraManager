@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-{{ Form::open(array('route' => 'Projects.store')) }}
+{{ Form::open(array('route' => 'projects.store')) }}
 <label for="name">Project Name:</label><input type="text" id="name" name="name" maxlength="60" />
 <label for="client_name">Client Name:</label><input type="text" id="client_name" name="client_name" maxlength="60" />
 <label for="budget">Budget:</label><input type="number" id="budget" name="budget" />

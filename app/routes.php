@@ -11,18 +11,8 @@
 |
 */
 
+//session routes
 Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
-Route::get('login','SessionsController@index');
 Route::get('logout','SessionsController@destroy');
+Route::get('projects.create', 'ProjectsController@create');
 Route::resource('sessions', 'SessionsController');
-
-Route::get('projects', 'ProjectsController@index')->before('auth');
-Route::get('projects.create', 'ProjectsController@create')->before('auth');
-Route::get('projects.delete', 'ProjectsController@deleteSelect')->before('auth');
-Route::group(array('prefix' => 'projects', 'before','auth'), function() {
-
-	Route::get('{project}', 'ProjectsController@single');
-//	Route::get('create', array('as' => 'new', 'uses' => 'ProjectsController@create'));
-	Route::get('{project}.edit', 'ProjectsController@edit');
-	Route::get('{project}.delete', 'ProjectsController@delete');
-});

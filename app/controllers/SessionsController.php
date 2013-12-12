@@ -10,7 +10,8 @@ class SessionsController extends BaseController {
 	public function index()
 	{
 		$data = array(
-			'title' => 'ProMan Project Manager'
+			'title' => 'ProMan Project Manager',
+			'user' => Auth::user()
 			);
         return View::make('sessions.index', $data);
 	}
