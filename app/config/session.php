@@ -121,5 +121,9 @@ return array(
 	*/
 
 	'domain' => null,
-
+	
+	/*
+	|----expire on close----------|
+	*/
+	'expire_on_close' => false,
 );
