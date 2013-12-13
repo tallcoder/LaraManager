@@ -15,7 +15,7 @@
 Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
 Route::get('logout','SessionsController@destroy');
 
-Route::resource('user', 'UsersController');
+Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects.lists', 'ListsController');

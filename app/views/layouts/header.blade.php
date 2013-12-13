@@ -8,7 +8,7 @@
 		<div id="container">
 			<div id="topper">
 				@if($user)
-				<p>You are logged in as {{ $user->usename }}</p>
+				<p>You are logged in as {{ $user->username }}</p>
 				@else
 				<p>You are not logged in</p>
 				@endif
@@ -17,8 +17,8 @@
 				<h1>Project Manager</h1>
 				@if($user)
 					@if($user->usertype == "admin")
-					{{ link_to_route('projects/create', 'Create Project') }}
-					{{ link_to_route('users/new', 'Create User') }}
+					{{ link_to_route('projects.create', 'Create Project') }}
+					{{ link_to_route('users.create', 'Create User') }}
 					@endif
 				@endif
 			</div>

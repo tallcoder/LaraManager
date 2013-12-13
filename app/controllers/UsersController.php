@@ -1,8 +1,8 @@
 <?php
 
-class UserController extends BaseController {
+class UsersController extends BaseController {
 
-	public function getNew() {
+	public function create() {
 		$data = array (
 			'title' => 'Add User',
 			'user' => Auth::user()
@@ -11,10 +11,21 @@ class UserController extends BaseController {
 	}
 
 	public function index() {
-		return "user index";
+		if(Auth::user()->usertype == "admin" || Auth::user()->usertype == "staff") {
+			$data = array(
+				'user' => Auth::user(),
+				'users' => User::all(),
+				'title' => 'Users Overview'
+				);
+			return View::make('users.index', $data);
+		}
+
+		else {
+			return "Access Denied";
+		}
 	}
 
-	public function create() {
+	public function store() {
 
 			$u = new User;
 			$u->username = Input::get('username');
@@ -49,3 +60,20 @@ class UserController extends BaseController {
 			$data = array_add($data, 'projects', Project::where('client_id', '=', Project::find(1)->user));
 		}
 	}
+
+	public function destroy($id, $confirm = false) {
+		if($confirm != true) {
+			$data = array(
+				'user' => User::find($id),
+				'title' => 'Confirm Delete'
+				);
+			return View::make('users.delete');
+		}
+
+		else {
+			$u = User::find($id);
+			$u->delete();
+			return Redirect::to('users')->with('message', "$u->username has been successfully deleted!");
+		}
+	}
+}
