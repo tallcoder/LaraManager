@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateTasksTable extends Migration {
 
@@ -11,17 +12,20 @@ class CreateTasksTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tasks', function($table) {
+		Schema::create('tasks', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('taskname');
-			$table->integer('client_id');
-			$table->integer('staff_id');
+			$table->string('name');
+			$table->integer('list');
+			$table->integer('created_by');
+			$table->integer('assigned_to');
+			$table->integer('completed_by');
 			$table->integer('budget_total');
 			$table->integer('budget_used');
 			$table->text('description');
-			$table->boolean('completed');
+			$table->timestamps();
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -32,5 +36,4 @@ class CreateTasksTable extends Migration {
 	{
 		Schema::drop('tasks');
 	}
-
 }

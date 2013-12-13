@@ -8,14 +8,6 @@
 			<th>Completed?</th>
 			<th>Dev Site</th>
 		</tr>
-		<tr>
-			<td>{{ $projects->name }}</td>
-			<td>{{ $projects->budget_total }}</td>
-			<td>{{ $projects->completed }}</td>
-			<td><a href="{{ $projects->url }}">Link</a></td>
-		</tr>
-		<tr>
-			<td>{{ $projects->description }}</td>
-		</tr>
+	@include('layouts.partials._form_project')
 	</table>
 @stop

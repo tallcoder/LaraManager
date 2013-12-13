@@ -31,6 +31,19 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	 *
 	 * @return mixed
 	 */
+
+	public function scopeStaff() {
+		return $query->where('usertype', '=', 'staff');
+	}
+
+	public function scopeAdmin() {
+		return $query->where('usertype', '=', 'admin');
+	}
+
+	public function scopeClient() {
+		return $query->where('usertype', '=', 'client');
+	}
+	
 	public function getAuthIdentifier()
 	{
 		return $this->getKey();

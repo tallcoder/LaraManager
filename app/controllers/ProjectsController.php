@@ -23,17 +23,23 @@ class ProjectsController extends BaseController {
 	  		$data = array(
 	  			'title' => 'Client Projects',
 	  			'user' => Auth::user(),
-	  			'projects' => DB::table('projects')->where('user_id', Auth::user()->id)->first()
+	  			'project' => DB::table('projects')->where('user_id', Auth::user()->id)->first()
 	  			);
 	  		return View::make('projects.single', $data);
 	  	}
 	}
 
+	/*
+	*	view a single specific project
+	*/
 	public function show($id) {
-		$data = array('user' => Auth::user(), 'projects' => Project::where('id', '=', $id)->firstOrFail(), 'title' => 'Project View');
+		$data = array('user' => Auth::user(), 'project' => Project::where('id', '=', $id)->firstOrFail(), 'title' => 'Project View');
 		return View::make('projects.single', $data);
 	}
 
+	/*
+	*	create a new project
+	*/
 	public function create() {
 		$data = array(
 			'user' => Auth::user(),
@@ -53,6 +59,9 @@ class ProjectsController extends BaseController {
 		}
 	}
 
+	/*
+	*	edit an existing project
+	*/
 	public function edit($id) {
 		$p = Project::find($id);
 		$data = array(
