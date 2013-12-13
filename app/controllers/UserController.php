@@ -10,11 +10,11 @@ class UserController extends BaseController {
 		return View::make('users.new', $data);
 	}
 
-	public function getIndex() {
+	public function index() {
 		return "user index";
 	}
 
-	public function postCreate() {
+	public function create() {
 
 			$u = new User;
 			$u->username = Input::get('username');
@@ -49,4 +49,3 @@ class UserController extends BaseController {
 			$data = array_add($data, 'projects', Project::where('client_id', '=', Project::find(1)->user));
 		}
 	}
-}

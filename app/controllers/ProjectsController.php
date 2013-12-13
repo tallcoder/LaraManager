@@ -2,11 +2,14 @@
 
 class ProjectsController extends BaseController {
 
-	public function index() {
-		/*
-		*	if the user isn't a client, they get to see everything
-		*/
-		if(Auth::user()->usertype != "client") {
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+       	if(Auth::user()->usertype != "client") {
 			$data = array(
 				'projects' => Project::all(), 
 				'title' => 'Project Overview', 
@@ -29,23 +32,18 @@ class ProjectsController extends BaseController {
 	  	}
 	}
 
-	/*
-	*	view a single specific project
-	*/
-	public function show($id) {
-		$data = array('user' => Auth::user(), 'project' => Project::where('id', '=', $id)->firstOrFail(), 'title' => 'Project View');
-		return View::make('projects.single', $data);
-	}
-
-	/*
-	*	create a new project
-	*/
-	public function create() {
-		$data = array(
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+        $data = array(
 			'user' => Auth::user(),
-			 'title' => 'New Project',
-			 'users' => User::all()
-			 );
+			'title' => 'New Project',
+			'users' => User::all()
+			);
 		if(true) {
 			return View::make('projects.create', $data);
 		}
@@ -59,24 +57,13 @@ class ProjectsController extends BaseController {
 		}
 	}
 
-	/*
-	*	edit an existing project
-	*/
-	public function edit($id) {
-		$p = Project::find($id);
-		$data = array(
-			'title' => 'Edit Project',
-			'user' => Auth::user(),
-			'project' => $p
-			);
-		return View::make('projects.edit', $data);
-	}
-
-	public function patch($id) {
-		return "hi";
-	}
-
-	public function store() {
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
 		$p = new Project;
 		$p->name = Input::get('name');
 		$p->user_id = Input::get('user');
@@ -86,4 +73,56 @@ class ProjectsController extends BaseController {
 		$p->save();
 		Redirect::to('projects');
 	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+        $data = array('user' => Auth::user(), 'project' => Project::where('id', '=', $id)->firstOrFail(), 'title' => 'Project View');
+		return View::make('projects.show', $data);
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+       	$p = Project::find($id);
+		$data = array(
+			'title' => 'Edit Project',
+			'user' => Auth::user(),
+			'project' => $p
+			);
+		return View::make('projects.edit', $data);
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
+	}
+
 }
