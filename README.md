@@ -28,14 +28,15 @@ I do most of my development locally, and then push to a development server.
 
 <i>Installing Composer</i>
 These instructions are pretty much the same for Linux and OS X. If you run Windows, go on a google search :)
-
-`curl -sS https://getcomposer.org/installer | php`
-`sudo mv composer.phar /usr/bin/composer`
-`composer create-project laravel/laravel promanager --prefer-dist`
-`cd promanager`
-`git remote add origin https://github.com/mjdugan14/ProManager.git`
-`git fetch --all`
-`git reset --hard origin/master`
-`composer update`
+<ul>
+<li>`curl -sS https://getcomposer.org/installer | php`</li>
+<li>`sudo mv composer.phar /usr/bin/composer`</li>
+<li>`composer create-project laravel/laravel promanager --prefer-dist`</li>
+<li>`cd promanager`</li>
+<li>`git remote add origin https://github.com/mjdugan14/ProManager.git`</li>
+<li>`git fetch --all`</li>
+<li>`git reset --hard origin/master`</li>
+<li>`composer update`</li>
+</ul>
 
 You can then set up an Apache virtual host or use `php artisan serve` to test the application.
