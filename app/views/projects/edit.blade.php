@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 <h3>Edit {{ $project->name }}</h3>
-{{ Form::open(array('route' => "projects/patch", 'id' => 'edit_project', 'method' => 'patch')) }}
+{{ Form::open(array('route' => "projects.update", 'id' => 'edit_project', 'method' => 'put')) }}
 {{ Form::label('name', 'Name:') }}
 {{ Form::text('name', $project->name) }}
 {{ Form::label('budget', 'Budget:') }}

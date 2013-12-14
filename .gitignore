@@ -9,3 +9,4 @@ readme.md
 *.sublime-project
 *.sublime-workspace
 sftp-config.json
+.idea

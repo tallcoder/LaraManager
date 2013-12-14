@@ -39,7 +39,7 @@ class ProjectsController extends BaseController {
 	 */
 	public function create()
 	{
-        $data = array(
+       $data = array(
 			'user' => Auth::user(),
 			'title' => 'New Project',
 			'users' => User::all()
@@ -94,7 +94,7 @@ class ProjectsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-       	$p = Project::find($id);
+    $p = Project::find($id);
 		$data = array(
 			'title' => 'Edit Project',
 			'user' => Auth::user(),
@@ -110,8 +110,14 @@ class ProjectsController extends BaseController {
 	 * @return Response
 	 */
 	public function update($id)
-	{
-		//
+	{	
+		$p = Project::find($id);
+		$p->name = Input::get('name');
+		$p->budget_total = Input::get('budget');
+		$p->description = Input::get('description');
+		$p->save();
+
+		return View::make('projects');
 	}
 
 	/**
@@ -122,7 +128,9 @@ class ProjectsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Project::destroy($id);
+
+		return View::make('projects');
 	}
 
 }
