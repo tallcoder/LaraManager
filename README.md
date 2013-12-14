@@ -24,9 +24,11 @@ If you're interested, feel free to <a href="mailto:mike@mjdugan.com?subject=prom
 Long Story Short: If you're already familiar with Laravel, simply install it, clone this repo over top of your root directory, and run `php composer update`
 
 <h4><i>Developing Locally</i></h3>
-I do most of my development locally, and then push to a development server.
+
+I do most of my development locally, and then push to a development server. At home I develop on Mac OS X Mavericks, at work it is on Xubuntu 13.10.
 
 <i>Installing Composer</i>
+
 These instructions are pretty much the same for Linux and OS X. If you run Windows, go on a google search :)
 <ul>
 <li>`curl -sS https://getcomposer.org/installer | php`</li>
