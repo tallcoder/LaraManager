@@ -7,12 +7,22 @@ class TasksTableSeeder extends Seeder {
 		// Uncomment the below to wipe the table clean before populating
 		// DB::table('tasks')->truncate();
 
-		$tasks = array(
+		DB::table('tasklists')->delete();
+		$faker = Faker\Factory::create();
 
-		);
-
-		// Uncomment the below to run the seeder
-		// DB::table('tasks')->insert($tasks);
+		foreach(range(1,200) as $index) {
+			$t = new Task;
+			$t->name = $faker->sentence;
+			$t->description = $faker->paragraph;
+			$t->list = $faker->randomNumber(1,20);
+			$t->created_by = $faker->randomNumber(1,15);
+			$t->budget_total = $faker->randomNumber(0,200);
+			$t->budget_used = 0;
+			$t->assigned_to = $faker->randomNumber(0,15);
+			$t->begin_date = $faker->date($format = 'm-d-Y');
+			$t->due_date = $faker->date($format = 'm-d-Y');
+			$t->end_date = $faker->date($format = 'm-d-Y');
+			$t->save();
+		}
 	}
-
 }

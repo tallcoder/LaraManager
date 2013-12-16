@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-	<h1>Register</h1>
+	<h1>Create User</h1>
 	
 	@if($errors->has())
 		<p>The following errors have occurred:</p>
@@ -18,10 +18,13 @@
 		{{ Form::text('username', Input::old('username')) }}
 	</p>
 	<p>
+		{{ Form::label('email', 'Email') }}<br />
+		{{ Form::email('email') }}
+	</p>
+	<p>
 		{{ Form::label('first_name', 'First Name:') }}<br />
 		{{ Form::text('first_name', Input::old('first_name')) }}
 	</p>
-
 	<p>
 		{{ Form::label('last_name', 'Last Name:') }} <br>
 		{{ Form::text('last_name', Input::old('last_name')) }}
@@ -31,12 +34,8 @@
 		{{ Form::text('phone', Input::old('phone')) }}
 	</p>
 	<p>
-		{{ Form::label('email', 'Email') }}<br />
-		{{ Form::email('email') }}
-	</p>
-	<p>
-		{{ Form::label('usertype', 'User Type') }}
-		{{ Form::select('usertype', array('admin' => 'Admin', 'staff' => 'Staff', 'client' => 'Client'), 'client') }}
+		{{ Form::label('expires', 'Expires (Leave Blank for Staff):') }}<br />
+		<input type="date" name="expires" id="expires" />
 	</p>
 	<p>
 		{{ Form::label('password', 'Password') }}<br />
@@ -47,8 +46,8 @@
 		{{ Form::password('password_confirmation') }}
 	</p>
 	<p>
-		{{ Form::label('expires', 'Expires (Leave Blank for Staff):') }}<br />
-		<input type="date" name="expires" id="expires" />
+		{{ Form::label('usertype', 'User Type') }}
+		{{ Form::select('usertype', array('admin' => 'Admin', 'staff' => 'Staff', 'client' => 'Client'), 'client') }}
 	</p>
 	<p>
 		{{ Form::submit('Create User') }}

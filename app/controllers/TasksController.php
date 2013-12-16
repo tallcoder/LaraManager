@@ -9,7 +9,12 @@ class TasksController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('tasks.index');
+		$data = array(
+			'title' => 'Tasks Overview',
+			'user' => Auth::user(),
+			'tasks' => Task::all()
+			);
+        return View::make('tasks.index', $data);
 	}
 
 	/**
@@ -19,7 +24,13 @@ class TasksController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('tasks.create');
+		$data = array(
+			'title' => 'Create New Task',
+			'user' => Auth::user(),
+			'staff' => User::where('usertype', '=', 'staff')->orWhere('usertype','=','admin')->get(),
+			'lists' => Tasklist::all()
+			);
+        return View::make('tasks.create', $data);
 	}
 
 	/**
@@ -29,7 +40,10 @@ class TasksController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$t = new Task;
+		$t->name = Input::get('name');
+		$t->list = Input::get('list');
+		$t->assigned_to = Input::get('assigned_to');
 	}
 
 	/**
@@ -73,17 +87,6 @@ class TasksController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		if(Auth::user()->usertype == 'admin' || Auth::user()->usertype == 'staff') {
-			if(Task::destroy($id)) {
-			return true;
-			}
-
-			else return false;
-			}
-		}
-
-		else {
-			return false;
-		}
-
+		//
+	}
 }

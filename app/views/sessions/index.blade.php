@@ -1,8 +1,8 @@
 @extends('layouts.default')
 @section('content')
-<h2>ProMan Login</h2>
+<h2>ProManager Login</h2>
 
-{{ Form::open(array('route' => 'sessions.store')) }}
+{{ Form::open(array('route' => 'sessions.store', 'id' => 'login')) }}
 	<ul>
 		<li>
 			{{ Form::label('username', 'Username:') }}

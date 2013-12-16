@@ -50,7 +50,7 @@ class UsersController extends BaseController {
 
 			else $u->userperms = "111";
 			$u->save();
-			return Redirect::to('/')->with('message', 'Thanks for registering!');
+			return Redirect::to('/')->with('flash_message', 'Thanks for registering!');
 	}
 
 	public function show($id) {
@@ -66,12 +66,12 @@ class UsersController extends BaseController {
 	public function destroy($id) {
 		if(Auth::user()->usertype == 'admin') {
 			if(User::destroy($id)) {
-			return Redirect::to('users')->with('message', "$u->username has been successfully deleted!");
+			return Redirect::to('users')->with('flash_message', "$u->username has been successfully deleted!");
 			}
 		}
 
 		else {
-			return Redirect::to('users')->with('message', "You do not have adequate permissions to delete users!");
+			return Redirect::to('users')->with('flash_message', "You do not have adequate permissions to delete users!");
 		}
 	}
 }

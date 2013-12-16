@@ -14,7 +14,7 @@ class ProjectsTableSeeder extends Seeder {
 
 				$p = new Project;
 					$p->name = $faker->unique()->company;
-					$p->user_id = $faker->randomNumber(1,15);
+					$p->user_id = $faker->randomNumber(1,16);
 					$p->budget_total = $faker->randomNumber(0, 50000);
 					$p->budget_used = $faker->randomNumber(0, $p->budget_total);
 					$p->completed = $faker->boolean(10);

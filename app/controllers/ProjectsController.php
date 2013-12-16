@@ -9,26 +9,35 @@ class ProjectsController extends BaseController {
 	 */
 	public function index()
 	{
-       	if(Auth::user()->usertype != "client") {
-			$data = array(
-				'projects' => Project::all(), 
-				'title' => 'Project Overview', 
-				'user' => Auth::user()
-				);
-			return View::make('projects.index', $data);
-	  	}
-	  	/*
-	  	*	if the user IS a client, they see their project only
-	  	*/
-	  	else {
-	  		//$data = array('projects' => Project::where('client_id', '=', Project::find(1)->user), 'title' => 'Project Overview', 'user' => Auth::user());
-	  		$data = array(
-	  			'title' => 'Client Projects',
-	  			'user' => Auth::user(),
-	  			'project' => DB::table('projects')->where('user_id', Auth::user()->id)->first()
-	  			);
-	  		return View::make('projects.single', $data);
-	  	}
+		if(Auth::user()) {
+	       	if(Auth::user()->usertype == "admin") {
+				$data = array(
+					'projects' => Project::all(), 
+					'title' => 'Project Overview', 
+					'user' => Auth::user()
+					);
+				return View::make('projects.index', $data);
+		  	}
+		  	/*
+		  	*	if the user IS a client, they see their project only
+		  	*/
+		  	else {
+		  		//$data = array('projects' => Project::where('client_id', '=', Project::find(1)->user), 'title' => 'Project Overview', 'user' => Auth::user());
+		  		$data = array(
+		  			'page' => 'projects',
+		  			'title' => 'Access Denied'
+		  			);
+		  		return View::make('errors.401', $data);
+		  	}
+		  }
+		  else {
+		  	$data = array(
+		  		'page' => 'projects',
+		  		'title' => 'Access Denied',
+		  		'user' => Auth::user()
+		  	);
+		  	return View::make('errors.401', $data);
+		  }
 	}
 
 	/**
@@ -84,7 +93,7 @@ class ProjectsController extends BaseController {
         $data = array(
         	'user' => Auth::user(),
         	'project' => Project::where('id', '=', $id)->firstOrFail(),
-        	'comments' => Comment::commentsByParent($id),
+        	'comments' => Comment::projectComments($id)->get(),
         	'title' => 'Project View'
         	);
 		return View::make('projects.show', $data);

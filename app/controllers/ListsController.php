@@ -9,7 +9,11 @@ class TasksController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('lists.index');
+		$data = array(
+			'title' => 'Task Lists Overview',
+			'user' => Auth::user()
+			);
+        return View::make('lists.index', $data);
 	}
 
 	/**

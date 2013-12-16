@@ -1,6 +1,6 @@
 <?php
 
-class Task extends Eloquent {
+class Task extends BaseModel {
 	protected $fillable = array(
 		'name','list','created_by','assigned_to','completed_by','budget_total','description'
 		);
@@ -13,35 +13,35 @@ class Task extends Eloquent {
 	/*
 	*	some scopes for filtering users, budgets, and lists
 	*/
-	public function scopeAssignedTo($id) {
+	public function scopeAssignedTo($query, $id) {
 		return $query->where('assigned_to', '=', $id);
 	}
 
-	public function scopeCreatedBy($id) {
+	public function scopeCreatedBy($query, $id) {
 		return $query->where('created_by', '=', $id);
 	}
 
-	public function scopeCompletedBy($id) {
+	public function scopeCompletedBy($query, $id) {
 		return $query->where('completed_by', '=', $id);
 	}
 
-	public function scopeTotalBudgetUnder($b) {
+	public function scopeTotalBudgetUnder($query, $b) {
 		return $query->where('budget_total', '<', $b);
 	}
 
-	public function scopeTotalBudgetOver($b) {
+	public function scopeTotalBudgetOver($query, $b) {
 		return $query->where('budget_total', '>', $b);
 	}
 
-	public function scopeUsedBudgetUnder($b) {
+	public function scopeUsedBudgetUnder($query, $b) {
 		return $query->where('budget_used', '<', $b);
 	}
 
-	public function scopeUsedBudgetOver($b) {
+	public function scopeUsedBudgetOver($query, $b) {
 		return $query->where('budget_used', '>', $b);
 	}
 
-	public function scopeList($id) {
+	public function scopeList($query, $id) {
 		return $query->where('list', '=', $id);
 	}	
 }

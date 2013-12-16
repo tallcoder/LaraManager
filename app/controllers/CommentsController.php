@@ -4,11 +4,11 @@ class CommentsController extends BaseController {
 
 	public function store() {
 		$c = new Comment;
-		$c->type = "comment";
+		$c->type = Input::get('type');
 		$c->parent = Input::get('parent');
 		$c->description = Input::get('comment');
 		$c->user_id = Input::get('user');
-		$c->save;
+		$c->save();
 
 		return Redirect::back();
 	}

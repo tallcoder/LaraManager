@@ -5,12 +5,14 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"zizaco/entrust": "dev-master",
-		"zizaco/confide": "2.0.x"
+		"intervention/image": "dev-master",
+		"frozennode/administrator": "dev-master"
 	},
 	"require-dev": {
 		"fzaninotto/faker": "dev-master",
-		"way/generators": "dev-master"
+		"way/generators": "dev-master",
+		"way/guard-laravel": "dev-master",
+		"barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
 		"classmap": [

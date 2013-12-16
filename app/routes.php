@@ -18,7 +18,6 @@ Route::get('logout', array('as' => 'logout', 'uses' => 'SessionsController@destr
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('projects', 'ProjectsController');
+Route::resource('comments', 'CommentsController');
 Route::resource('projects.lists', 'ListsController');
 Route::resource('projects.tasks', 'TasksController');
-
-Route::post('comment.store', array('as' => 'comment.store', 'uses' => 'CommentsController@store'));

@@ -1,4 +1,6 @@
 @foreach($comments as $comment)
-	<h4>{{ $comment->user_id }}</h4>
+	<div class="comment">
+	<h4>{{ User::find($comment->user_id)->username }} at {{ $comment->created_at }}</h4>
 	<p>{{ $comment->description }}</p>
+	</div>
 @endforeach

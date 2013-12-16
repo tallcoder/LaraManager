@@ -4,6 +4,4 @@
 	<td>{{ $project->completed }}</td>
 	<td><a href="{{ $project->url }}">Link</a></td>
 </tr>
-<tr>
-	<td>{{ $project->description }}</td>
-</tr>
+	<p class="description">{{ $project->description }}</p>

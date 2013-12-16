@@ -7,21 +7,37 @@
 	<body>
 		<div id="container">
 			<div id="topper">
-				@if($user)
+				@if(isset($user))
 				<p>You are logged in as {{ $user->username }}</p>
 				@else
 				<p>You are not logged in</p>
 				@endif
 			</div>
-			<div id="nav">
-				<h1>Project Manager</h1>
-					{{ HTML::linkRoute('home', 'Home') }}
+			<h1>ProManager</h1>
+			<nav>
+				<ul>
+					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
 				@if($user)
-					{{ HTML::linkRoute('projects.index', 'Projects') }}
+					<li>Projects
+						<ul>
+							<li>{{ HTML::linkRoute('projects.index', 'Overview') }}</li>
+							<li>{{ link_to_route('projects.create', 'Create Project') }}</li>
+						</ul>
+					</li>
 					@if($user->usertype == "admin")
-					{{ HTML::linkRoute('users.index', 'Users') }}
-					{{ link_to_route('projects.create', 'Create Project') }}
-					{{ link_to_route('users.create', 'Create User') }}
+					<li>Users
+						<ul>
+							<li>{{ HTML::linkRoute('users.index', 'Overview') }}</li>
+							<li>{{ link_to_route('users.create', 'Create User') }}</li>
+						</ul>
+					</li>
+					<li>Tasks
+						<ul>
+							<li>{{ HTML::linkRoute('projects.tasks.index', 'Overview') }}</li>
+							<li>{{ HTML::linkRoute('projects.tasks.create', 'Create Task') }}</li>
+						</ul>
+					</li>
 					@endif
 				@endif
+				</ul>
 			</div>

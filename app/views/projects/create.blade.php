@@ -8,9 +8,9 @@
 
 <select id="user" name="user">
 @foreach($users as $user)
-	<option value="{{ $user->id }}">{{ $user->username }}</option>
+	<option value="{{ $user->id }}">{{ $user->first_name }} {{ $user->last_name }}</option>
 @endforeach
-</select>
+</select><br />
 {{ Form::label('link', 'Dev Site Address:') }}
 &nbsp;http://{{ Form::text('link') }}.icwebdev.com<br />
 {{ Form::label('budget', 'Budget:') }}

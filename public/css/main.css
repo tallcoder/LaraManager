@@ -35,15 +35,102 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
+/* layouts */
 html {
-	background-color: #797979;
+	background-color: #8D9EA6;
+	height: 100%;
 	}
 
 body {
 	width:70%;
+	min-height: 100%;
+	position: absolute;
+	background: white;
+	left: 15%;
+	top: 0;
+}
+
+#content {
+	padding-left: 5%;
+}
+
+.actions {
+	float: right;
+	margin: 1% 1% 0 0;
+	text-align: right;
+}
+
+.actions a {
+	display: block;
+}
+
+#topper {
+	margin-left: 70%;
+}
+
+#login {
+	width: 20%;
 	margin: 0 auto;
-	line-height: 1;
-	background-color: #8D9EA6;
+}
+
+#comments {
+	margin: 1% 0 0 5%;
+	width: 50%;
+}
+
+.comment {
+	border-bottom: 1px solid black;
+	margin-bottom: 15px;
+}
+
+.overview {
+	margin-left: 1%;
+}
+
+.task {
+	margin-top: 1%;
+	padding-left: 3%;
+	border-bottom: 1px solid black;
+}
+
+.task i {
+	font-style: italic;
+	font-weight: 600;
+}
+
+.task p {
+	margin-bottom: 0;
+}
+
+.task div {
+	width: 40%;
+	display: inline-block;
+}
+
+.task .left {
+	float: left;
+	position: relative;
+}
+
+#new_user p {
+	width: 45%;
+	float: left;
+}
+
+footer {
+	clear: both;
+	float: none;
+	width: 100%;
+	text-align: right;
+	position: absolute;
+	bottom: 0;
+	background: #BDCEE2;
+}
+
+footer p {
+	margin: 1%;
+	width: 98%;
+	text-align: center;
 }
 
 ol, ul {
@@ -67,12 +154,109 @@ table {
 
 /* -------- Main Styles --------- */
 
+input[type="submit"] {
+	background: #A7BAD1;
+	padding: 3px;
+	border-radius: 3px;
+	float: left;
+}
 
-/* General Tags */
+a:link, a:visited {
+	color: darkblue;
+}
 
+a:hover, a:active {
+	color: darkblue;
+}
+
+
+
+/* nav menu */
+nav ul {
+	background: #A7BAD1;
+	text-align: center;
+}
+
+nav ul ul {
+	display: none;
+	position: absolute;
+	background-color: #A7BAD1;
+	top: 100%;
+	border: 1px solid #45658A;
+}
+
+nav ul li:hover {
+	background-color: #BDCEE2;
+}
+
+nav ul li:hover > ul {
+	display: block;
+	width: 200px;
+	left: 0;
+	top: 100%;
+}
+
+nav ul li:hover > ul li {
+	position: relative;
+	display: block;
+	text-align: left;
+	margin-left: 0;
+	padding: 5px;
+}
+
+	nav ul li:hover > ul li:not(:first-child) {
+		border-top: 1px solid #45658A;
+	}
+
+nav ul li {
+	list-style-type: none;
+	display: inline-block;
+	position: relative;
+	padding: 1% 1%;
+}
+
+nav ul li:not(:first-child) {
+	margin-left: 5%;
+}
+
+nav a {
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
+	font-famiy: 'Merriweather Sans', sans-serif;
+}
+
+nav ul ul a {
+	font-famiy: 'Merriweather Sans', sans-serif;
+}
+
+/* tables */
+th {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+td {
+	border-left: 1px solid black;
+	padding-left: 5px;
+	width: 5%;
+}
+
+td.description {
+	width: 100%;
+}
+tr {
+	border-bottom: 1px solid black;
+}
+
+td[colspan="5"] {
+	padding-top: 1%;
+}
+
+/* typography */
 body {
 	text-align: left;
-	font-famiy: 'Merriweather Sans', sans-serif;
+	font-family: 'Merriweather Sans', sans-serif;
 }
 
 label, p {
@@ -100,41 +284,3 @@ h3 {
 p {
 	margin-bottom: 25px
 }
-
-a:link, a:visited {
-	color: darkblue;
-}
-
-a:hover, a:active {
-	color: darkblue;
-}
-
-#container {
-	margin: 5% auto;
-	width: 70%;
-}
-
-/*projects table */
-th {
-	font-size: 16px;
-	font-weight: bold;
-	border-bottom: 2px solid black;
-}
-
-td {
-	border-left: 1px solid black;
-	padding-left: 5px;
-}
-
-td:first-child {
-	border-left: none;
-}
-
-tr {
-	border-bottom: 1px solid black;
-}
-
-td[colspan="5"] {
-	padding-top: 1%;
-}
-

@@ -1,6 +1,6 @@
 <?php
 
-class Comment extends Eloquent {
+class Comment extends BaseModel {
 	protected $fillabe = array(
 		'parent', 'description', 'user_id'
 		);
@@ -14,15 +14,19 @@ class Comment extends Eloquent {
 		return Comment::all();
 	}
 
-	public function scopeCommentsByUser($u) {
+	public function scopeProjectComments($query, $p) {
+		return $query->where('type', '=', 'p_comment')->where('parent', '=', $p);
+	}
+
+	public function scopeCommentsByUser($query, $u) {
 		return $query->where('user_id', '=', $u);
 	}
 
-	public function scopeCommentsByParent($p) {
+	public function scopeCommentsByParent($query, $p) {
 		return $query->where('parent', '=', $p);
 	}
 
-	public function scopeCommentsByType($t = 'comment') {
+	public function scopeCommentsByType($query, $t = 'comment') {
 		return $query->where('type', '=', $t);
 	}
 }
