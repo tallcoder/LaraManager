@@ -2,7 +2,7 @@
 
 @section('content')
 <h3>Staff Overview - Projects</h3>
-<p>You are logged in as {{ $user->username }}</p>
+<p>You are logged in as {{ Auth::user()->username }}</p>
 <table class="projects">
 	<tr class="header">
 		<th>Name</th>
@@ -15,18 +15,21 @@
 @foreach($projects as $project)
 	<tr class="project">
 		<td><a href="/projects/{{ $project->id }}">{{ $project->name }}</a></td>
-		<td>{{ $project->client_name }}</td>
-		<td>{{ $project->budget_used }}</td>
-		<td>{{ $project->budget_total }}</td>
-		<td>{{ $project->budget_total - $project->budget_used }}</td>
+		<td>{{ User::find($project->user_id)->first_name . " " . User::find($project->user_id)->last_name }}</td>
+		<td>${{ $project->budget_used }}</td>
+		<td>${{ $project->budget_total }}</td>
+		<td>${{ $project->budget_total - $project->budget_used }}</td>
 		<td><a href="{{ $project->url }}">Link</a></td>
 		<td><a href="/projects/{{ $project->id }}/edit">Edit</a></td>
+		<td>
+		{{ Form::open(array('action' => ['ProjectsController@destroy', $project->id])) }}
+		{{ Form::submit('Delete') }}
+		{{ Form::close() }}
+		</td>
 	</tr>
 	<tr class="description">
 		<td colspan="5">{{ $project->description }}</td>
 	</tr>
 @endforeach
 </table>
-
-
 @stop

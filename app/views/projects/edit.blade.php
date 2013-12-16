@@ -2,6 +2,7 @@
 @section('content')
 <h3>Edit {{ $project->name }}</h3>
 {{ Form::open(array('route' => "projects.update", 'id' => 'edit_project', 'method' => 'put')) }}
+{{ Form::hidden('id', $project->id) }}
 {{ Form::label('name', 'Name:') }}
 {{ Form::text('name', $project->name) }}
 {{ Form::label('budget', 'Budget:') }}

@@ -1,10 +1,4 @@
 @extends('layouts.default')
-{{--
-available vars:
- --user:object
- --project:object
- --title:string
---}}
 @section('content')
 	<h3>Project Overview</h3>
 	<table id="project">
@@ -16,6 +10,10 @@ available vars:
 		</tr>
 	@include('layouts.partials._form_project')
 	</table>
-	{{ HTML::linkRoute('projects.tasks.create', 'Create Task', $project->id) }}
-	{{ HTML::linkRoute('projects.lists.create', 'Create Task List', $project->id) }}
+	{{ Form::open(array('route' => 'comment.store', 'method' => 'post')) }}
+		<h4>Add comment</h4>
+		@include('layouts.partials._form_show_comments')
+		@include('layouts.partials._form_comment')
+	{{ Form::submit() }}
+	{{ Form::close() }}
 @stop

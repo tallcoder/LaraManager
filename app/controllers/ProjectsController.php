@@ -13,8 +13,7 @@ class ProjectsController extends BaseController {
 			$data = array(
 				'projects' => Project::all(), 
 				'title' => 'Project Overview', 
-				'user' => Auth::user(), 
-				'users' => User::all()
+				'user' => Auth::user()
 				);
 			return View::make('projects.index', $data);
 	  	}
@@ -62,7 +61,7 @@ class ProjectsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($id = null)
 	{
 		$p = new Project;
 		$p->name = Input::get('name');
@@ -71,7 +70,7 @@ class ProjectsController extends BaseController {
 		$p->description = Input::get('description');
 		$p->url = "http://" . Input::get('link') . ".icwebdev.com";
 		$p->save();
-		Redirect::to('projects');
+		return Redirect::to('projects');
 	}
 
 	/**
@@ -82,7 +81,12 @@ class ProjectsController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $data = array('user' => Auth::user(), 'project' => Project::where('id', '=', $id)->firstOrFail(), 'title' => 'Project View');
+        $data = array(
+        	'user' => Auth::user(),
+        	'project' => Project::where('id', '=', $id)->firstOrFail(),
+        	'comments' => Comment::commentsByParent($id),
+        	'title' => 'Project View'
+        	);
 		return View::make('projects.show', $data);
 	}
 
@@ -128,9 +132,9 @@ class ProjectsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		Project::destroy($id);
-
-		return View::make('projects');
+		//Project::destroy($id);
+		return "destroy";
+		//return View::make('projects');
 	}
 
 }

@@ -11,11 +11,24 @@
 		</ul>
 	@endif
 
-	{{ Form::open(array('url' => 'register', 'method' => 'POST', 'id' => 'new_user')) }}
+	{{ Form::open(array('route' => 'users.store', 'id' => 'new_user')) }}
 
 	<p>
 		{{ Form::label('username', 'Username') }}<br />
 		{{ Form::text('username', Input::old('username')) }}
+	</p>
+	<p>
+		{{ Form::label('first_name', 'First Name:') }}<br />
+		{{ Form::text('first_name', Input::old('first_name')) }}
+	</p>
+
+	<p>
+		{{ Form::label('last_name', 'Last Name:') }} <br>
+		{{ Form::text('last_name', Input::old('last_name')) }}
+	</p>
+	<p>
+		{{ Form::label('phone', 'Phone Number:') }}<br>
+		{{ Form::text('phone', Input::old('phone')) }}
 	</p>
 	<p>
 		{{ Form::label('email', 'Email') }}<br />
@@ -34,7 +47,11 @@
 		{{ Form::password('password_confirmation') }}
 	</p>
 	<p>
-		{{ Form::submit('Register') }}
+		{{ Form::label('expires', 'Expires (Leave Blank for Staff):') }}<br />
+		<input type="date" name="expires" id="expires" />
+	</p>
+	<p>
+		{{ Form::submit('Create User') }}
 	</p>
 
 	{{ Form::close() }}

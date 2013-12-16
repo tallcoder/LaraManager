@@ -8,7 +8,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	public static $rules = array(
 		'username' =>'required|unique:users|alpha_dash|min:4',
 		'password'=>'required|alpha_num|between:4,8|confirm',
-		'password_confirmation'=>'required|alpha_num|between:4,8'
+		'password_confirmation'=>'required|alpha_num|between:4,8',
+		'first_name' => 'required|alpha|between:4,20',
+		'last_name' => 'required|alpha|between:4,20',
+		'phone' => 'numeric',
+		'expires' => 'date'
 		);
 
 	protected $fillable = array('username','email','usertype');
@@ -67,10 +71,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
-	}
-
-	public function project() {
-		return $this->belongsTo('Project', 'client_id');
 	}
 
 }

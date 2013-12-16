@@ -15,8 +15,11 @@
 			</div>
 			<div id="nav">
 				<h1>Project Manager</h1>
+					{{ HTML::linkRoute('home', 'Home') }}
 				@if($user)
+					{{ HTML::linkRoute('projects.index', 'Projects') }}
 					@if($user->usertype == "admin")
+					{{ HTML::linkRoute('users.index', 'Users') }}
 					{{ link_to_route('projects.create', 'Create Project') }}
 					{{ link_to_route('users.create', 'Create User') }}
 					@endif

@@ -32,7 +32,10 @@ class UsersController extends BaseController {
 			$u->email = Input::get('email');
 			$u->password = Hash::make(Input::get('password'));
 			$u->usertype = Input::get('usertype');
-
+			$u->first_name = Input::get('first_name');
+			$u->last_name = Input::get('last_name');
+			$u->phone = Input::get('phone');
+			$u->expires = Input::get('expires');
 			if($u->usertype == "client") {
 				$u->userperms = "333";
 			}
@@ -50,30 +53,25 @@ class UsersController extends BaseController {
 			return Redirect::to('/')->with('message', 'Thanks for registering!');
 	}
 
-	public function show() {
+	public function show($id) {
 		$data = array(
-			'user' => Auth::user(),
-			'title' => 'User Overview'
+			'title' => 'User Overview',
+			'me' => Auth::user(),
+			'user' => User::find($id),
+			'projects' => Project::where('user_id', '=', $id)->get()			
 			);
-
-		if(Auth::user()->usertype == "client") {
-			$data = array_add($data, 'projects', Project::where('client_id', '=', Project::find(1)->user));
-		}
+		return View::make('users.show', $data);
 	}
 
-	public function destroy($id, $confirm = false) {
-		if($confirm != true) {
-			$data = array(
-				'user' => User::find($id),
-				'title' => 'Confirm Delete'
-				);
-			return View::make('users.delete');
+	public function destroy($id) {
+		if(Auth::user()->usertype == 'admin') {
+			if(User::destroy($id)) {
+			return Redirect::to('users')->with('message', "$u->username has been successfully deleted!");
+			}
 		}
 
 		else {
-			$u = User::find($id);
-			$u->delete();
-			return Redirect::to('users')->with('message', "$u->username has been successfully deleted!");
+			return Redirect::to('users')->with('message', "You do not have adequate permissions to delete users!");
 		}
 	}
 }

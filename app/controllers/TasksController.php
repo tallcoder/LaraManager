@@ -73,7 +73,17 @@ class TasksController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
-	}
+		if(Auth::user()->usertype == 'admin' || Auth::user()->usertype == 'staff') {
+			if(Task::destroy($id)) {
+			return true;
+			}
+
+			else return false;
+			}
+		}
+
+		else {
+			return false;
+		}
 
 }

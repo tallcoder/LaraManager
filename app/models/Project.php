@@ -17,35 +17,6 @@ class Project extends BaseModel {
 		return Project::all();
 	}
 	
-	public function user() {
-		return $this->hasOne('User');
-	}
-
-	public function getProjectName() {
-		return $this->name;
-	}
-	
-	public function getClientId($p) {
-		return $this->client_id;
-	}
-
-	public function getBudgetUsed() {
-		return $this->budget_used;
-	}
-
-
-	public function getBudgetTotal() {
-		return $this->budget_total;
-	}
-
-	public function isCompleted() {
-		return $this->completed;
-	}
-
-	public function getDescription() {
-		return $this->description;
-	}
-
 	public function getBudgetRemaining() {
 		return $this->budget_total - $this->budget_used;
 	}
