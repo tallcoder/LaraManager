@@ -16,6 +16,14 @@ class Project extends BaseModel {
 	public function getProjects() {
 		return Project::all();
 	}
+
+	public function user() {
+		return $this->hasOne('User', 'id', 'user_id');
+	}
+
+	public function tasklists() {
+		return $this->hasMany('Tasklist', 'parent_id', 'id');
+	}
 	
 	public function getBudgetRemaining() {
 		return $this->budget_total - $this->budget_used;

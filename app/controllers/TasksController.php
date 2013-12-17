@@ -54,6 +54,9 @@ class TasksController extends BaseController {
 		$t->begin_date = Input::get('begin_date');
 		$t->due_date = Input::get('due_date');
 		$t->assigned_to = Input::get('assigned_to');
+		$t->save();
+		$parent = Project::find(Tasklist::find($t->list)->parent_id);
+		return Redirect::to('projects/' . $parent);
 	}
 
 	/**
@@ -63,8 +66,16 @@ class TasksController extends BaseController {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-        return View::make('tasks.show');
+	{	
+		$t = Task::find($id);
+		$data = array(
+			'user' => Auth::user(),
+			'title' => $t->name,
+			'task' => $t,
+			'list' => Tasklist::find($t->list),
+			'project' => Project::find(Tasklist::find($t->list))
+		);
+        return View::make('tasks.show', $data);
 	}
 
 	/**

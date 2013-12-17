@@ -8,4 +8,12 @@ class Tasklist extends BaseModel {
 	public static $rules = array(
 		'parent_id' => 'integer'
 		);
+
+	public function project() {
+		return $this->hasOne('Project', 'id', 'parent_id');
+	}
+
+	public function tasks() {
+		return $this->hasMany('Task', 'list', 'id');
+	}
 }

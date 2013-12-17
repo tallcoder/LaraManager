@@ -2,7 +2,6 @@
 
 @section('content')
 <h3>Staff Overview - Projects</h3>
-<p>You are logged in as {{ Auth::user()->username }}</p>
 <table class="projects">
 	<tr class="header">
 		<th>Name</th>
@@ -15,7 +14,7 @@
 @foreach($projects as $project)
 	<tr class="project">
 		<td><a href="/projects/{{ $project->id }}">{{ $project->name }}</a></td>
-		<td>{{ User::find($project->user_id)->first_name . " " . User::find($project->user_id)->last_name }}</td>
+		<td>{{ $project->user->first_name . " " . $project->user->last_name }}</td>
 		<td>${{ $project->budget_used }}</td>
 		<td>${{ $project->budget_total }}</td>
 		<td>${{ $project->budget_total - $project->budget_used }}</td>

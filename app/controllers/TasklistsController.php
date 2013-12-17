@@ -23,7 +23,12 @@ class TasklistsController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('lists.create');
+		$data = array(
+			'user' => Auth::user(),
+			'projects' => Project::all(),
+			'title' => 'Create Task List'
+			);
+        return View::make('lists.create', $data);
 	}
 
 	/**
@@ -33,7 +38,13 @@ class TasklistsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$l = new Tasklist;
+		$l->name = Input::get('name');
+		$l->description = Input::get('description');
+		$l->parent_id = Input::get('parent');
+		$l->save();
+
+		return Redirect::to('projects');
 	}
 
 	/**
@@ -47,10 +58,11 @@ class TasklistsController extends BaseController {
 		$data = array(
 			'list' => Tasklist::find($lid),
 			'project' => Project::find($pid),
+			'tasks' => Task::where('list', '=', $lid)->get(),
 			'user' => Auth::user(),
 			'title' => Tasklist::find($lid)->name
 			);
-        return View::make('lists.show');
+        return View::make('lists.show', $data);
 	}
 
 	/**

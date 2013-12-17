@@ -63,6 +63,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->password;
 	}
 
+	public function projects() {
+		return $this->hasMany('Project', 'user_id', 'id');
+	}
+
 	/**
 	 * Get the e-mail address where password reminders are sent.
 	 *

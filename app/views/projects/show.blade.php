@@ -2,6 +2,7 @@
 @section('content')
 	<div class="actions">
 		{{ HTML::linkRoute('projects.tasks.create', 'Create Task', $project->id) }}
+		{{ HTML::linkRoute('projects.tasklists.create', 'Create Task List', $project->id) }}
 		{{--{{ Form::open(array('route'=>'projects.complete', $project->id)) }}
 						{{ Form::submit('Mark Completed') }}
 						{{ Form::close() }}--}}
@@ -35,7 +36,7 @@
 	<div id="tasklists">
 		<h3>Task Lists</h3>
 			@foreach($lists as $l)
-			<p>{{ HTML::linkRoute('projects.tasklists.show', 'View', array($project->id, $l->id)) }}</p>
+			<p>{{ HTML::linkRoute('projects.tasklists.show', $l->name, array($project->id, $l->id)) }}</p>
 			@endforeach
 	</div>
 	{{ Form::open(array('route' => 'comments.store')) }}
