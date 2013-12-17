@@ -86,7 +86,12 @@ class TasksController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('tasks.edit');
+		$data = array(
+			'title' => 'Edit Task',
+			'user' => Auth::user(),
+			'task' => Task::find($id)
+			);
+        return View::make('tasks.edit', $data);
 	}
 
 	/**

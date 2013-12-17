@@ -43,5 +43,29 @@ class Task extends BaseModel {
 
 	public function scopeList($query, $id) {
 		return $query->where('list', '=', $id);
-	}	
+	}
+
+	/*
+	*	ORM mappings
+	*/
+
+	public function tasklist() {
+		return $this->belongsTo('Tasklist', 'id', 'list');
+	}
+
+	public function createdBy() {
+		return $this->belongsTo('User', 'id', 'created_by');
+	}
+
+	public function assignedTo() {
+		return $this->belongsTo('User', 'id', 'assigned_to');
+	}
+
+	public function completedBy() {
+		return $this->belongsTo('User', 'id', 'completed_by');
+	}
+
+	public function comments() {
+		return $this->hasMany('Comment', 'parent', 'id')->where('type', '=', 'tcomment');
+	}
 }

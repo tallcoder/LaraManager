@@ -22,7 +22,7 @@ Route::get('logout', array('as' => 'logout', 'uses' => 'SessionsController@destr
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('projects', 'ProjectsController');
-Route::resource('comments', 'CommentsController');
+Route::resource('comments', 'CommentsController', array('only' => array('store')));
 Route::resource('projects.tasklists', 'TasklistsController');
 Route::resource('projects.tasks', 'TasksController');
 

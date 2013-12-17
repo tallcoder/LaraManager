@@ -29,4 +29,8 @@ class Comment extends BaseModel {
 	public function scopeCommentsByType($query, $t = 'comment') {
 		return $query->where('type', '=', $t);
 	}
+
+	public function user() {
+		return $this->hasOne('User', 'id', 'user_id');
+	}
 }
