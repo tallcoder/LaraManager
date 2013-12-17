@@ -6,14 +6,16 @@
 	</head>
 	<body>
 		<div id="container">
-			<div id="topper">
-				@if(isset($user))
-				<p>You are logged in as {{ $user->username }}</p>
-				@else
-				<p>You are not logged in</p>
-				@endif
-			</div>
-			<h1>ProManager</h1>
+            <div id="header">
+                <div id="topper">
+                    @if(isset($user))
+                    <p>You are logged in as {{ $user->username }}</p>
+                    @else
+                    <p>You are not logged in</p>
+                    @endif
+                </div>
+                <h1>LaraManager</h1>
+            </div>
 			<nav>
 				<ul>
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
@@ -33,8 +35,10 @@
 					</li>
 					<li>Tasks
 						<ul>
-							<li>{{ HTML::linkRoute('projects.tasks.index', 'Overview') }}</li>
+							<li>{{ HTML::linkRoute('projects.tasks.index', 'Tasks Overview') }}</li>
+                            <li>{{ HTML::linkRoute('projects.tasklists.index', 'Task List Overview') }}</li>
 							<li>{{ HTML::linkRoute('projects.tasks.create', 'Create Task') }}</li>
+                            <li>{{ HTML::linkRoute('projects.tasklists.create', 'Create Task List') }}</li>
 						</ul>
 					</li>
 					@endif

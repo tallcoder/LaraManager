@@ -50,7 +50,7 @@ class Task extends BaseModel {
 	*/
 
 	public function tasklist() {
-		return $this->belongsTo('Tasklist', 'id', 'list');
+		return $this->belongsTo('Tasklist', 'list', 'id');
 	}
 
 	public function createdBy() {

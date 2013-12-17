@@ -14,7 +14,7 @@
 @foreach($projects as $project)
 	<tr class="project">
 		<td><a href="/projects/{{ $project->id }}">{{ $project->name }}</a></td>
-		<td>{{ $project->user->first_name . " " . $project->user->last_name }}</td>
+		<td>{{ HTML::linkRoute('users.show', $project->user->first_name . " " .  $project->user->last_name, array($project->user->id)) }}</td>
 		<td>${{ $project->budget_used }}</td>
 		<td>${{ $project->budget_total }}</td>
 		<td>${{ $project->budget_total - $project->budget_used }}</td>
@@ -27,7 +27,7 @@
 		</td>
 	</tr>
 	<tr class="description">
-		<td colspan="5">{{ $project->description }}</td>
+		<td colspan="8">{{ $project->description }}</td>
 	</tr>
 @endforeach
 </table>

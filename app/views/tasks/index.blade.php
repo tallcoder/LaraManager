@@ -4,9 +4,9 @@
 	@foreach($tasks as $t)
 	<div class="task">
 		<div class="left">
-			<h4>{{ $t->name }}</h4>
+			<h4>{{ HTML::linkRoute('projects.tasklists.show', $t->tasklist()->name, array($t->tasklist()->project->id, $t->tasklist()->id)) }}</h4>
 			<p>{{ $t->description }}</p>
-			<p>Task List: <i>{{ Tasklist::find($t->list)->name }}</i></p>
+			<p>Task List: <i>{{ $t->tasklist }}</i></p>
 		</div>
 		<div class="right">
 			<p>Created by: <i>{{ User::find($t->created_by)->first_name }} {{User::find($t->created_by)->last_name }}</i></p>
