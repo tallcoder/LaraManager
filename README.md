@@ -1,4 +1,4 @@
-ProManager
+LaraManager
 ==========
 
 Open source project manager built on Laravel
@@ -12,13 +12,13 @@ Having perused, installed, and tried out a lot of these project managers, I saw 
 Utlimately, I decided to build one of my own. I'm a programmer, right? I did my research, tried a couple things out, and here it is today.
 
 <h3>The Application</h3>
-ProManager is built on the Laravel 4 PHP framework (specifically, 4.1). RESTful routing and the Eloquent ORM make life a lot easier - and I don't like writing SQL queries. 
+LaraManager is built on the Laravel 4 PHP framework (specifically, 4.1). RESTful routing and the Eloquent ORM make life a lot easier - and I don't like writing SQL queries. 
 On the front end, there isn't much there right now...I'm only one guy! Going down the road, styling will most likely be pre-processed with less,
 and scripting side stuff handled with jQuery. 
 
 <h3>Contributing</h3>
 I am 100% looking for someone to help with this project. Another core Laravel programmer would be nice, as would a front-end guy or gal to work with the Blade templates, styling, and JavaScript.
-If you're interested, feel free to <a href="mailto:mike@mjdugan.com?subject=promanager">email me</a>. 
+If you're interested, feel free to <a href="mailto:mike@mjdugan.com?subject=laramanager">email me</a>. 
 
 <h3>Installation</h3>
 Long Story Short: If you're already familiar with Laravel, simply install it, clone this repo over top of your root directory, and run `php composer update`
@@ -35,7 +35,7 @@ These instructions are pretty much the same for Linux and OS X. If you run Windo
 <li>`sudo mv composer.phar /usr/bin/composer`</li>
 <li>`composer create-project laravel/laravel promanager --prefer-dist`</li>
 <li>`cd promanager`</li>
-<li>`git remote add origin https://github.com/mjdugan14/ProManager.git`</li>
+<li>`git remote add origin https://github.com/mjdugan14/LaraManager.git`</li>
 <li>`git fetch --all`</li>
 <li>`git reset --hard origin/master`</li>
 <li>`composer update`</li>
