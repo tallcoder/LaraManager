@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder {
 			$u->email = $f->email;
 			$u->usertype = 'client';
 			$u->userperms = '111';
+			$u->expires = "2014-05-30";
 			$u->save();
 		}
 
@@ -28,7 +29,19 @@ class UsersTableSeeder extends Seeder {
 		$u->first_name = 'Mike';
 		$u->last_name = 'Dugan';
 		$u->phone = '410-555-5123';
+		$u->expires = "2020-05-30";
 		$u->save();
 
+		$u = new User;
+		$u->username = 'test';
+		$u->password = Hash::make('proman');
+		$u->email = 'test@icwebdev.com';
+		$u->usertype = 'admin';
+		$u->userperms = 777;
+		$u->first_name = 'John';
+		$u->last_name = 'Test';
+		$u->phone = '410-555-5123';
+		$u->expires = "2020-05-30";
+		$u->save();
 	}
 }

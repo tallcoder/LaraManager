@@ -42,8 +42,14 @@ class TasklistsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($pid, $lid)
 	{
+		$data = array(
+			'list' => Tasklist::find($lid),
+			'project' => Project::find($pid),
+			'user' => Auth::user(),
+			'title' => Tasklist::find($lid)->name
+			);
         return View::make('lists.show');
 	}
 

@@ -7,5 +7,11 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('ProjectsTableSeeder');
 		$this->command->info('Projects table seeded');
+
+		$this->call('TasksTableSeeder');
+		$this->command->info('tasks table seeded');
+
+		$this->call('TasklistsTableSeeder');
+		$this->command->info('tasklist table seeded');
 	}
 }

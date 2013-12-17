@@ -8,8 +8,22 @@
 		<p>
 			{{ Form::label('list', 'Task List:') }}
 			<select class="tasklist">
-				<option value="1">First Task List</option>
-				<option value="2">Second Task List</option>
+					<option value="0">----</option>
+				@foreach($lists as $t)
+					<option value="{{ $t->id }}">{{ $t->name }}</option>
+				@endforeach
+			</select>
+		</p>
+		<p>
+			{{ Form::label('project', 'Project:') }}
+			<select class="projectlist">
+			<option value="{{ $project->id }}" selected>{{ $project->name }}</option>
+			<option value="0">----</option>
+			@foreach($projects as $p)
+			@if($p->id != $project->id)
+			<option value="{{ $p->id}}">{{ $p->name }}</option>
+			@endif
+			@endforeach
 			</select>
 		</p>
 		<p>

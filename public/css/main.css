@@ -75,7 +75,14 @@ body {
 
 #comments {
 	margin: 1% 0 0 5%;
-	width: 50%;
+	width: 45%;
+	display: inline-block;
+	float: left;
+}
+
+#tasklists {
+	display: inline-block;
+	width: 40%;
 }
 
 .comment {

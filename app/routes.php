@@ -15,9 +15,14 @@
 Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
 Route::get('logout', array('as' => 'logout', 'uses' => 'SessionsController@destroy'));
 
+//future use
+//Route::get('projects/{project}', array('as' => 'project.complete', 'uses' => 'ProjectsController@complete'));
+
+
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('projects', 'ProjectsController');
 Route::resource('comments', 'CommentsController');
-Route::resource('projects.lists', 'ListsController');
+Route::resource('projects.tasklists', 'TasklistsController');
 Route::resource('projects.tasks', 'TasksController');
+

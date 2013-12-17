@@ -2,6 +2,9 @@
 @section('content')
 	<div class="actions">
 		{{ HTML::linkRoute('projects.tasks.create', 'Create Task', $project->id) }}
+		{{--{{ Form::open(array('route'=>'projects.complete', $project->id)) }}
+						{{ Form::submit('Mark Completed') }}
+						{{ Form::close() }}--}}
 		{{ HTML::linkRoute('projects.destroy', 'Delete Project', $project->id) }}
 	</div>
 	<div class="overview">
@@ -22,11 +25,19 @@
 		<p>{{$project->description }}</p>
 		<p>Dev Link: {{ HTML::link($project->url, 'Click Here') }}</p>
 	</div>
+
 	<div id="comments">
 		<h3>Comments</h3>
 	@if($comments)
 		@include('layouts.partials._form_show_comments')
 	@endif
+	</div>
+	<div id="tasklists">
+		<h3>Task Lists</h3>
+			@foreach($lists as $l)
+			<p>{{ HTML::linkRoute('projects.tasklists.show', 'View', array($project->id, $l->id)) }}</p>
+			@endforeach
+	</div>
 	{{ Form::open(array('route' => 'comments.store')) }}
 		<h4>Add comment</h4>
 		@include('layouts.partials._form_comment')

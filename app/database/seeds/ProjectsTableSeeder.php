@@ -20,6 +20,9 @@ class ProjectsTableSeeder extends Seeder {
 					$p->completed = $faker->boolean(10);
 					$p->description = $faker->paragraph;
 					$p->url = $faker->url;
+					$p->begin_date = $faker->date($format = 'Y-m-d');
+					$p->end_date = $faker->date($format = 'Y-m-d');
+					$p->due_date = $faker->date($format = 'Y-m-d');
 					$p->save();
 			}
 		// Uncomment the below to run the seeder

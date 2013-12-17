@@ -6,11 +6,15 @@
 		<div class="left">
 			<h4>{{ $t->name }}</h4>
 			<p>{{ $t->description }}</p>
-			<p>Task List: <i>{{ Tasklist::find($t->list) }}</i></p>
+			<p>Task List: <i>{{ Tasklist::find($t->list)->name }}</i></p>
 		</div>
 		<div class="right">
 			<p>Created by: <i>{{ User::find($t->created_by)->first_name }} {{User::find($t->created_by)->last_name }}</i></p>
+			@if($t->assigned_to)
 			<p>Assigned to: <i>{{ User::find($t->assigned_to)->first_name }} {{User::find($t->assigned_to)->last_name }}</i></p>
+			@else
+			<p>Assigned to: <i>unassigned</i></p>
+			@endif
 			<p>Total Budget: <i>{{ $t->budget_total }}</i></p>
 			<p>Used Budget: <i>{{ $t->budget_used }}</i></p>
 			<p>Begin on: <i>{{ $t->begin_date }}</i></p>

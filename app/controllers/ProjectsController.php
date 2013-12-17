@@ -94,7 +94,8 @@ class ProjectsController extends BaseController {
         	'user' => Auth::user(),
         	'project' => Project::where('id', '=', $id)->firstOrFail(),
         	'comments' => Comment::projectComments($id)->get(),
-        	'title' => 'Project View'
+        	'title' => 'Project View',
+        	'lists' => Tasklist::where('parent_id', $id)->get()
         	);
 		return View::make('projects.show', $data);
 	}
@@ -132,6 +133,14 @@ class ProjectsController extends BaseController {
 
 		return View::make('projects');
 	}
+
+/*	public function complete($id) {
+		$p = Project::find($id);
+		$p->completed = 1;
+		$p->save();
+
+		//return Redirect::to('projects')->with('flash_message', $p->name . " has been marked completed!");
+	}*/
 
 	/**
 	 * Remove the specified resource from storage.
