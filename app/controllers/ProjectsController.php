@@ -92,7 +92,7 @@ class ProjectsController extends BaseController {
 	{
         $data = array(
         	'user' => Auth::user(),
-        	'project' => Project::find($id)->firstOrFail(),
+        	'project' => Project::find($id),
         	'comments' => Comment::projectComments($id)->get(),
         	'title' => 'Project View',
         	'lists' => Tasklist::where('parent_id', $id)->get(),

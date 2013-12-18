@@ -10,7 +10,7 @@
     {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'PUT', 'enctype' => 'multipart/form-data')) }}
 
     {{ Form::hidden('user', Auth::user()->id) }}
-
+    {{ Form::hidden('task', $task->id) }}
     {{ Form::label('name', 'Name:') }}
     {{ Form::text('name', $task->name) }}<br />
     {{ Form::label('description', 'Description:') }}<br />

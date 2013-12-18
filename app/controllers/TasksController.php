@@ -66,7 +66,7 @@ class TasksController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($pid, $id)
 	{	
 		$t = Task::find($id);
 		$data = array(
@@ -86,7 +86,7 @@ class TasksController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($pid, $id)
 	{
 		$data = array(
 			'title' => 'Edit Task',
@@ -103,8 +103,7 @@ class TasksController extends BaseController {
 	 * @return Response
 	 */
 	public function update($pid, $tid)
-	{   dd($pid);
-		$t = Task::find($id);
+	{   $t = Task::find(Input::get('task'));
         $t->name = Input::get('name');
         $t->description = Input::get('description');
         $t->budget_total = Input::get('budget_total');
@@ -122,7 +121,7 @@ class TasksController extends BaseController {
             $f->created_by = Input::get('user');
             $f->permission = Input::get('perm1');
             $f->parent_type = 'task';
-            $f->parent_id = $id;
+            $f->parent_id = $pid;
             $f->save();
             Input::file('file1')->move('./public/uploads', $f->name);
         }
@@ -135,7 +134,7 @@ class TasksController extends BaseController {
             $f->created_by = Input::get('user');
             $f->permission = Input::get('perm2');
             $f->parent_type = 'task';
-            $f->parent_id = $id;
+            $f->parent_id = $pid;
             $f->save();
             Input::file('file2')->move('/public/uploads', $f->name);
         }
@@ -148,7 +147,7 @@ class TasksController extends BaseController {
             $f->created_by = Input::get('user');
             $f->permission = Input::get('perm3');
             $f->parent_type = 'task';
-            $f->parent_id = $id;
+            $f->parent_id = $pid;
             $f->save();
             Input::file('file3')->move('/public/uploads', $f->name);
         }

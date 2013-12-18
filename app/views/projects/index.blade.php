@@ -13,7 +13,7 @@
 	</tr>
 @foreach($projects as $project)
 	<tr class="project">
-		<td><a href="/projects/{{ $project->id }}">{{ $project->name }}</a></td>
+		<td>{{ HTML::linkRoute('projects.show', $project->name, array($project->id)) }}</td>
 		<td>{{ HTML::linkRoute('users.show', $project->user->first_name . " " .  $project->user->last_name, array($project->user->id)) }}</td>
 		<td>${{ $project->budget_used }}</td>
 		<td>${{ $project->budget_total }}</td>

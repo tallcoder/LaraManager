@@ -4,7 +4,10 @@
      	@foreach($tasks as $t)
      	<div class="task">
      		<div class="left">
+                <h4>{{ HTML::linkRoute('projects.tasks.show', $t->name, array($t->project->id, $t->id)) }}</h4>
+                @if($t->tasklist)
      			<h4>{{ $t->tasklist }}</h4>
+                @endif
      			<p>{{ $t->description }}</p>
      			<p>Task List: <i>{{ $t->tasklist }}</i></p>
      		</div>
