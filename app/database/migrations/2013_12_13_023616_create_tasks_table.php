@@ -21,6 +21,8 @@ class CreateTasksTable extends Migration {
 			$table->integer('created_by');
 			$table->integer('assigned_to');
 			$table->integer('completed_by');
+            $table->boolean('completed')->default(0);
+            $table->float('time')->default(0);
 			$table->integer('budget_total');
 			$table->integer('budget_used');
 			$table->date('begin_date');

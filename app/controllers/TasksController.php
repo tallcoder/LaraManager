@@ -102,8 +102,8 @@ class TasksController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
+	public function update($pid, $tid)
+	{   dd($pid);
 		$t = Task::find($id);
         $t->name = Input::get('name');
         $t->description = Input::get('description');
@@ -120,10 +120,11 @@ class TasksController extends BaseController {
             $f->type = Input::file('file1')->getClientOriginalExtension();
             $f->size = Input::file('file1')->getSize();
             $f->created_by = Input::get('user');
-            $f->permission = Input::get('file_perm');
+            $f->permission = Input::get('perm1');
             $f->parent_type = 'task';
+            $f->parent_id = $id;
             $f->save();
-            Input::file('file1')->move('/public/uploads');
+            Input::file('file1')->move('./public/uploads', $f->name);
         }
 
         if(Input::file('file2')) {
@@ -132,9 +133,11 @@ class TasksController extends BaseController {
             $f->type = Input::file('file2')->getClientOriginalExtension();
             $f->size = Input::file('file2')->getSize();
             $f->created_by = Input::get('user');
-            $f->permission = Input::get('file_perm');
+            $f->permission = Input::get('perm2');
+            $f->parent_type = 'task';
+            $f->parent_id = $id;
             $f->save();
-            Input::file('file2')->move('/public/uploads');
+            Input::file('file2')->move('/public/uploads', $f->name);
         }
 
         if(Input::file('file3')) {
@@ -143,9 +146,11 @@ class TasksController extends BaseController {
             $f->type = Input::file('file3')->getClientOriginalExtension();
             $f->size = Input::file('file3')->getSize();
             $f->created_by = Input::get('user');
-            $f->permission = Input::get('file_perm');
+            $f->permission = Input::get('perm3');
+            $f->parent_type = 'task';
+            $f->parent_id = $id;
             $f->save();
-            Input::file('file3')->move('/public/uploads');
+            Input::file('file3')->move('/public/uploads', $f->name);
         }
 
 		$t->save();

@@ -2,8 +2,12 @@
 @section('content')
     <h3>{{ $task->name }}</h3>
     <h4>Project: <p>{{ $task->project->name }}</p></h4>
+    @if($task->tasklist)
     <h4>Task List: <p>{{ $task->tasklist->name }}</p></h4>
-    {{ Form::open(array('route' => array('projects.tasks.update', $task->project->id, $task->id), 'enctype' => 'multipart/form-data')) }}
+    @else
+    <h4>No Task List</h4>
+    @endif
+    {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'PUT', 'enctype' => 'multipart/form-data')) }}
 
     {{ Form::hidden('user', Auth::user()->id) }}
 
@@ -23,9 +27,21 @@
     <br />
     {{ Form::label('completed', 'Completed?') }}
     {{ Form::checkbox('completed') }}<br />
-    {{ Form::file('file1') }}<br />
-    {{ Form::file('file2') }}<br />
+    {{ Form::file('file1') }}
+    {{ Form::label('perm1' ,'Who can view this?') }}
+    All{{ Form::radio('perm1', 'all') }}
+    Staff{{ Form::radio('perm1', 'staff') }}
+    Admin{{ Form::radio('perm1', 'admin') }}<br />
     {{ Form::file('file2') }}
+    {{ Form::label('perm2' ,'Who can view this?') }}
+    All{{ Form::radio('perm2', 'all') }}
+    Staff{{ Form::radio('perm2', 'staff') }}
+    Admin{{ Form::radio('perm2', 'admin') }}<br />
+    {{ Form::file('file3') }}
+    {{ Form::label('perm3' ,'Who can view this?') }}
+    All{{ Form::radio('perm3', 'all') }}
+    Staff{{ Form::radio('perm3', 'staff') }}
+    Admin{{ Form::radio('perm3', 'admin') }}
     <br />
     {{ Form::submit() }}
     {{ Form::close() }}

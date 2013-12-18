@@ -14,7 +14,6 @@ class TasksTableSeeder extends Seeder {
 			$t = new Task;
 			$t->name = $faker->sentence;
 			$t->description = $faker->paragraph;
-			$t->list_id = $faker->randomNumber(1,20);
 			$t->project_id = $faker->randomNumber(1,50);
 			$t->created_by = $faker->randomNumber(1,15);
 			$t->budget_total = $faker->randomNumber(0,200);

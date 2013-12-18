@@ -17,7 +17,7 @@ class CreateUploadsTable extends Migration {
            $table->string('type');
            $table->float('size');
            $table->integer('created_by');
-           $table->string('permission');
+           $table->string('permission')->default('all');
            $table->string('parent_type');
            $table->integer('parent_id');
            $table->timestamps();
