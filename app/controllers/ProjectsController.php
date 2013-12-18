@@ -134,13 +134,14 @@ class ProjectsController extends BaseController {
 		return View::make('projects');
 	}
 
-/*	public function complete($id) {
-		$p = Project::find($id);
-		$p->completed = 1;
-		$p->save();
-
-		//return Redirect::to('projects')->with('flash_message', $p->name . " has been marked completed!");
-	}*/
+	public function delete($id) {
+		$data = array(
+			'user' => Auth::user(),
+			'title' => 'Confirm Delete',
+			'item' => array('type' => 'project', 'object' => Project::find($id))
+		);
+		return View::make('layouts.confirm-delete', $data);
+	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -150,9 +151,18 @@ class ProjectsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//Project::destroy($id);
-		return "destroy";
-		//return View::make('projects');
+		if(Project::destroy($id)) {
+			return View::make('/')->with('flash_message', 'Project deleted successfully');
+		}
+
+		else {
+			$data = array(
+				'user' => Auth::user(),
+				'title' => 'Error Deleting Item',
+				'eobj' => Project::find($id)
+			);
+			return View::make('layouts.error-delete', $data);
+		}
 	}
 
 }

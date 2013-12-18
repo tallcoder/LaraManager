@@ -2,6 +2,10 @@
 
 class UsersController extends BaseController {
 
+	/*
+	 * gets the create user page
+	 * @return page : user.new
+	 */
 	public function create() {
 		$data = array (
 			'title' => 'Add User',
@@ -10,6 +14,10 @@ class UsersController extends BaseController {
 		return View::make('users.new', $data);
 	}
 
+	/*
+	 * gets the index user overview if the user is a staff or admin
+	 * @return page : users.index
+	 */
 	public function index() {
 		if(Auth::user()->usertype == "admin" || Auth::user()->usertype == "staff") {
 			$data = array(
@@ -25,6 +33,10 @@ class UsersController extends BaseController {
 		}
 	}
 
+	/*
+	 * handles the creation of a new user
+	 * @return page : home
+	 */
 	public function store() {
 
 			$u = new User;
@@ -53,6 +65,11 @@ class UsersController extends BaseController {
 			return Redirect::to('/')->with('flash_message', 'Thanks for registering!');
 	}
 
+	/*
+	 * displays an individual user
+	 * @param int : user id
+	 * @return page : users.show
+	 */
 	public function show($id) {
 		$data = array(
 			'title' => 'User Overview',
@@ -63,15 +80,33 @@ class UsersController extends BaseController {
 		return View::make('users.show', $data);
 	}
 
+	/*
+	 * gets the confirm delete page
+	 * @param int : user id
+	 * @return page : layouts.confirm-delete
+	 */
+	public function delete($id) {
+		if(Auth::user()->usertype == 'admin') {
+			$data = array(
+				'user' => Auth::user(),
+				'title' => 'Confirm Delete',
+				'item' => array('type' => 'user', 'object' => User::find($id))
+			);
+
+			return View::make('layouts.confirm-delete', $data);
+		}
+	}
+
+	/*
+	 * handles the actual deletion of the user
+	 * @param int : user id
+	 * @return page : users
+	 */
 	public function destroy($id) {
 		if(Auth::user()->usertype == 'admin') {
-			if(User::destroy($id)) {
-			return Redirect::to('users')->with('flash_message', "$u->username has been successfully deleted!");
-			}
-		}
-
-		else {
-			return Redirect::to('users')->with('flash_message', "You do not have adequate permissions to delete users!");
+			User::destroy($id);
+			return Redirect::to('users')->with('flash_message', 'User ' . User::find($id)->username . ' successfully
+			deleted');
 		}
 	}
 }

@@ -102,7 +102,20 @@ class TasksController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$t = Task::find($id);
+
+		$t->save();
+
+		return Redirect::back()->with('flash_message', 'Task updated');
+	}
+
+	public function delete($id) {
+			$data = array(
+				'title' => 'Confirm Delete',
+				'user' => Auth::user(),
+				'item' => array('type' => 'task', 'object' => Task::find($id))
+			);
+			return View::make('layouts.confirm-delete', $data);
 	}
 
 	/**
@@ -113,6 +126,7 @@ class TasksController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Task::destroy($id);
+		return Redirect::back()->with('flash_message', 'Task succesfully deleted');
 	}
 }

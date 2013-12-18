@@ -84,9 +84,26 @@ class TasklistsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$l = Tasklist::find($id);
+
+		$l->save();
+		return Redirect::back()->with('flash_message', 'Task List succesfully updated');
 	}
 
+
+	/*
+	 * gets the confirm delete page
+	 * @param int : tasklist id
+	 * @return page : layouts.confirm-delete
+	 */
+	public function delete($id) {
+		$data = array(
+			'user' => Auth::user(),
+			'title' => 'Confirm Delete',
+			'item' => array('type' => 'tasklist', 'object' => Tasklist::find($id))
+		);
+		return View::make('layouts.confirm-delete', $data);
+	}
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -95,7 +112,23 @@ class TasklistsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		if(Tasklist::destroy($id)) {
+			$data = array(
+				'user' => Auth::user(),
+				'title' => 'Home'
+			);
+			return View::make('/')->with('flash_message', 'Task List succesfully deleted');
+		}
+
+		else {
+			$data = array(
+				'user' => Auth::user(),
+				'eobj' => Tasklist::find($id),
+				'title' => 'Error Deleting Item'
+			);
+			return View::make('layouts.error-delete', $data);
+		}
+
 	}
 
 }

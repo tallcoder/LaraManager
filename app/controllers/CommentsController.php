@@ -2,6 +2,10 @@
 
 class CommentsController extends BaseController {
 
+	/*
+	 * handles the creation of new comments
+	 * @return page: back
+	 */
 	public function store() {
 		$c = new Comment;
 		$c->type = Input::get('type');
@@ -11,5 +15,32 @@ class CommentsController extends BaseController {
 		$c->save();
 
 		return Redirect::back();
+	}
+
+	/*
+	 *  takes the initial delete request and returns confirmation page
+	 *  @param int : comment id
+	 *  @return page : confirmation
+	 */
+	public function delete($id) {
+		$data = array(
+			'title' => 'Confirm Delete',
+			'user' => Auth::user(),
+			'item' => array('type' => 'comment', 'object' => Comment::find($id))
+		);
+		return View::make('layouts.confirm-delete', $data);
+	}
+
+	/*
+	 * processes the comment deletion
+	 * @param int : comment id
+	 * @return page : back
+	 */
+	public function destroy($id) {
+		if(Auth::user()->usertype == 'admin') {
+			Comment::destroy($id);
+
+			return Redirect::to('projects')->with('flash_message', 'Comment Successfully Deleted');
+		}
 	}
 }
