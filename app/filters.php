@@ -38,6 +38,26 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('login');
 });
 
+Route::filter('admin', function() {
+	if(!Auth::attempt(array('usertype' => 'admin'))) {
+		$data = array(
+			'user' => Auth::user(),
+			'title' => 'Access Denied'
+		);
+		return View::make('errors.401', $data);
+	}
+});
+
+Route::filter('staff', function() {
+	if(!Auth::attempt(array('usertype' => 'admin')) | !Auth::attempt(array('usertype' => 'staff')) ) {
+		$data = array(
+			'user' => Auth::user(),
+			'title' => 'Access Denied'
+		);
+		return View::make('errors.401', $data);
+	}
+});
+
 
 Route::filter('auth.basic', function()
 {

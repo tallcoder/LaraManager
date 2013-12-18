@@ -113,7 +113,7 @@ class UsersController extends BaseController {
 					'title' => 'Error Deleting Item',
 					'eobj' => User::find($id)
 				);
-				return View::make('layouts.error-delete', $data);
+				return View::make('errors.delete', $data);
 			}
 	}
 }

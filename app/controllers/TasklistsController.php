@@ -126,7 +126,7 @@ class TasklistsController extends BaseController {
 				'eobj' => Tasklist::find($id),
 				'title' => 'Error Deleting Item'
 			);
-			return View::make('layouts.error-delete', $data);
+			return View::make('errors.delete', $data);
 		}
 
 	}

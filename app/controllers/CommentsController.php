@@ -46,7 +46,7 @@ class CommentsController extends BaseController {
 					'title' => 'Error Deleting Item',
 					'eobj' => Comment::find($id)
 				);
-				return View::make('layouts.error-delete', $data);
+				return View::make('errors.delete', $data);
 			}
 	}
 }
