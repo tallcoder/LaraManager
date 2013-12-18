@@ -103,10 +103,17 @@ class UsersController extends BaseController {
 	 * @return page : users
 	 */
 	public function destroy($id) {
-		if(Auth::user()->usertype == 'admin') {
-			User::destroy($id);
-			return Redirect::to('users')->with('flash_message', 'User ' . User::find($id)->username . ' successfully
+			if(User::destroy($id)) {
+				return Redirect::to('users')->with('flash_message', 'User ' . User::find($id)->username . ' successfully
 			deleted');
-		}
+			}
+			else {
+				$data = array(
+					'user' => Auth::user(),
+					'title' => 'Error Deleting Item',
+					'eobj' => User::find($id)
+				);
+				return View::make('layouts.error-delete', $data);
+			}
 	}
 }

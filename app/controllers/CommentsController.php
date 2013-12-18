@@ -37,10 +37,16 @@ class CommentsController extends BaseController {
 	 * @return page : back
 	 */
 	public function destroy($id) {
-		if(Auth::user()->usertype == 'admin') {
-			Comment::destroy($id);
-
-			return Redirect::to('projects')->with('flash_message', 'Comment Successfully Deleted');
-		}
+			if(Comment::destroy($id)) {
+				return Redirect::to('projects')->with('flash_message', 'Comment Successfully Deleted');
+			}
+			else {
+				$data = array(
+					'user' => Auth::user(),
+					'title' => 'Error Deleting Item',
+					'eobj' => Comment::find($id)
+				);
+				return View::make('layouts.error-delete', $data);
+			}
 	}
 }

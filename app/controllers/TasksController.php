@@ -126,7 +126,16 @@ class TasksController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		Task::destroy($id);
+		if(Task::destroy($id)) {
 		return Redirect::back()->with('flash_message', 'Task succesfully deleted');
+		}
+		else {
+			$data = array(
+				'user' => Auth::user(),
+				'title' => 'Error Deleting Item',
+				'eobj' => Task::find($id)
+			);
+			return View::make('layouts.error-delete', $data);
+		}
 	}
 }
