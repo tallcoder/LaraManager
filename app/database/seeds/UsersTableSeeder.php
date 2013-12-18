@@ -43,5 +43,17 @@ class UsersTableSeeder extends Seeder {
 		$u->phone = '410-555-5123';
 		$u->expires = "2020-05-30";
 		$u->save();
+
+		$u = new User;
+		$u->username = 'client1';
+		$u->password = Hash::make('proman');
+		$u->email = 'client@icwebdev.com';
+		$u->usertype = 'client';
+		$u->userperms = 111;
+		$u->first_name = 'John';
+		$u->last_name = 'Client';
+		$u->phone = '410-555-9143';
+		$u->expires = "2020-05-30";
+		$u->save();
 	}
 }

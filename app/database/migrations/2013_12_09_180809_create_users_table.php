@@ -12,6 +12,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
+
 		Schema::create('users', function( Blueprint $table) {
 			$table->increments('id');
 			$table->string('username')->unique();
@@ -22,6 +23,7 @@ class CreateUsersTable extends Migration {
 			$table->enum('usertype', array('admin','staff','client'));
 			$table->integer('userperms');
 			$table->string('phone');
+			$table->date('expires');
 			$table->timestamps();
 		});
 	}
