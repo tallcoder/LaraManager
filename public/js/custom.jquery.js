@@ -18,11 +18,28 @@ $(function() {
 	$('#new_user').validate({
 		rules: {
 			password: {minlength: 6},
-			email: {email:true, required:true},
-		}
+			email: {email:true, required:true}
+		},
 		messages: {
-			password: "We don't know what your password is, but it must be at least 6 characters long!"
+			password: "We don't know what your password is, but it must be at least 6 characters long!",
 			email: "Please enter your email address"
 		}
-	});
+    });
+
+    $('#new_task').validate({
+
+    });
+
+    $('#timer').click(function() {
+        console.log('clicked');
+        var x = new Date();
+        if($('input[name="start_time"]').val() == "") {
+            $('input[name="start_time"]').val(x.getHours() + ":" + x.getMinutes());
+        }
+
+        else {
+            var x = new Date();
+            $('input[name="stop_time"]').val(x.getHours() + ":" + x.getMinutes());
+        }
+    });
 });

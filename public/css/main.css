@@ -82,12 +82,6 @@ body {
 	display: inline-block;
 	float: left;
 }
-
-#tasklists {
-	display: inline-block;
-	width: 40%;
-}
-
 .comment {
 	border-bottom: 1px solid black;
 	margin-bottom: 15px;
@@ -95,6 +89,14 @@ body {
 
 .overview {
 	margin-left: 1%;
+}
+
+.overview p, .overview h4 {
+    display: inline-block;
+}
+
+.overview p {
+    margin-left: 1%
 }
 
 .task {

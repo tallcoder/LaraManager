@@ -95,7 +95,8 @@ class ProjectsController extends BaseController {
         	'project' => Project::find($id)->firstOrFail(),
         	'comments' => Comment::projectComments($id)->get(),
         	'title' => 'Project View',
-        	'lists' => Tasklist::where('parent_id', $id)->get()
+        	'lists' => Tasklist::where('parent_id', $id)->get(),
+            'tasks' => Project::find($id)->tasks
         	);
 		return View::make('projects.show', $data);
 	}

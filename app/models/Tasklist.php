@@ -14,6 +14,6 @@ class Tasklist extends BaseModel {
 	}
 
 	public function tasks() {
-		return $this->hasMany('Task', 'list', 'id');
+		return $this->hasMany('Task', 'list_id', 'id');
 	}
 }

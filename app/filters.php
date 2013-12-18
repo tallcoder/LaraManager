@@ -39,7 +39,7 @@ Route::filter('auth', function()
 });
 
 Route::filter('admin', function() {
-	if(!Auth::attempt(array('usertype' => 'admin'))) {
+	if(!Auth::user()->usertype != 'admin') {
 		$data = array(
 			'user' => Auth::user(),
 			'title' => 'Access Denied'
@@ -49,7 +49,7 @@ Route::filter('admin', function() {
 });
 
 Route::filter('staff', function() {
-	if(!Auth::attempt(array('usertype' => 'admin')) | !Auth::attempt(array('usertype' => 'staff')) ) {
+	if(!Auth::user()->usertype != 'admin' | !Auth::user()->usertype != 'staff' ) {
 		$data = array(
 			'user' => Auth::user(),
 			'title' => 'Access Denied'

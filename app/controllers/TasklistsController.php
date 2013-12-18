@@ -58,7 +58,7 @@ class TasklistsController extends BaseController {
 		$data = array(
 			'list' => Tasklist::find($lid),
 			'project' => Project::find($pid),
-			'tasks' => Task::where('list', '=', $lid)->get(),
+			'tasks' => Task::where('list_id', '=', $lid)->get(),
 			'user' => Auth::user(),
 			'title' => Tasklist::find($lid)->name
 			);

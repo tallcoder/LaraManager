@@ -24,17 +24,13 @@ class Project extends BaseModel {
 		return $this->hasOne('User', 'id', 'user_id');
 	}
 
-	public function tasks() {
-		$lists =  $this->hasMany('Tasklist', 'parent_id', 'id');
-		$tasks = array();
-		foreach($lists as $l) {
-			$tasks = Task::belongsTo($l->id);
-			foreach($tasks as $t) {
-				array_add($tasks, $t->id, $t);
-			}
-		}
-		return $lists;
+	public function tasklists() {
+		return $this->hasMany('Tasklist', 'parent_id', 'id');
 	}
+
+    public function tasks() {
+        return $this->hasMany('Task', 'project_id', 'id');
+    }
 
 	public function comments() {
 		return $this->hasMany('Comment', 'parent', 'id')->where('type', '=', 'pcomment');

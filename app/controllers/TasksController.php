@@ -54,6 +54,7 @@ class TasksController extends BaseController {
 		$t->begin_date = Input::get('begin_date');
 		$t->due_date = Input::get('due_date');
 		$t->assigned_to = Input::get('assigned_to');
+        $t->type = Input::get('type');
 		$t->save();
 		$parent = Project::find(Tasklist::find($t->list)->parent_id);
 		return Redirect::to('projects/' . $parent);
@@ -73,7 +74,8 @@ class TasksController extends BaseController {
 			'title' => $t->name,
 			'task' => $t,
 			'list' => Tasklist::find($t->list),
-			'project' => Project::find(Tasklist::find($t->list))
+			'project' => Task::find($id)->project,
+            'comments' => Comment::taskComments($id)->get()
 		);
         return View::make('tasks.show', $data);
 	}
@@ -103,8 +105,51 @@ class TasksController extends BaseController {
 	public function update($id)
 	{
 		$t = Task::find($id);
+        $t->name = Input::get('name');
+        $t->description = Input::get('description');
+        $t->budget_total = Input::get('budget_total');
+        $t->time += Input::get('time');
+        if(Input::get('completed')) {
+            $t->completed = true;
+            $t->completed_by = Input::get('user');
+        }
+
+        if(Input::file('file1')) {
+            $f = new Upload;
+            $f->name = Input::file('file1')->getClientOriginalName();
+            $f->type = Input::file('file1')->getClientOriginalExtension();
+            $f->size = Input::file('file1')->getSize();
+            $f->created_by = Input::get('user');
+            $f->permission = Input::get('file_perm');
+            $f->parent_type = 'task';
+            $f->save();
+            Input::file('file1')->move('/public/uploads');
+        }
+
+        if(Input::file('file2')) {
+            $f = new Upload;
+            $f->name = Input::file('file2')->getClientOriginalName();
+            $f->type = Input::file('file2')->getClientOriginalExtension();
+            $f->size = Input::file('file2')->getSize();
+            $f->created_by = Input::get('user');
+            $f->permission = Input::get('file_perm');
+            $f->save();
+            Input::file('file2')->move('/public/uploads');
+        }
+
+        if(Input::file('file3')) {
+            $f = new Upload;
+            $f->name = Input::file('file3')->getClientOriginalName();
+            $f->type = Input::file('file3')->getClientOriginalExtension();
+            $f->size = Input::file('file3')->getSize();
+            $f->created_by = Input::get('user');
+            $f->permission = Input::get('file_perm');
+            $f->save();
+            Input::file('file3')->move('/public/uploads');
+        }
 
 		$t->save();
+
 
 		return Redirect::back()->with('flash_message', 'Task updated');
 	}

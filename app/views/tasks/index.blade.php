@@ -4,7 +4,7 @@
      	@foreach($tasks as $t)
      	<div class="task">
      		<div class="left">
-     			<h4>{{ HTML::linkRoute('projects.tasklists.show', $t->tasklist()->name, array($t->tasklist()->project->id, $t->tasklist()->id)) }}</h4>
+     			<h4>{{ $t->tasklist }}</h4>
      			<p>{{ $t->description }}</p>
      			<p>Task List: <i>{{ $t->tasklist }}</i></p>
      		</div>

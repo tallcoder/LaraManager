@@ -50,7 +50,7 @@ class Task extends BaseModel {
 	*/
 
 	public function tasklist() {
-		return $this->belongsTo('Tasklist', 'list', 'id');
+		return $this->belongsTo('Tasklist', 'list_id', 'id');
 	}
 
 	public function createdBy() {
@@ -68,4 +68,8 @@ class Task extends BaseModel {
 	public function comments() {
 		return $this->hasMany('Comment', 'parent', 'id')->where('type', '=', 'tcomment');
 	}
+
+    public function project() {
+        return $this->belongsTo('Project', 'project_id', 'id');
+    }
 }

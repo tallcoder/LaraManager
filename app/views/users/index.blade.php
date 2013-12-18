@@ -17,7 +17,7 @@
 			<td>{{ $u->first_name . " " . $u->last_name }}</td>
 			<td>{{ HTML::mailto($u->email, $u->email) }}</td>
 			<td>{{ $u->usertype }}</td>
-			<td>{{ HTML::linkRoute('users.destroy', 'Delete', $u->id) }}</td>
+			<td>{{ HTML::linkRoute('users.delete', 'Delete', $u->id) }}</td>
 		</tr>
 		@endforeach
 	</table>
