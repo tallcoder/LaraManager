@@ -29,9 +29,9 @@ class TasksController extends BaseController {
 			'user' => Auth::user(),
 			'staff' => User::where('usertype', '=', 'staff')->orWhere('usertype','=','admin')->get(),
 			'lists' => Tasklist::all(),
-			'project' => Project::find($id),
 			'projects' => Project::all()
 			);
+        if(isset($id)) { array_add($data, 'project', Project::find($id));}
         return View::make('tasks.create', $data);
 	}
 
@@ -45,19 +45,23 @@ class TasksController extends BaseController {
 		$t = new Task;
 		$t->name = Input::get('name');
 		if(Input::get('list')) {
-			$t->list = Input::get('list');
+			$t->list_id = Input::get('list');
 		}
-		else {
-			$t->list = 0;
-		}
+		else {$t->list_id = 0;}
+
+        if(Input::get('project')) {
+            $t->project_id = Input::get('project');
+        }
+        else {$t->project_id = 0;}
+
 		$t->budget_total = Input::get('budget');
 		$t->begin_date = Input::get('begin_date');
 		$t->due_date = Input::get('due_date');
 		$t->assigned_to = Input::get('assigned_to');
         $t->type = Input::get('type');
+        $t->description = Input::get('description');
 		$t->save();
-		$parent = Project::find(Tasklist::find($t->list)->parent_id);
-		return Redirect::to('projects/' . $parent);
+		return Redirect::to('projects');
 	}
 
 	/**
@@ -104,6 +108,12 @@ class TasksController extends BaseController {
 	 */
 	public function update($pid, $tid)
 	{   $t = Task::find(Input::get('task'));
+        if(Input::get('iscompleted')) {
+            $t->completed = 1;
+            $t->commpleted_by = Input::get('user');
+            $t->end_date = date('m-d-Y');
+            return Redirect::back()->with('flash_message', 'Task updated');
+        }
         $t->name = Input::get('name');
         $t->description = Input::get('description');
         $t->budget_total = Input::get('budget_total');
@@ -111,6 +121,7 @@ class TasksController extends BaseController {
         if(Input::get('completed')) {
             $t->completed = true;
             $t->completed_by = Input::get('user');
+            $t->end_date = date('Y-m-d');
         }
 
         if(Input::file('file1')) {

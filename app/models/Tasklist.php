@@ -10,7 +10,7 @@ class Tasklist extends BaseModel {
 		);
 
 	public function project() {
-		return $this->belongsTo('Project', 'id', 'parent_id');
+		return $this->belongsTo('Project', 'parent_id', 'id');
 	}
 
 	public function tasks() {

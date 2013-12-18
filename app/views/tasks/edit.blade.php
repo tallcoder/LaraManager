@@ -26,7 +26,11 @@
     {{ Form::text('time', $task->time) }}
     <br />
     {{ Form::label('completed', 'Completed?') }}
-    {{ Form::checkbox('completed') }}<br />
+    <input type="checkbox" name="completed" id="completed"
+    @if($task->completed)
+    checked
+    @endif
+    /><br />
     {{ Form::file('file1') }}
     {{ Form::label('perm1' ,'Who can view this?') }}
     All{{ Form::radio('perm1', 'all') }}

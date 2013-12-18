@@ -11,7 +11,8 @@ class TasklistsController extends BaseController {
 	{
 		$data = array(
 			'title' => 'Task Lists Overview',
-			'user' => Auth::user()
+			'user' => Auth::user(),
+            'lists' => Tasklist::all()
 			);
         return View::make('lists.index', $data);
 	}

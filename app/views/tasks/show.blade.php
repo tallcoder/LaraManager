@@ -10,6 +10,8 @@
     @else
     <h4>No Task List</h4>
     @endif
+    <h4>Task Type:</h4><p>{{ $task->type }}</p>
+    <h4>Time Used:</h4><p>{{ $task->time }}</p>
     <div class="left">
     <div id="comments">
         <h3>Comments</h3>
@@ -28,7 +30,13 @@
     {{ Form::close() }}
     </div>
     <div class="right">
-        <h4>Mark Completed</h4>
+        <h4> {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'PUT')) }}
+        {{ Form::submit('Mark Completed') }}
+        {{ Form::hidden('iscompleted', '1') }}
+        {{ Form::hidden('task', $task->id) }}
+        {{ Form::hidden('user', Auth::user()->id) }}
+        {{ Form::close() }}
+        </h4>
         <h4>{{ HTML::link(Request::url() . '/edit', 'Start/Edit Task') }}</h4>
         <h4>Delete Task</h4>
     </div>
