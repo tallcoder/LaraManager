@@ -184,10 +184,10 @@ class TasksController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($pid, $id)
 	{
 		if(Task::destroy($id)) {
-		return Redirect::back()->with('flash_message', 'Task succesfully deleted');
+		return Redirect::to('projects')->with('flash_message', 'Task successfully deleted');
 		}
 		else {
 			$data = array(

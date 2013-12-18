@@ -10,6 +10,11 @@
     @else
     <h4>No Task List</h4>
     @endif
+    @if($task->completed)
+    <h4>Task Completed</h4>
+    @else
+    <h4>Task <i>Not</i> Completed</h4>
+    @endif
     <h4>Task Type:</h4><p>{{ $task->type }}</p>
     <h4>Time Used:</h4><p>{{ $task->time }}</p>
     <div class="left">
@@ -30,6 +35,7 @@
     {{ Form::close() }}
     </div>
     <div class="right">
+        @if(!$task->completed)
         <h4> {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'PUT')) }}
         {{ Form::submit('Mark Completed') }}
         {{ Form::hidden('iscompleted', '1') }}
@@ -37,7 +43,14 @@
         {{ Form::hidden('user', Auth::user()->id) }}
         {{ Form::close() }}
         </h4>
+        <br />
+        @endif
         <h4>{{ HTML::link(Request::url() . '/edit', 'Start/Edit Task') }}</h4>
-        <h4>Delete Task</h4>
+        {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'DELETE')) }}
+        {{ Form::submit('Delete Task') }}
+        {{ Form::hidden('isdeleted', '1') }}
+        {{ Form::hidden('task', $task->id) }}
+        {{ Form::hidden('user', Auth::user()->id) }}
+        {{ Form::close() }}
     </div>
 @stop
