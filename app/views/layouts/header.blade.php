@@ -19,14 +19,14 @@
 			<nav>
 				<ul>
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
-				@if($user)
+				@if($me)
 					<li>Projects
 						<ul>
 							<li>{{ HTML::linkRoute('projects.index', 'Overview') }}</li>
 							<li>{{ link_to_route('projects.create', 'Create Project') }}</li>
 						</ul>
 					</li>
-					@if($user->usertype == "admin")
+					@if($me->usertype == "admin")
 					<li>Users
 						<ul>
 							<li>{{ HTML::linkRoute('users.index', 'Overview') }}</li>

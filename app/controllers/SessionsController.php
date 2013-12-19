@@ -11,19 +11,8 @@ class SessionsController extends BaseController {
 	{
 		$data = array(
 			'title' => 'ProMan Project Manager',
-			'user' => Auth::user()
 			);
         return View::make('sessions.index', $data);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-        return View::make('sessions.create');
 	}
 
 	/**
@@ -58,28 +47,6 @@ class SessionsController extends BaseController {
 	public function show($id)
 	{
         return View::make('sessions.show');
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-        return View::make('sessions.edit');
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
 	}
 
 	/**

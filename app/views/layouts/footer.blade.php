@@ -1,6 +1,6 @@
 	<footer>
 		<p>&copy; LaraManager {{ date('Y') }}
-		@if($user)
+		@if($me)
 		{{ HTML::linkRoute('logout', 'Logout') }}</p>
 		@else
 		{{ HTML::linkRoute('home', 'Login') }}
