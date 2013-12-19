@@ -35,6 +35,10 @@ class Project extends BaseModel {
 	public function comments() {
 		return $this->hasMany('Comment', 'parent', 'id')->where('type', '=', 'pcomment');
 	}
+
+	public function uploads() {
+		return $this->hasMany('Upload', 'parent_id', 'id')->where('parent_type', '=', 'project');
+	}
 	
 	public function getBudgetRemaining() {
 		return $this->budget_total - $this->budget_used;

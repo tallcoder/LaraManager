@@ -14,6 +14,8 @@
 //session routes
 Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
 Route::get('logout', array('as' => 'logout', 'uses' => 'SessionsController@destroy'));
+Route::get('reset', array('as' => 'forgotpassword', 'uses' => 'RemindersController@getRemind'));
+Route::post('remind', array('as' => 'remindpassword', 'uses' => 'RemindersController@postRemind'));
 
 //future use
 //Route::get('projects/{project}', array('as' => 'project.complete', 'uses' => 'ProjectsController@complete'));

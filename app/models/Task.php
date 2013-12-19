@@ -72,4 +72,8 @@ class Task extends BaseModel {
     public function project() {
         return $this->belongsTo('Project', 'project_id', 'id');
     }
+
+	public function uploads() {
+		return $this->hasMany('Upload', 'parent_id', 'id')->where('parent_type','=','task');
+	}
 }

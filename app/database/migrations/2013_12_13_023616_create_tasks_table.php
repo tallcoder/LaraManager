@@ -16,8 +16,8 @@ class CreateTasksTable extends Migration {
 			$date = date('m-d-' . (date('Y') + 1));
 			$table->increments('id');
 			$table->string('name');
-			$table->integer('list_id');
-			$table->integer('project_id');
+			$table->integer('list_id')->default(0);
+			$table->integer('project_id')->default(0);
 			$table->integer('created_by');
 			$table->integer('assigned_to');
 			$table->integer('completed_by');

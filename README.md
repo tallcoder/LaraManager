@@ -39,6 +39,8 @@ These instructions are pretty much the same for Linux and OS X. If you run Windo
 <li>`git fetch --all`</li>
 <li>`git reset --hard origin/master`</li>
 <li>`composer update`</li>
+<li>`mysql -u user -pppassword -e 'create database lara;'
+<li>`php artisan migrate`</li>
 </ul>
 
 You can then set up an Apache virtual host or use `php artisan serve` to test the application.
