@@ -12,7 +12,7 @@ class ProjectsController extends BaseController {
 		if(Auth::user()) {
 	       	if(Auth::user()->usertype == "admin") {
 				$data = array(
-					'projects' => Project::all(), 
+					'projects' => Project::paginate(5),
 					'title' => 'Project Overview', 
 					'user' => Auth::user()
 					);

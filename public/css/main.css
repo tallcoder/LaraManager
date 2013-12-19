@@ -54,6 +54,25 @@ body {
 	float: none;
 }
 
+.pagination {
+	width: 20%;
+	margin: 0 auto;
+}
+
+.pagination li {
+	display: inline;
+	float: left;
+	margin-left: 5px;
+}
+
+.pagination li a {
+	text-decoration: none;
+}
+
+.pagination li.active {
+	color: orange;
+}
+
 #header h1 {
     text-align: center;
 }

@@ -29,4 +29,5 @@
 	</tr>
 @endforeach
 </table>
+{{ $projects->links() }}
 @stop
