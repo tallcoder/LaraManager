@@ -9,7 +9,7 @@
             <div id="header">
                 <div id="topper">
                     @if(isset($user))
-                    <p>You are logged in as {{ $user->username }}</p>
+                    <p>You are logged in as {{ $me->username }}</p>
                     @else
                     <p>You are not logged in</p>
                     @endif

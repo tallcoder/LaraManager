@@ -49,6 +49,11 @@ body {
 	top: 0;
 }
 
+.clear {
+	clear: both;
+	float: none;
+}
+
 #header h1 {
     text-align: center;
 }

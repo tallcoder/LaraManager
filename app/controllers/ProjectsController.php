@@ -113,6 +113,7 @@ class ProjectsController extends BaseController {
 		$data = array(
 			'title' => 'Edit Project',
 			'user' => Auth::user(),
+			'users' => User::all(),
 			'project' => $p
 			);
 		return View::make('projects.edit', $data);
@@ -130,9 +131,18 @@ class ProjectsController extends BaseController {
 		$p->name = Input::get('name');
 		$p->budget_total = Input::get('budget');
 		$p->description = Input::get('description');
+		$p->user_id = Input::get('user');
+		$p->url = Input::get('url');
+		if(Input::get('begin_date')) {
+			$p->begin_date = Input::get('begin_date');
+		}
+
+		if(Input::get('due_date')) {
+			$p->due_date = Input::get('due_date');
+		}
 		$p->save();
 
-		return View::make('projects');
+		return Redirect::back()->with('flash_message', 'Project Updated Successfully');
 	}
 
 	public function delete($id) {

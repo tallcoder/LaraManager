@@ -10,7 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+View::share('me', Auth::user());
 //session routes
 Route::get('/', array('as'=> 'home','uses'=>'SessionsController@index'));
 Route::get('logout', array('as' => 'logout', 'uses' => 'SessionsController@destroy'));
@@ -28,7 +28,6 @@ Route::resource('comments', 'CommentsController', array('only' => array('store')
 Route::resource('projects.tasklists', 'TasklistsController');
 Route::resource('projects.tasks', 'TasksController');
 
-//delete handling -- delete should actually be handled resourcefully
 Route::group(array('before' => 'staff'), function() {
 	Route::get('projects/{projects}/delete', array('as' => 'projects.delete', 'uses' => 'ProjectsController@delete'));
 	Route::post('projects/{projects}/destroy', array('as' => 'projects.destroy', 'uses' => 'ProjectsController@destroy'));

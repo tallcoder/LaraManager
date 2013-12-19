@@ -1,5 +1,4 @@
 @extends('layouts.default')
-
 @section('content')
 <h3>Staff Overview - Projects</h3>
 <table class="projects">
@@ -10,6 +9,8 @@
 		<th>Budget Total</th>
 		<th>Budget Remaining</th>
 		<th>Dev Site</th>
+		<th>Edit Link</th>
+		<th>Attachments</th>
 	</tr>
 @foreach($projects as $project)
 	<tr class="project">
@@ -20,10 +21,7 @@
 		<td>${{ $project->budget_total - $project->budget_used }}</td>
 		<td><a href="{{ $project->url }}">Link</a></td>
 		<td><a href="/projects/{{ $project->id }}/edit">Edit</a></td>
-		<td>
-		{{ Form::open(array('action' => ['ProjectsController@destroy', $project->id])) }}
-		{{ Form::submit('Delete') }}
-		{{ Form::close() }}
+		<td>{{ $project->uploads->count() }}</td>
 		</td>
 	</tr>
 	<tr class="description">

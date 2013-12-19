@@ -9,7 +9,6 @@ class UsersController extends BaseController {
 	public function create() {
 		$data = array (
 			'title' => 'Add User',
-			'user' => Auth::user()
 			);
 		return View::make('users.new', $data);
 	}
@@ -21,7 +20,6 @@ class UsersController extends BaseController {
 	public function index() {
 		if(Auth::user()->usertype == "admin" || Auth::user()->usertype == "staff") {
 			$data = array(
-				'user' => Auth::user(),
 				'users' => User::all(),
 				'title' => 'Users Overview'
 				);

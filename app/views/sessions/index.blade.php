@@ -16,7 +16,8 @@
 		<li>
 			{{ Form::submit() }}
 		</li>
-		<h4>{{ HTML::linkRoute('forgotpassword', 'Forgot Password?') }}</h4>
 	</ul>
+
 {{ Form::close() }}
+<h4>{{ HTML::linkRoute('forgotpassword', 'Forgot Password?') }}</h4>
 @stop
