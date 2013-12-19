@@ -17,6 +17,18 @@
     @endif
     <h4>Task Type:</h4><p>{{ $task->type }}</p>
     <h4>Time Used:</h4><p>{{ $task->time }}</p>
+    @if($uploads)
+    <div class="uploads">
+        <h4>Attachments</h4>
+        @foreach($uploads as $u)
+        @if($u->type == 'png' || $u->type =='jpg' || $u->type == 'gif')
+        {{ HTML::image('/uploads/' . $u->name, $u->name, array('class' => 'preview attachment')) }}
+        @else
+        {{ HTML::linkAsset('/uploads/' . $u->name, $u->name, array('class' => 'attachment')) }}
+        @endif
+        @endforeach
+    </div>
+    @endif
     <div class="left">
     <div id="comments">
         <h3>Comments</h3>

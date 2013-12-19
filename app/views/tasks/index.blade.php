@@ -2,6 +2,7 @@
      @section('content')
      	<h2>Tasks Overview</h2>
         {{ $tasks->links() }}
+        @if($tasks)
      	@foreach($tasks as $t)
      	<div class="task">
      		<div class="left">
@@ -13,9 +14,9 @@
      			<p>Task List: <i>{{ $t->tasklist }}</i></p>
      		</div>
      		<div class="right">
-     			<p>Created by: <i>{{ User::find($t->created_by)->first_name }} {{User::find($t->created_by)->last_name }}</i></p>
+     			<p>Created by: <i>{{ $t->createdBy->first_name . " " . $t->createdBy->last_name }}</i></p>
      			@if($t->assigned_to)
-     			<p>Assigned to: <i>{{ User::find($t->assigned_to)->first_name }} {{User::find($t->assigned_to)->last_name }}</i></p>
+     			<p>Assigned to: <i>{{ $t->assignedTo->first_name . " " . $t->assignedTo->last_name }}</i></p>
      			@else
      			<p>Assigned to: <i>unassigned</i></p>
      			@endif
@@ -28,4 +29,5 @@
      	</div>
      	@endforeach
         {{ $tasks->links() }}
+        @endif
      @stop

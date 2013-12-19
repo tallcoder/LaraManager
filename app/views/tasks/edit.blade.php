@@ -21,9 +21,11 @@
     {{ Form::text('start_time') }}
     <a href="javascript:void" name="timer" id="stop">Stop Task</a>
     {{ Form::text('stop_time') }}
+    <br/>
+    <h4>Time Used:</h4><p>{{ $task->time }}</p>
     <br />
-    {{ Form::label('time', 'Time on Task:') }}
-    {{ Form::text('time', $task->time) }}
+    {{ Form::label('time', 'Add Time to Task:') }}
+    {{ Form::text('time', 0) }}
     <br />
     {{ Form::label('completed', 'Completed?') }}
     <input type="checkbox" name="completed" id="completed"
@@ -31,21 +33,7 @@
     checked
     @endif
     /><br />
-    {{ Form::file('file1') }}
-    {{ Form::label('perm1' ,'Who can view this?') }}
-    All{{ Form::radio('perm1', 'all') }}
-    Staff{{ Form::radio('perm1', 'staff') }}
-    Admin{{ Form::radio('perm1', 'admin') }}<br />
-    {{ Form::file('file2') }}
-    {{ Form::label('perm2' ,'Who can view this?') }}
-    All{{ Form::radio('perm2', 'all') }}
-    Staff{{ Form::radio('perm2', 'staff') }}
-    Admin{{ Form::radio('perm2', 'admin') }}<br />
-    {{ Form::file('file3') }}
-    {{ Form::label('perm3' ,'Who can view this?') }}
-    All{{ Form::radio('perm3', 'all') }}
-    Staff{{ Form::radio('perm3', 'staff') }}
-    Admin{{ Form::radio('perm3', 'admin') }}
+    @include('layouts.partials._form_file_upload')
     <br />
     {{ Form::submit() }}
     {{ Form::close() }}

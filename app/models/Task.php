@@ -54,11 +54,11 @@ class Task extends BaseModel {
 	}
 
 	public function createdBy() {
-		return $this->belongsTo('User', 'id', 'created_by');
+		return $this->belongsTo('User', 'created_by', 'id');
 	}
 
 	public function assignedTo() {
-		return $this->belongsTo('User', 'id', 'assigned_to');
+		return $this->belongsTo('User', 'assigned_to', 'id');
 	}
 
 	public function completedBy() {

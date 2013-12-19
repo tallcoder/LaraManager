@@ -58,6 +58,7 @@ class TasksController extends BaseController {
 		$t->assigned_to = Input::get('assigned_to');
         $t->type = Input::get('type');
         $t->description = Input::get('description');
+        $t->created_by = Input::get('user');
 		$t->save();
 		return Redirect::to('projects');
 	}
@@ -76,7 +77,8 @@ class TasksController extends BaseController {
 			'task' => $t,
 			'list' => Tasklist::find($t->list),
 			'project' => Task::find($id)->project,
-            'comments' => Comment::taskComments($id)->get()
+            'comments' => Comment::taskComments($id)->get(),
+            'uploads' => $t->uploads
 		);
         return View::make('tasks.show', $data);
 	}
@@ -114,6 +116,14 @@ class TasksController extends BaseController {
         $t->description = Input::get('description');
         $t->budget_total = Input::get('budget_total');
         $t->time += Input::get('time');
+        if($t->type == 'design') {
+            $t->budget_used = $t->time / 60 * 110;
+        }
+
+        else if ($t->type == 'programming') {
+            $t->budget_used = $t->time / 60 * 135;
+        }
+
         if(Input::get('completed')) {
             $t->completed = true;
             $t->completed_by = Input::get('user');
@@ -128,7 +138,7 @@ class TasksController extends BaseController {
             $f->created_by = Input::get('user');
             $f->permission = Input::get('perm1');
             $f->parent_type = 'task';
-            $f->parent_id = $pid;
+            $f->parent_id = $tid;
             $f->save();
             Input::file('file1')->move('./public/uploads', $f->name);
         }
@@ -141,7 +151,7 @@ class TasksController extends BaseController {
             $f->created_by = Input::get('user');
             $f->permission = Input::get('perm2');
             $f->parent_type = 'task';
-            $f->parent_id = $pid;
+            $f->parent_id = $tid;
             $f->save();
             Input::file('file2')->move('/public/uploads', $f->name);
         }
@@ -154,7 +164,7 @@ class TasksController extends BaseController {
             $f->created_by = Input::get('user');
             $f->permission = Input::get('perm3');
             $f->parent_type = 'task';
-            $f->parent_id = $pid;
+            $f->parent_id = $tid;
             $f->save();
             Input::file('file3')->move('/public/uploads', $f->name);
         }

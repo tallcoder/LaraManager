@@ -2,13 +2,14 @@
 @section('content')
     <h2>Create Task</h2>
 	{{ Form::open(array('route'=>'projects.tasks.store', 'id'=>'new_task')) }}
+    {{ Form::hidden('user', $me->id) }}
 		<p>
 			{{ Form::label('name', 'Title:') }}
 			{{ Form::text('name') }}
 		</p>
 		<p>
 			{{ Form::label('list', 'Task List:') }}
-			<select class="tasklist">
+			<select class="tasklist" name="list">
 					<option value="0">----</option>
 				@foreach($lists as $t)
 					<option value="{{ $t->id }}">{{ $t->name }}</option>
@@ -17,7 +18,7 @@
 		</p>
 		<p>
 			{{ Form::label('project', 'Project:') }}
-			<select class="projectlist">
+			<select class="projectlist" name="project">
             @if(isset($project))
 			<option value="{{ $project->id }}" selected>{{ $project->name }}</option>
             @endif
