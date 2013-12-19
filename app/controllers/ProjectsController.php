@@ -12,7 +12,7 @@ class ProjectsController extends BaseController {
 		if(Auth::user()) {
 	       	if(Auth::user()->usertype == "admin") {
 				$data = array(
-					'projects' => Project::paginate(5),
+					'projects' => Project::paginate(10),
 					'title' => 'Project Overview', 
 					'user' => Auth::user()
 					);
@@ -90,13 +90,14 @@ class ProjectsController extends BaseController {
 	 */
 	public function show($id)
 	{
+        $p = Project::find($id);
         $data = array(
-        	'user' => Auth::user(),
-        	'project' => Project::find($id),
-        	'comments' => Comment::projectComments($id)->get(),
+        	'project' => $p,
+        	'comments' => $p->comments,
         	'title' => 'Project View',
-        	'lists' => Tasklist::where('parent_id', $id)->get(),
-            'tasks' => Project::find($id)->tasks
+        	'lists' => $p->tasklists,
+            'tasks' => $p->tasks,
+            'uploads' => $p->uploads
         	);
 		return View::make('projects.show', $data);
 	}
@@ -140,6 +141,46 @@ class ProjectsController extends BaseController {
 		if(Input::get('due_date')) {
 			$p->due_date = Input::get('due_date');
 		}
+
+        if(Input::file('file1')) {
+            $f = new Upload;
+            $f->name = Input::file('file1')->getClientOriginalName();
+            $f->type = Input::file('file1')->getClientOriginalExtension();
+            $f->size = Input::file('file1')->getSize();
+            $f->created_by = Input::get('user');
+            $f->permission = Input::get('perm1');
+            $f->parent_type = 'project';
+            $f->parent_id = $id;
+            $f->save();
+            Input::file('file1')->move('./public/uploads', $f->name);
+        }
+
+        if(Input::file('file2')) {
+            $f = new Upload;
+            $f->name = Input::file('file2')->getClientOriginalName();
+            $f->type = Input::file('file2')->getClientOriginalExtension();
+            $f->size = Input::file('file2')->getSize();
+            $f->created_by = Input::get('user');
+            $f->permission = Input::get('perm2');
+            $f->parent_type = 'project';
+            $f->parent_id = $id;
+            $f->save();
+            Input::file('file2')->move('/public/uploads', $f->name);
+        }
+
+        if(Input::file('file3')) {
+            $f = new Upload;
+            $f->name = Input::file('file3')->getClientOriginalName();
+            $f->type = Input::file('file3')->getClientOriginalExtension();
+            $f->size = Input::file('file3')->getSize();
+            $f->created_by = Input::get('user');
+            $f->permission = Input::get('perm3');
+            $f->parent_type = 'project';
+            $f->parent_id = $id;
+            $f->save();
+            Input::file('file3')->move('/public/uploads', $f->name);
+        }
+
 		$p->save();
 
 		return Redirect::back()->with('flash_message', 'Project Updated Successfully');

@@ -14,7 +14,7 @@
 {{ Form::label('link', 'Dev Site Address:') }}
 &nbsp;http://{{ Form::text('link') }}.icwebdev.com<br />
 {{ Form::label('budget', 'Budget:') }}
-$<input type="number" name="budget" id="budget" min="0" max="50000" step="10" value="0" /><br />
+$<input type="number" name="budget" id="budget" min="0" max="50000" value="0" /><br />
 {{ Form::label('description', 'Description:') }}<br />
 {{ Form::textarea('description') }}<br />
 {{ Form::submit() }}

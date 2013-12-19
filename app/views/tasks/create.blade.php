@@ -33,7 +33,7 @@
         </p>
 		<p>
 			{{ Form::label('budget', 'Budget:') }}
-			$<input type="number" name="budget" id="budget" value="100" min="0" step="5" />
+			$<input type="number" name="budget" id="budget" value="100" min="0" />
 		</p>
 		<p>
 			{{ Form::label('description', 'Description:') }}<br />

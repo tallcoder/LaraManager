@@ -11,8 +11,7 @@ class TasksController extends BaseController {
 	{
 		$data = array(
 			'title' => 'Tasks Overview',
-			'user' => Auth::user(),
-			'tasks' => Task::all()
+			'tasks' => Task::paginate(10)
 			);
         return View::make('tasks.index', $data);
 	}
@@ -26,7 +25,6 @@ class TasksController extends BaseController {
 	{
 		$data = array(
 			'title' => 'Create New Task',
-			'user' => Auth::user(),
 			'staff' => User::where('usertype', '=', 'staff')->orWhere('usertype','=','admin')->get(),
 			'lists' => Tasklist::all(),
 			'projects' => Project::all()
@@ -74,7 +72,6 @@ class TasksController extends BaseController {
 	{	
 		$t = Task::find($id);
 		$data = array(
-			'user' => Auth::user(),
 			'title' => $t->name,
 			'task' => $t,
 			'list' => Tasklist::find($t->list),
@@ -94,7 +91,6 @@ class TasksController extends BaseController {
 	{
 		$data = array(
 			'title' => 'Edit Task',
-			'user' => Auth::user(),
 			'task' => Task::find($id)
 			);
         return View::make('tasks.edit', $data);
@@ -172,7 +168,6 @@ class TasksController extends BaseController {
 	public function delete($id) {
 			$data = array(
 				'title' => 'Confirm Delete',
-				'user' => Auth::user(),
 				'item' => array('type' => 'task', 'object' => Task::find($id))
 			);
 			return View::make('layouts.confirm-delete', $data);
@@ -191,7 +186,6 @@ class TasksController extends BaseController {
 		}
 		else {
 			$data = array(
-				'user' => Auth::user(),
 				'title' => 'Error Deleting Item',
 				'eobj' => Task::find($id)
 			);

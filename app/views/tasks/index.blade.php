@@ -1,6 +1,7 @@
 @extends('layouts.default')
      @section('content')
      	<h2>Tasks Overview</h2>
+        {{ $tasks->links() }}
      	@foreach($tasks as $t)
      	<div class="task">
      		<div class="left">
@@ -26,4 +27,5 @@
      		</div>
      	</div>
      	@endforeach
+        {{ $tasks->links() }}
      @stop

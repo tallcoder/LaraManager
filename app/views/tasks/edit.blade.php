@@ -16,7 +16,7 @@
     {{ Form::label('description', 'Description:') }}<br />
     {{ Form::textarea('description', $task->description) }}<br />
     {{ Form::label('budget_total', 'Budget:') }}
-    <input type="number" name="budget_total" value="{{ $task->budget_total }}" step="10" min="0" /><br />
+    <input type="number" name="budget_total" value="{{ $task->budget_total }}" min="0" /><br />
     <a href="javascript:void" name="timer" id="start">Start Task</a>
     {{ Form::text('start_time') }}
     <a href="javascript:void" name="timer" id="stop">Stop Task</a>

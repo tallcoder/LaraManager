@@ -29,7 +29,7 @@
     <h4>Add comment</h4>
     {{ Form::textarea('comment') }}
     {{ Form::hidden('parent', $task->id) }}
-    {{ Form::hidden('user', $user->id) }}
+    {{ Form::hidden('user', $me->id) }}
     {{ Form::hidden('type', 't_comment') }}
     <br />{{ Form::submit() }}
     {{ Form::close() }}

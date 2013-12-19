@@ -158,11 +158,12 @@ body {
 }
 
 footer {
+    position: relative;
+    min-height: 25px;
 	clear: both;
 	float: none;
 	width: 100%;
 	text-align: right;
-	position: absolute;
 	bottom: 0;
 	background: #BDCEE2;
 }
@@ -201,6 +202,23 @@ div.left {
 div.right {
     display: inline-block;
     width: 45%;
+}
+
+.uploads {
+    display: inline-block;
+    float: right;
+    margin: 1% 5% 0 0;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    padding: 1%;
+}
+
+.attachment {
+    display: block;
+}
+
+.preview {
+    max-height: 150px;
 }
 
 /* -------- Main Styles --------- */

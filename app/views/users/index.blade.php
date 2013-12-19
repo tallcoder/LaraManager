@@ -1,8 +1,8 @@
 @extends('layouts.default')
 @section('content')
 <h3>User Overview</h3>
-<p>Username: {{ $user->username }}</p>
-<p>Email: {{ $user->email }}</p>
+<p>Username: {{ $me->username }}</p>
+<p>Email: {{ $me->email }}</p>
 <h3>Registered Users:</h3>
 	<table>
 		<tr>

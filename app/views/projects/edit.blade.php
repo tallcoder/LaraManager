@@ -1,13 +1,13 @@
 @extends('layouts.default')
 @section('content')
 <h3>Edit {{ $project->name }}</h3>
-{{ Form::open(array('url' => 'projects/' . $project->id, 'method' => 'PUT')) }}
+{{ Form::open(array('url' => 'projects/' . $project->id, 'method' => 'PUT', 'enctype' => 'multipart/form-data')) }}
 <div class="left">
 	{{ Form::hidden('id', $project->id) }}
 	{{ Form::label('name', 'Name:') }}
 	{{ Form::text('name', $project->name) }}<br/>
 	{{ Form::label('budget', 'Budget:') }}
-	$<input type="number" name="budget" id="budget" min="0" max="50000" step="10" value="{{ $project->budget_total }}" /><br />
+	$<input type="number" name="budget" id="budget" min="0" max="50000" value="{{ $project->budget_total }}" /><br />
 	{{ Form::label('user', 'Client:') }}
 	<select name="user">
 		<option value="{{ $project->user->id }}" selected>{{ $project->user->first_name . " " . $project->user->last_name
