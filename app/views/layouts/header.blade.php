@@ -19,6 +19,7 @@
 			<nav>
 				<ul>
 					<li>{{ HTML::linkRoute('home', 'Home') }}</li>
+                @if(isset($me))
 				@if($me->usertype == 'client')
                     <li>{{ HTML::linkRoute('users.show', 'My Overview', array($me->id)) }}</li>
                 @endif
@@ -43,6 +44,7 @@
                         <li>{{ HTML::linkRoute('projects.tasklists.create', 'Create Task List') }}</li>
                     </ul>
                 </li>
+                @endif
                 @endif
 				</ul>
 			</div>
