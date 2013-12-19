@@ -102,9 +102,13 @@ body {
 
 #comments {
 	margin: 1% 0 0 5%;
-	width: 45%;
+	width: 80%;
 	display: inline-block;
 	float: left;
+}
+
+#comments p {
+    width: 100%;
 }
 .comment {
 	border-bottom: 1px solid black;
@@ -113,6 +117,7 @@ body {
 
 .overview {
 	margin-left: 1%;
+    max-width: 50%;
 }
 
 .overview p, .overview h4 {

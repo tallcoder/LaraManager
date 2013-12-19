@@ -33,7 +33,7 @@ class Project extends BaseModel {
     }
 
 	public function comments() {
-		return $this->hasMany('Comment', 'parent', 'id')->where('type', '=', 'pcomment');
+		return $this->hasMany('Comment', 'parent', 'id')->where('type', '=', 'p_comment');
 	}
 
 	public function uploads() {

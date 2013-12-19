@@ -71,9 +71,7 @@ class UsersController extends BaseController {
 	public function show($id) {
 		$data = array(
 			'title' => 'User Overview',
-			'me' => Auth::user(),
-			'user' => User::find($id),
-			'projects' => Project::where('user_id', '=', $id)->get()			
+			'projects' => User::find($id)->projects
 			);
 		return View::make('users.show', $data);
 	}

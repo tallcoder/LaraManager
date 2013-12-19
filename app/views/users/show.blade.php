@@ -2,12 +2,12 @@
 @section('content')
     <div class="left">
         <h3>Your information:</h3>
-        <p>Username: <i>{{ $user->username }}</i></p>
-        <p>First Name: <i>{{ $user->first_name }}</i></p>
-        <p>Last Name: <i>{{ $user->last_name }}</i></p>
-        <p>Email: <i>{{ $user->email }}</i></p>
-        <p>Phone: <i>{{ $user->phone }}</i></p>
-        <p>Account Expires: <i>{{ $user->expires }}</i></p>
+        <p>Username: <i>{{ $me->username }}</i></p>
+        <p>First Name: <i>{{ $me->first_name }}</i></p>
+        <p>Last Name: <i>{{ $me->last_name }}</i></p>
+        <p>Email: <i>{{ $me->email }}</i></p>
+        <p>Phone: <i>{{ $me->phone }}</i></p>
+        <p>Account Expires: <i>{{ $me->expires }}</i></p>
     </div>
     <div class="right">
         <h3>Your Projects:</h3>

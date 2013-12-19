@@ -24,19 +24,17 @@ class ProjectsController extends BaseController {
 		  	else {
 		  		//$data = array('projects' => Project::where('client_id', '=', Project::find(1)->user), 'title' => 'Project Overview', 'user' => Auth::user());
 		  		$data = array(
-		  			'page' => 'projects',
-		  			'title' => 'Access Denied'
+		  			'title' => 'Overview'
 		  			);
-		  		return View::make('errors.401', $data);
+		  		return View::make('users.show', $data);
 		  	}
 		  }
 		  else {
 		  	$data = array(
-		  		'page' => 'projects',
 		  		'title' => 'Access Denied',
-		  		'user' => Auth::user()
+                'projects' => User::find(15)->projects
 		  	);
-		  	return View::make('errors.401', $data);
+		  	return View::make('users.index', $data);
 		  }
 	}
 
@@ -129,18 +127,23 @@ class ProjectsController extends BaseController {
 	public function update($id)
 	{	
 		$p = Project::find($id);
-		$p->name = Input::get('name');
-		$p->budget_total = Input::get('budget');
-		$p->description = Input::get('description');
-		$p->user_id = Input::get('user');
-		$p->url = Input::get('url');
-		if(Input::get('begin_date')) {
-			$p->begin_date = Input::get('begin_date');
-		}
 
-		if(Input::get('due_date')) {
-			$p->due_date = Input::get('due_date');
-		}
+        if(Input::get('full')) {
+            $p->name = Input::get('name');
+            $p->budget_total = Input::get('budget');
+            $p->description = Input::get('description');
+            $p->user_id = Input::get('user');
+            $p->url = Input::get('url');
+
+            if(Input::get('begin_date')) {
+                $p->begin_date = Input::get('begin_date');
+            }
+
+            if(Input::get('due_date')) {
+                $p->due_date = Input::get('due_date');
+            }
+
+        }
 
         if(Input::file('file1')) {
             $f = new Upload;

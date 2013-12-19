@@ -10,7 +10,7 @@ class SessionsController extends BaseController {
 	public function index()
 	{
 		$data = array(
-			'title' => 'ProMan Project Manager',
+			'title' => 'LaraManager',
 			);
         return View::make('sessions.index', $data);
 	}
@@ -31,7 +31,7 @@ class SessionsController extends BaseController {
 		]);
 
 		if($login) {
-			return Redirect::intended('projects')->with('flash_message', 'ProMan has successfully logged you in!');
+			return Redirect::intended('/')->with('flash_message', 'ProMan has successfully logged you in!');
 		}
 		else {
 		return Redirect::back()->with('flash_message', 'Invalid Login Credentials')->withInput();

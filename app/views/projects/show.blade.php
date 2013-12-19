@@ -1,12 +1,14 @@
 @extends('layouts.default')
 @section('content')
 	<div class="actions">
+        @if($me->usertype != 'client')
 		{{ HTML::linkRoute('projects.tasks.create', 'Create Task', $project->id) }}
 		{{ HTML::linkRoute('projects.tasklists.create', 'Create Task List', $project->id) }}
 		{{--{{ Form::open(array('route'=>'projects.complete', $project->id)) }}
 						{{ Form::submit('Mark Completed') }}
 						{{ Form::close() }}--}}
 		{{ HTML::linkRoute('projects.destroy', 'Delete Project', $project->id) }}
+        @endif
         {{ HTML::link(Request::url() . '/edit' , 'Edit Project') }}
 	</div>
     @if($uploads)
@@ -47,8 +49,8 @@
             @include('layouts.partials._form_show_comments')
         @endif
         </div>
-        <br />
-        {{ Form::open(array('route' => 'comments.store')) }}
+        <div class="clear"></div>
+        {{ Form::open(array('route' => array('comments.store'), 'id'=>'add_comment')) }}
         <h4>Add comment</h4>
         {{ Form::textarea('comment') }}
         {{ Form::hidden('parent', $project->id) }}
@@ -67,7 +69,11 @@
         <div id="tasks">
             <h3>Current Tasks</h3>
             @foreach($tasks as $t)
+                @if($me->usertype != 'client')
                <h4>{{ HTML::linkRoute('projects.tasks.show', $t->name, array($project->id, $t->id)) }}</h4>
+                @else
+                <h4>{{ $t->name }}</h4>
+                @endif
                 @if($t->due_date)
                     <p>Due Date: <i>{{ $t->due_date }}</i></p>
                 @else

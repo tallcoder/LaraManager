@@ -2,8 +2,10 @@
 @section('content')
 <h3>Edit {{ $project->name }}</h3>
 {{ Form::open(array('url' => 'projects/' . $project->id, 'method' => 'PUT', 'enctype' => 'multipart/form-data')) }}
+@if($me->usertype == 'staff' || $me->usertype == 'admin')
 <div class="left">
 	{{ Form::hidden('id', $project->id) }}
+    {{ Form::hidden('full', true) }}
 	{{ Form::label('name', 'Name:') }}
 	{{ Form::text('name', $project->name) }}<br/>
 	{{ Form::label('budget', 'Budget:') }}
@@ -32,12 +34,23 @@
 	<input type="text" name="url" id="url" value="{{ $project->url }}" size="40" />
 	<br/>
 </div>
+@endif
 <div class="right">
 	<h3>Upload Attachments</h3>
+    @if($me->usertype == 'client')
+    {{ Form::open(array('url' => 'projects/' . $project->id, 'method' => 'PUT', 'enctype' => 'multipart/form-data')) }}
+    {{ Form::hidden('user', $me->id) }}
+    @endif
 	@include('layouts.partials._form_file_upload')
+    @if($me->usertype == 'client')
+    {{ Form::submit('Upload') }}
+    {{ Form::close() }}
+    @endif
 </div>
 <br />
 <div class="clear"></div>
+    @if($me->usertype != 'client')
 	{{ Form::submit('Save') }}
 	{{ Form::close() }}
+    @endif
 @stop
