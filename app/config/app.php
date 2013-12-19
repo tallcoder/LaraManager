@@ -106,11 +106,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Way\Generators\GeneratorsServiceProvider',
-		'Frozennode\Administrator\AdministratorServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Way\Console\GuardLaravelServiceProvider',
 	),
 
 	/*

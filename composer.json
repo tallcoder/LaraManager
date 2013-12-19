@@ -5,13 +5,11 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"intervention/image": "dev-master",
-		"frozennode/administrator": "dev-master"
+		"intervention/image": "dev-master"
 	},
 	"require-dev": {
 		"fzaninotto/faker": "dev-master",
 		"way/generators": "dev-master",
-		"way/guard-laravel": "dev-master",
 		"barryvdh/laravel-ide-helper": "1.*"
 	},
 	"autoload": {
