@@ -10,3 +10,5 @@ readme.md
 *.sublime-workspace
 sftp-config.json
 .idea
+/public/uploads
+/resources
