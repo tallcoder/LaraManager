@@ -30,9 +30,9 @@
         <br/>
 		<h4>Total Budget:</h4><p>${{ $project->budget_total }}</p><br/>
 		<h4>Used Budget:</h4><p>${{ $project->budget_used }}</p><br/>
-		<h4>Start Date:</h4><p>{{ $project->begin_date }}</p><br/>
-		<h4>Due Date:</h4><p>{{ $project->due_date }}</p><br/>
-		<h4>Finished Date:</h4><p>{{ $project->end_date }}</p><br/>
+		<h4>Start Date:</h4><p>{{ getMdy($project->begin_date) }}</p><br/>
+		<h4>Due Date:</h4><p>{{ getMdy($project->due_date) }}</p><br/>
+		<h4>Finished Date:</h4><p>{{ getMdy($project->end_date) }}</p><br/>
 		@if($project->completed == 1)
 		<h4>Project Completed</h4><br/>
 		@else
@@ -53,6 +53,11 @@
         {{ Form::open(array('route' => array('comments.store'), 'id'=>'add_comment')) }}
         <h4>Add comment</h4>
         {{ Form::textarea('comment') }}
+	      @if($me->usertype == 'admin' || $me->usertype == 'staff')
+	      <br />
+	      {{ Form::label('staffonly', 'Staff Only?') }}
+	      {{ Form::checkbox('staffonly', 'true') }}
+	      @endif
         {{ Form::hidden('parent', $project->id) }}
         {{ Form::hidden('user', $me->id) }}
         {{ Form::hidden('type', 'p_comment') }}

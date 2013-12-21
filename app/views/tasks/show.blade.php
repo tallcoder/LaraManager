@@ -3,7 +3,7 @@
 	<h2>{{ $task->name }}</h2>
 	<h4>Summary:</h4><p>{{ $task->description }}</p>
     <h4>Budget: <p>${{ $task->budget_total }}</p></h4>
-    <h4>Due Date: <p>{{ $task->due_date }}</p></h4>
+    <h4>Due Date: <p>{{ getMdy($task->due_date) }}</p></h4>
     <h4>Project: <p>{{ HTML::linkRoute('projects.show', $task->project->name, array($task->project->id)) }}</p></h4>
     @if($task->tasklist)
     <h4>Task List: </h4><p>{{ HTML::linkRoute('projects.tasklists.show', $task->tasklist->name, array($task->tasklist->parent_id, $task->tasklist->id)) }}</p>
@@ -40,6 +40,11 @@
     {{ Form::open(array('route' => 'comments.store')) }}
     <h4>Add comment</h4>
     {{ Form::textarea('comment') }}
+    @if($me->usertype == 'admin' || $me->usertype == 'staff')
+	    <br />
+    {{ Form::label('staffonly', 'Staff Only?') }}
+    {{ Form::checkbox('staffonly', 'true') }}
+    @endif
     {{ Form::hidden('parent', $task->id) }}
     {{ Form::hidden('user', $me->id) }}
     {{ Form::hidden('type', 't_comment') }}

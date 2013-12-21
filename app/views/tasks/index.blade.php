@@ -22,9 +22,9 @@
      			@endif
      			<p>Total Budget: <i>{{ $t->budget_total }}</i></p>
      			<p>Used Budget: <i>{{ $t->budget_used }}</i></p>
-     			<p>Begin on: <i>{{ $t->begin_date }}</i></p>
-     			<p>Due on: <i>{{ $t->due_date }}</i></p>
-     			<p>Completed on: <i>{{ $t->end_date}}</i></p>
+     			<p>Begin on: <i>{{ getMdy($t->begin_date) }}</i></p>
+     			<p>Due on: <i>{{ getMdy($t->due_date) }}</i></p>
+     			<p>Completed on: <i>{{ getMdy($t->end_date) }}</i></p>
      		</div>
      	</div>
      	@endforeach

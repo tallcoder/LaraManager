@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'laramanager@internetconnection.net', 'name' => 'LaraManager'),
+	'from' => array('address' => 'mike@mjdugan.com', 'name' => 'Mike Dugan'),
 
 	/*
 	|--------------------------------------------------------------------------
