@@ -26,20 +26,23 @@ class SessionsController extends BaseController {
 		$input = Input::all();
 		$user = User::where('username', '=', $input['username']);
 
-		$login = Auth::attempt([
-		'username' => $input['username'],
-		'password' => $input['password']
-		]);
-
-		$expired;
-		if($user->expires)
-
-		if($login) {
-			return Redirect::intended('/')->with('flash_message', 'ProMan has successfully logged you in!');
+		if(getMdy(new Date) < getMdy($user->expires)) {
+			return View::make('users.expired');
 		}
 		else {
-		return Redirect::back()->with('flash_message', 'Invalid Login Credentials')->withInput();
-	}
+
+			$login = Auth::attempt([
+			'username' => $input['username'],
+			'password' => $input['password']
+			]);
+
+			if($login) {
+				return Redirect::intended('/')->with('flash_message', 'ProMan has successfully logged you in!');
+			}
+			else {
+			return Redirect::back()->with('flash_message', 'Invalid Login Credentials')->withInput();
+			}
+		}
 	}
 
 	/**

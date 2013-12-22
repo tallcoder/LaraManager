@@ -27,14 +27,11 @@ $(function() {
     });
 
     $('#timer').click(function() {
-        console.log('clicked');
         var x = new Date();
         if($('input[name="start_time"]').val() == "") {
             $('input[name="start_time"]').val(x.getHours() + ":" + x.getMinutes());
         }
-
         else {
-            var x = new Date();
             $('input[name="stop_time"]').val(x.getHours() + ":" + x.getMinutes());
         }
     });
