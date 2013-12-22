@@ -16,6 +16,7 @@ class CreateListsTable extends Migration {
 			$table->string('name');
 			$table->text('description');
 			$table->integer('parent_id');
+			$table->boolean('staffonly')->default(false);
 			$table->timestamps();
 		});
 	}

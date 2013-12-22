@@ -9,12 +9,12 @@
             <div id="header">
                 <div id="topper">
                     @if(isset($me))
-                    <p>You are logged in as {{ $me->username }}</p>
+                    <p>You are logged in as {{ $me->username }} ( {{ $me->usertype }} )</p>
                     @else
                     <p>You are not logged in</p>
                     @endif
                 </div>
-                <h1>LaraManager</h1>
+	            <a href="/">{{ HTML::image('images/laramanager-logo.png', 'LaraManager', array('id'=>'logo')) }}</a>
             </div>
 			<nav>
 				<ul>

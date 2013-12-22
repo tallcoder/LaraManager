@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration {
 			$table->integer('parent');
 			$table->text('description');
 			$table->integer('user_id');
+			$table->boolean('staffonly');
 			$table->timestamps();
 		});
 	}

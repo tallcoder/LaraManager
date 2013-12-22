@@ -76,6 +76,9 @@ class ProjectsController extends BaseController {
 		$p->budget_total = Input::get('budget');
 		$p->description = Input::get('description');
 		$p->url = "http://" . Input::get('link') . ".icwebdev.com";
+		if(Input::get('staffonly')) {
+			$p->staffonly = true;
+		}
 		$p->save();
 		return Redirect::to('projects');
 	}
@@ -134,7 +137,9 @@ class ProjectsController extends BaseController {
             $p->description = Input::get('description');
             $p->user_id = Input::get('user');
             $p->url = Input::get('url');
-
+						if(Input::get('staffonly')) {
+							$p->staffonly = true;
+						}
             if(Input::get('begin_date')) {
                 $p->begin_date = Input::get('begin_date');
             }
@@ -151,7 +156,9 @@ class ProjectsController extends BaseController {
             $f->type = Input::file('file1')->getClientOriginalExtension();
             $f->size = Input::file('file1')->getSize();
             $f->created_by = Input::get('user');
-            $f->permission = Input::get('perm1');
+            if(Input::get('perm1') != 'all') {
+	            $f->staffonly = true;
+            }
             $f->parent_type = 'project';
             $f->parent_id = $id;
             $f->save();
@@ -164,7 +171,9 @@ class ProjectsController extends BaseController {
             $f->type = Input::file('file2')->getClientOriginalExtension();
             $f->size = Input::file('file2')->getSize();
             $f->created_by = Input::get('user');
-            $f->permission = Input::get('perm2');
+		        if(Input::get('perm2') != 'all') {
+			        $f->staffonly = true;
+		        }
             $f->parent_type = 'project';
             $f->parent_id = $id;
             $f->save();
@@ -177,7 +186,9 @@ class ProjectsController extends BaseController {
             $f->type = Input::file('file3')->getClientOriginalExtension();
             $f->size = Input::file('file3')->getSize();
             $f->created_by = Input::get('user');
-            $f->permission = Input::get('perm3');
+		        if(Input::get('perm3') != 'all') {
+			        $f->staffonly = true;
+		        }
             $f->parent_type = 'project';
             $f->parent_id = $id;
             $f->save();

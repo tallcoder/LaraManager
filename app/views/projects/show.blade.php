@@ -38,6 +38,9 @@
 		@else
 		<h4>Project Not Completed</h4><br/>
 		@endif
+		@if($project->staffonly)
+		<h4>Staff Project</h4><br/>
+		@endif
 		<h4>Summary:</h4><p>{{$project->description }}</p>
 		<h4>Dev Link:</h4><p>{{ HTML::link($project->url, 'Click Here') }}</p>
 	</div>
@@ -80,7 +83,7 @@
                 <h4>{{ $t->name }}</h4>
                 @endif
                 @if($t->due_date)
-                    <p>Due Date: <i>{{ $t->due_date }}</i></p>
+                    <p>Due Date: <i>{{ getMdy($t->due_date) }}</i></p>
                 @else
                     <p>No Due Date</p>
                 @endif

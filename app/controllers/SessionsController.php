@@ -24,11 +24,15 @@ class SessionsController extends BaseController {
 	{
 
 		$input = Input::all();
+		$user = User::where('username', '=', $input['username']);
 
 		$login = Auth::attempt([
 		'username' => $input['username'],
 		'password' => $input['password']
 		]);
+
+		$expired;
+		if($user->expires)
 
 		if($login) {
 			return Redirect::intended('/')->with('flash_message', 'ProMan has successfully logged you in!');

@@ -33,6 +33,11 @@
     checked
     @endif
     /><br />
+		@if($me->usertype == 'admin' || $me->usertype == 'staff')
+		<br />
+		{{ Form::label('staffonly', 'Staff Only?') }}
+		{{ Form::checkbox('staffonly', 'true', $project->staffonly) }}
+		@endif
     @include('layouts.partials._form_file_upload')
     <br />
     {{ Form::submit() }}

@@ -51,7 +51,9 @@ class TasksController extends BaseController {
             $t->project_id = Input::get('project');
         }
         else {$t->project_id = 0;}
-
+		if(Input::get('staffonly')) {
+			$t->staffonly = true;
+		}
 		$t->budget_total = Input::get('budget');
 		$t->begin_date = Input::get('begin_date');
 		$t->due_date = Input::get('due_date');
@@ -116,6 +118,9 @@ class TasksController extends BaseController {
         $t->description = Input::get('description');
         $t->budget_total = Input::get('budget_total');
         $t->time += Input::get('time');
+				if(Input::get('staffonly')) {
+					$t->staffonly = true;
+				}
         if($t->type == 'design') {
             $t->budget_used = $t->time / 60 * 110;
         }

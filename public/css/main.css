@@ -1,6 +1,7 @@
 /* imports*/
 @import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,700,300italic,400italic,700italic);
 @import url(fonts/stylesheet.css);
+@import url(http://fonts.googleapis.com/css?family=Cardo);
 /* 
    Reset
    http://meyerweb.com/eric/tools/css/reset/ 
@@ -37,14 +38,13 @@ footer, header, hgroup, menu, nav, section {
 
 /* layouts */
 html {
-	background-color: #8D9EA6;
-	}
+	background: white;
+}
 
 body {
 	width:70%;
 	min-height: 100%;
 	position: absolute;
-	background: white;
 	left: 15%;
 	top: 0;
 }
@@ -73,12 +73,16 @@ body {
 	color: orange;
 }
 
-#header h1 {
+#header {
     text-align: center;
 }
 
 #content {
 	padding-left: 5%;
+	margin-bottom: 3%;
+	border-left: 2px solid #fb523d;
+	border-right: 2px solid #fb523d;
+	padding-bottom: 5px;
 }
 
 .actions {
@@ -92,7 +96,13 @@ body {
 }
 
 #topper {
-	margin-left: 70%;
+	display: inline-block;
+	float: right;
+}
+
+#logo {
+	display: inline-block;
+	margin-left: 12%;
 }
 
 #login {
@@ -170,13 +180,15 @@ footer {
 	width: 100%;
 	text-align: right;
 	bottom: 0;
-	background: #BDCEE2;
+	padding: 1% 0;
+	background: #ff533e;
 }
 
 footer p {
 	margin: 1%;
 	width: 98%;
 	text-align: center;
+	color: white;
 }
 
 ol, ul {
@@ -236,31 +248,35 @@ input[type="submit"] {
 }
 
 a:link, a:visited {
-	color: darkblue;
+	color: #40150f;
 }
 
 a:hover, a:active {
-	color: darkblue;
+	color: black;
 }
 
 
 
 /* nav menu */
 nav ul {
-	background: #A7BAD1;
+	background: white;
+	border-top: 1px solid #ff533e;
+	border-bottom: 1px solid #ff533e;
 	text-align: center;
 }
 
 nav ul ul {
 	display: none;
 	position: absolute;
-	background-color: #A7BAD1;
+	background-color: white;
 	top: 100%;
-	border: 1px solid #45658A;
+	border: 1px solid #ff533e;
 }
 
-nav ul li:hover {
-	background-color: #BDCEE2;
+nav ul li:hover, nav ul li a:hover {
+	background-color: white;
+	color: #ff533e;
+	cursor: pointer;
 }
 
 nav ul li:hover > ul {
@@ -278,8 +294,12 @@ nav ul li:hover > ul li {
 	padding: 5px;
 }
 
+ul ul a:hover {
+	color: black;
+}
+
 	nav ul li:hover > ul li:not(:first-child) {
-		border-top: 1px solid #45658A;
+		border-top: 1px solid #ff533e;
 	}
 
 nav ul li {
@@ -345,24 +365,24 @@ label, p {
 }
 
 td {
-    font-family: 'slingnormal', 'times', serif;
+    font-family: 'Cardo', 'times', serif;
 }
 
 h1, h2, h3 {
 	margin-bottom: 12px;
-	color: #236BB2;
+	color: #40150f;
 }
 
 h1 {
-	font-size: 200%;
+	font-size: 2em;
 }
 
 h2 {
-	font-size: 140%;
+	font-size: 1.4em;
 }
 
 h3 {
-	font-size: 110%;
+	font-size: 1.1em;
 }
 
 p {

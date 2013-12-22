@@ -48,6 +48,12 @@
 			{{ Form::label('due_date', "Due On:") }}
 			<input type="date" id="due_date" name="due_date" />
 		</p>
+		<p>
+			@if($me->usertype == 'admin' || $me->usertype == 'staff')
+			{{ Form::label('staffonly', 'Staff Only?') }}
+			{{ Form::checkbox('staffonly', 'true') }}
+			@endif
+		</p>
         <p>
             {{ Form::label('assigned_to', 'Assign To:') }}
             <select name="assigned_to" id="assigned_to" class="assign">

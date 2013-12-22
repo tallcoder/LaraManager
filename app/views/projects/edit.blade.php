@@ -20,6 +20,11 @@
 			@endif
 		@endforeach
 	</select>
+	@if($me->usertype == 'admin' || $me->usertype == 'staff')
+	<br />
+	{{ Form::label('staffonly', 'Staff Only?') }}
+	{{ Form::checkbox('staffonly', 'true', $project->staffonly) }}
+	@endif
 	<br/>
 	{{ Form::label('description', 'Description:') }}<br />
 	{{ Form::textarea('description', $project->description) }}<br />

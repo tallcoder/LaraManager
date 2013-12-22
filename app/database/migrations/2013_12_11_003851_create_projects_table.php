@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration {
 			$table->integer('budget_used')->unsigned()->default(0);
 			$table->integer('budget_total')->unsigned()->default(1);
 			$table->boolean('completed')->default(false);
+			$table->boolean('staffonly')->default(false);
 			$table->date('begin_date');
 			$table->date('end_date');
 			$table->date('due_date');

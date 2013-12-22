@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration {
 			$table->integer('created_by');
 			$table->integer('assigned_to');
 			$table->integer('completed_by');
+			$table->boolean('staffonly')->default(false);
             $table->boolean('completed')->default(0);
             $table->float('time')->default(0);
             $table->string('type')->default('design');

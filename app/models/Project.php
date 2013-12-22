@@ -17,6 +17,9 @@ class Project extends BaseModel {
 		return Project::all();
 	}
 
+	public function scopePublicProjects() {
+		return Project::all()->where('staffonly', '!=', 'true');
+	}
 	/*
 	*	ORM mappings
 	*/
