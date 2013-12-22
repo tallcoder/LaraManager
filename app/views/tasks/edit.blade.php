@@ -22,7 +22,7 @@
     <a href="javascript:void" name="timer" id="stop">Stop Task</a>
     {{ Form::text('stop_time') }}
     <br/>
-    <h4>Time Used:</h4><p>{{ $task->time }}</p>
+    <h4>Time Used: {{ $task->time }} minutes</h4>
     <br />
     {{ Form::label('time', 'Add Time to Task:') }}
     {{ Form::text('time', 0) }}
@@ -36,7 +36,7 @@
 		@if($me->usertype == 'admin' || $me->usertype == 'staff')
 		<br />
 		{{ Form::label('staffonly', 'Staff Only?') }}
-		{{ Form::checkbox('staffonly', 'true', $project->staffonly) }}
+		{{ Form::checkbox('staffonly', 'true', $task->staffonly) }}<br />
 		@endif
     @include('layouts.partials._form_file_upload')
     <br />

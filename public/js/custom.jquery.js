@@ -26,10 +26,6 @@ $(function() {
 		}
     });
 
-    $('#new_task').validate({
-
-    });
-
     $('#timer').click(function() {
         console.log('clicked');
         var x = new Date();
