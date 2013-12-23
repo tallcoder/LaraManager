@@ -25,8 +25,8 @@ class SessionsController extends BaseController {
 
 		$input = Input::all();
 		$user = User::where('username', '=', $input['username']);
-
-		if(getMdy(new Date) < getMdy($user->expires)) {
+		//if(getMdy(date('m-d-Y')) < getMdy($user->expires)) {
+		if(false) {
 			return View::make('users.expired');
 		}
 		else {
