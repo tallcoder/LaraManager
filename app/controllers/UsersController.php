@@ -60,7 +60,21 @@ class UsersController extends BaseController {
 
 			else $u->userperms = "111";
 			$u->save();
-			return Redirect::to('/')->with('flash_message', 'Thanks for registering!');
+
+            $message = "Thanks for registering!";
+
+            $to = $u->first_name . " " . $u->last_name . " " . "<" . $u->email . ">";
+            $subject = $u->first_name . " you have been added on LaraManager!";
+            $header = "From: Automated Email <auto@laramanager.com>";
+
+            $data = array(
+              'user' => $u,
+              'password' => Input::get('password')
+            );
+            Mail::send('emails.welcome', $data, function($msg) {
+               $msg->to(Input::get('email'), Input::get('first_name') . " " . Input::get('last_name'))->subject('Welcome to LaraManager');
+            });
+			return Redirect::to('/')->with('flash_message', $message);
 	}
 
 	/*

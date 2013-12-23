@@ -39,4 +39,17 @@ class Article extends BaseController {
 	}
 }
 
+public function showIndex() {
+
+   //pass data in an array
+    $data = array(
+        'projects' => Project::all(),
+        //pass data with relations - prevents the n+1
+        'users' => User::with('projects')
+    );
+
+    return View::make('projects.index', $data);
+
+}
+
 ?>

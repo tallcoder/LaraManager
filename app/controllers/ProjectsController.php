@@ -13,7 +13,7 @@ class ProjectsController extends BaseController {
 	       	if(Auth::user()->usertype == "admin") {
 				$data = array(
 					'projects' => Project::paginate(10),
-					'title' => 'Project Overview', 
+					'title' => 'Project Overview',
 					'user' => Auth::user()
 					);
 				return View::make('projects.index', $data);
