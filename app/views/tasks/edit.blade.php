@@ -17,13 +17,14 @@
     {{ Form::textarea('description', $task->description) }}<br />
     {{ Form::label('budget_total', 'Budget:') }}
     $<input type="number" name="budget_total" value="{{ $task->budget_total }}" min="0" /><br />
-    <a href="javascript:void" name="timer" id="start">Start Task</a>
-    {{ Form::text('start_time') }}
-    <a href="javascript:void" name="timer" id="stop">Stop Task</a>
+		<h4>Time Used: {{ $task->time }} minutes</h4>
+		<br />
+    <button type="button" class="timer-btn">Start Task</button>
+    {{ Form::text('start_time') }}<br />
+    <button type="button" class="timer-btn">Stop Task</button>
     {{ Form::text('stop_time') }}
     <br/>
-    <h4>Time Used: {{ $task->time }} minutes</h4>
-    <br />
+
     {{ Form::label('time', 'Add Time to Task:') }}
     {{ Form::text('time', 0) }}
     <br />

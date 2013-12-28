@@ -26,13 +26,30 @@ $(function() {
 		}
     });
 
-    $('#timer').click(function() {
+    $('.timer-btn').click(function() {
         var x = new Date();
-        if($('input[name="start_time"]').val() == "") {
-            $('input[name="start_time"]').val(x.getHours() + ":" + x.getMinutes());
-        }
-        else {
-            $('input[name="stop_time"]').val(x.getHours() + ":" + x.getMinutes());
-        }
+	      var sH; var sM; var eH; var eM;
+	    if($('input[name="start_time"]').val() == "" || $('input[name="stop_time"]').val() == "") {
+		    if($('input[name="start_time"]').val() == "") {
+			    $('input[name="start_time"]').val(x.getHours() + ":" + pad2(x.getMinutes()));
+			    localStorage.sH = x.getHours(); localStorage.sM = x.getMinutes();
+		    }
+		    else {
+			    $('input[name="stop_time"]').val(x.getHours() + ":" + pad2(x.getMinutes()));
+			    eH = x.getHours(); eM = x.getMinutes();
+			    $('input[name="time"]').val(getTotalTime(localStorage.sH, eH, localStorage.sM, eM));
+		    }
+	    }
+	    return false;
     });
+
+	function getTotalTime(sH, eH, sM, eM) {
+		var t = (eH - sH) * 60 + (eM - sM);
+		console.log(t);
+		return t;
+	}
+
+	function pad2(number) {
+		return (number < 10 ? '0' : '') + number
+	}
 });
