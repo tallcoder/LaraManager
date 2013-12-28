@@ -31,3 +31,11 @@ function getMailTo(Array $users) {
 
     return $t;
 }
+
+function updateProjectUsers($uid) {
+	$projects = Project::all()->where('user_id', '=', $uid);
+	foreach($projects as $p) {
+		$p->user_id = 0;
+		$p->save();
+	}
+}

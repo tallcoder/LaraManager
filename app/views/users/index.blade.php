@@ -17,7 +17,13 @@
 			<td>{{ $u->first_name . " " . $u->last_name }}</td>
 			<td>{{ HTML::mailto($u->email, $u->email) }}</td>
 			<td>{{ $u->usertype }}</td>
-			<td>{{ HTML::linkRoute('users.delete', 'Delete', $u->id) }}</td>
+			<td>
+				{{ Form::open(array('url' => 'users/' . $u->id, 'method' => 'DELETE')) }}
+				<button type="submit">Delete</button>
+				{{ Form::hidden('isdeleted', '1') }}
+				{{ Form::hidden('user', $u->id) }}
+				{{ Form::close() }}
+			</td>
 		</tr>
 		@endforeach
 	</table>

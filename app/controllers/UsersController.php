@@ -97,15 +97,12 @@ class UsersController extends BaseController {
 	 * @return page : layouts.confirm-delete
 	 */
 	public function delete($id) {
-		if(Auth::user()->usertype == 'admin') {
 			$data = array(
 				'user' => Auth::user(),
 				'title' => 'Confirm Delete',
 				'item' => array('type' => 'user', 'object' => User::find($id))
 			);
-
 			return View::make('layouts.confirm-delete', $data);
-		}
 	}
 
 	/*
@@ -115,8 +112,8 @@ class UsersController extends BaseController {
 	 */
 	public function destroy($id) {
 			if(User::destroy($id)) {
-				return Redirect::to('users')->with('flash_message', 'User ' . User::find($id)->username . ' successfully
-			deleted');
+				updateProjectUsers($id);
+				return Redirect::to('users')->with('flash_message', 'User successfully deleted');
 			}
 			else {
 				$data = array(

@@ -16,7 +16,7 @@
     <h4>Task <i>Not</i> Completed</h4>
     @endif
     <h4>Task Type:</h4><p>{{ $task->type }}</p>
-    <h4>Time Used:</h4><p>{{ $task->time }}</p>
+    <h4>Time Used:</h4><p>{{ $task->time }} minute</p>
     @if($uploads)
     <div class="uploads">
         <h4>Attachments</h4>
@@ -53,18 +53,12 @@
     </div>
     <div class="right">
         @if(!$task->completed)
-        <h4> {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'PUT')) }}
-        {{ Form::submit('Mark Completed') }}
-        {{ Form::hidden('iscompleted', '1') }}
-        {{ Form::hidden('task', $task->id) }}
-        {{ Form::hidden('user', Auth::user()->id) }}
-        {{ Form::close() }}
-        </h4>
+       <a href="{{ Request::url() . '/completed' }}"> <button>Mark Completed</button></a>
         <br />
         @endif
-        <h4>{{ HTML::link(Request::url() . '/edit', 'Start/Edit Task') }}</h4>
+        <a href="{{ Request::url() . '/edit' }}"><button>Start/Edit Task</button></a>
         {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'DELETE')) }}
-        {{ Form::submit('Delete Task') }}
+        <button class="deleter" type="submit">Delete Task</button>
         {{ Form::hidden('isdeleted', '1') }}
         {{ Form::hidden('task', $task->id) }}
         {{ Form::hidden('user', Auth::user()->id) }}

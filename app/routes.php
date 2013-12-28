@@ -29,6 +29,7 @@ Route::resource('projects.tasklists', 'TasklistsController');
 Route::resource('projects.tasks', 'TasksController');
 
 Route::group(array('before' => 'staff'), function() {
+	Route::get('projects/{project}/tasks/{task}/completed', array ('uses' => 'TasksController@complete'));
 	Route::get('projects/{projects}/delete', array('as' => 'projects.delete', 'uses' => 'ProjectsController@delete'));
 	Route::post('projects/{projects}/destroy', array('as' => 'projects.destroy', 'uses' => 'ProjectsController@destroy'));
 	Route::get('projects/{projects}/tasks/{task}/delete', array('as' => 'projects.tasks.delete',

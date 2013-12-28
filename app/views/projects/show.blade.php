@@ -2,14 +2,16 @@
 @section('content')
 	<div class="actions">
         @if($me->usertype != 'client')
-		{{ HTML::linkRoute('projects.tasks.create', 'Create Task', $project->id) }}
-		{{ HTML::linkRoute('projects.tasklists.create', 'Create Task List', $project->id) }}
-		{{--{{ Form::open(array('route'=>'projects.complete', $project->id)) }}
-						{{ Form::submit('Mark Completed') }}
-						{{ Form::close() }}--}}
-		{{ HTML::linkRoute('projects.destroy', 'Delete Project', $project->id) }}
+		<a href="{{ $project->id }}/tasks/create"><button>Create Task</button></a>
+		<a href="{{ $project->id }}/tasklists/create"><button>Create Task List</button></a>
+		{{ Form::open(array('route'=>'home', $project->id)) }}
+						<button type="submit">Mark Completed</button>
+						{{ Form::close() }}
+						{{ Form::open(array('url' => 'projects/' . $project->id, 'method' => 'DELETE')) }}
+		<button class="deleter" type="submit">Delete Project</button>
+						{{ Form::close() }}
         @endif
-        {{ HTML::link(Request::url() . '/edit' , 'Edit Project') }}
+      <a href="/edit"><button>Edit Project</button></a>
 	</div>
     @if($uploads)
     <div class="uploads">

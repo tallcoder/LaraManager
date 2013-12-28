@@ -180,6 +180,14 @@ class TasksController extends BaseController {
 		return Redirect::back()->with('flash_message', 'Task updated');
 	}
 
+	public function complete($pid, $tid) {
+		$t = Task::find($tid);
+		$t->completed = 1;
+		$t->save();
+
+		return Redirect::back()->with('flash_message',"Task marked completed");
+	}
+
 	public function delete($id) {
 			$data = array(
 				'title' => 'Confirm Delete',
