@@ -56,7 +56,7 @@ return array(
 
 	'from' => array('address' => 'noreply@icwebdev.com', 'name' => 'No Reply'),
 
-    'fheader' => 'From: No Reply <noreply@icwebdev.com',
+    'fheader' => 'From: LaraManager <noreply@icwebdev.com>',
 
 	/*
 	|--------------------------------------------------------------------------

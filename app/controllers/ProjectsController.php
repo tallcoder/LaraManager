@@ -73,9 +73,9 @@ class ProjectsController extends BaseController {
 	{
         $du = Config::get('app.dev');
         $fr = Config::get('mail.fheader');
-        $co = Config::get('app.company');
-        $ph = Config::get('app.phone');
-        $em = Config::get('app.contact');
+        $co = Config::get('app.company.name');
+        $ph = Config::get('app.company.contact_phone');
+        $em = Config::get('app.company.contact_email');
 
 		$p = new Project;
 		$p->name = Input::get('name');
@@ -83,9 +83,11 @@ class ProjectsController extends BaseController {
 		$p->budget_total = Input::get('budget');
 		$p->description = Input::get('description');
 		$p->url = "http://" . Input::get('link') . $du;
+
 		if(Input::get('staffonly')) {
 			$p->staffonly = true;
 		}
+
 		$p->save();
         Event::fire('project.create', $p);
         $e = User::find($p->user_id);
@@ -93,14 +95,16 @@ class ProjectsController extends BaseController {
         $body = "
         Hello, this email is to inform you that $co has created your project $p->name\r\n
         If you would like to visit your project while it is in development, you may find it at $p->url\r\n
-
         Below is a summary of your project details:\r\n
         Name; $p->name\r\n
         Description: $p->description\r\n
         Budget: \$ $p->budget_total\r\n
-
         If you have any questions, feel free to contact us at $ph or by email at $em
         ";
+
+        Mail::send('emails.new-project', $data, function($message) {
+           $message->to($e->email, "$e->first_name $e->last_name")->subject("$co has created $p->name");
+        });
 
         mail($e->email, "$co has created $p->name", $body, $fr);
 

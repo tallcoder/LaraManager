@@ -32,14 +32,12 @@ return array(
     //the domain on which dev subdomains will live
     'dev' => '.icwebdev.com',
 
-    //company name
-    'company' => 'IC',
-
-    //main company phone number
-    'phone' => '410-820-5678',
-
-    //main company email
-    'contact' => 'design@internetconnection.net',
+    'company' => array(
+      'name' => 'IC',
+      'contact_phone' => '410-820-5678',
+      'contact_name' => 'John Smith',
+      'contact_email' => 'billing@internetconnection.net'
+    ),
 
 	/*
 	|--------------------------------------------------------------------------

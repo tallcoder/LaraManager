@@ -62,6 +62,33 @@ class TasksController extends BaseController {
         $t->description = Input::get('description');
         $t->created_by = Input::get('user');
 		$t->save();
+
+        $created = User::find($t->created_by);
+        $assigned = User::find($t->assigned_to);
+        $p = Project::find($t->project_id);
+        $fh = Config::get('mail.fheader');
+        $fh .= "MIME-Version: 1.0\r\n";
+        $fh .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        $start = getMdy($t->begin_date);
+        $finish = getMdy($t->due_date);
+
+
+        $turl = Config::get('app.url') . "/projects/$p->id/tasks/$t->id";
+
+        $body = "<html><head><title>New Task Assigned</title><style>p {font-family: arial, font-size:16px;} h3 {font-size:24px;}</style></head><body>
+        <h3>New Task</h3>
+        <p>This is an automated message to inform you that a new task on LaraManager has been assigned to you.</p>
+        <p>The task <strong>$t->name</strong> belongs to <strong>$p->name</strong> , located at <a href=\"$p->url\">$p->url</a></p>
+        <p>Task Description: <em>$t->description</em></p>
+        <p>You can visit the task and start or edit it  <a href=\"$turl\">here</a></p>
+        <p>This task was created by $created->first_name $created->last_name ( $created->email )</p>
+        <p>This task should be started on $start , and finished by $finish , and has a budget of \$ $t->budget_total</p>
+        </body></html>
+        ";
+
+        mail($assigned->email, 'You have been assigned a new task', $body, $fh);
+
 		return Redirect::to('projects');
 	}
 
