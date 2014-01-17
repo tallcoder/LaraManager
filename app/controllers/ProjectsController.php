@@ -61,6 +61,7 @@ class ProjectsController extends BaseController {
 				);
 			return View::make('errors.401', $data);
 		}
+
 	}
 
 	/**
@@ -70,16 +71,39 @@ class ProjectsController extends BaseController {
 	 */
 	public function store($id = null)
 	{
+        $du = Config::get('app.dev');
+        $fr = Config::get('mail.fheader');
+        $co = Config::get('app.company');
+        $ph = Config::get('app.phone');
+        $em = Config::get('app.contact');
+
 		$p = new Project;
 		$p->name = Input::get('name');
 		$p->user_id = Input::get('user');
 		$p->budget_total = Input::get('budget');
 		$p->description = Input::get('description');
-		$p->url = "http://" . Input::get('link') . ".icwebdev.com";
+		$p->url = "http://" . Input::get('link') . $du;
 		if(Input::get('staffonly')) {
 			$p->staffonly = true;
 		}
 		$p->save();
+        Event::fire('project.create', $p);
+        $e = User::find($p->user_id);
+
+        $body = "
+        Hello, this email is to inform you that $co has created your project $p->name\r\n
+        If you would like to visit your project while it is in development, you may find it at $p->url\r\n
+
+        Below is a summary of your project details:\r\n
+        Name; $p->name\r\n
+        Description: $p->description\r\n
+        Budget: \$ $p->budget_total\r\n
+
+        If you have any questions, feel free to contact us at $ph or by email at $em
+        ";
+
+        mail($e->email, "$co has created $p->name", $body, $fr);
+
 		return Redirect::to('projects');
 	}
 

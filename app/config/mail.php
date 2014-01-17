@@ -54,7 +54,9 @@ return array(
 	|
 	*/
 
-	//'from' => array('address' => 'mike@mjdugan.com', 'name' => 'Mike Dugan'),
+	'from' => array('address' => 'noreply@icwebdev.com', 'name' => 'No Reply'),
+
+    'fheader' => 'From: No Reply <noreply@icwebdev.com',
 
 	/*
 	|--------------------------------------------------------------------------

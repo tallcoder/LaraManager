@@ -26,7 +26,20 @@ return array(
 	|
 	*/
 
-	'url' => 'http://lara.icwebdev.com',
+    //the website it will reside on
+	'url' => 'http://icwebdev.com',
+
+    //the domain on which dev subdomains will live
+    'dev' => '.icwebdev.com',
+
+    //company name
+    'company' => 'IC',
+
+    //main company phone number
+    'phone' => '410-820-5678',
+
+    //main company email
+    'contact' => 'design@internetconnection.net',
 
 	/*
 	|--------------------------------------------------------------------------
