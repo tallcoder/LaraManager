@@ -37,7 +37,7 @@ class SessionsController extends BaseController {
 			]);
 
 			if($login) {
-				return Redirect::intended('/')->with('flash_message', 'ProMan has successfully logged you in!');
+				return Redirect::intended('/')->with('flash_message', 'LaraManager has successfully logged you in!');
 			}
 			else {
 			return Redirect::back()->with('flash_message', 'Invalid Login Credentials')->withInput();
@@ -66,7 +66,7 @@ class SessionsController extends BaseController {
 	{
 		Auth::logout();
 
-		return Redirect::home()->with('flash_message','ProMan has logged you out successfully!');
+		return Redirect::home()->with('flash_message','LaraManager has logged you out successfully!');
 	}
 
 }

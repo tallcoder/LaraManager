@@ -1,7 +1,7 @@
 @extends('defaults.layout')
 
 @section('content')
-<h2>ProMan Login</h2>
+<h2>LaraManager Login</h2>
 {{ Form::open(array('route' => 'sessions.store')) }}
 	<ul>
 		<li>
