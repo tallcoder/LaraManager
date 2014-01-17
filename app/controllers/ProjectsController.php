@@ -102,9 +102,9 @@ class ProjectsController extends BaseController {
         If you have any questions, feel free to contact us at $ph or by email at $em
         ";
 
-        Mail::send('emails.new-project', $data, function($message) {
+        /*Mail::send('emails.new-project', $data, function($message) {
            $message->to($e->email, "$e->first_name $e->last_name")->subject("$co has created $p->name");
-        });
+        });*/
 
         mail($e->email, "$co has created $p->name", $body, $fr);
 

@@ -21,7 +21,7 @@ $<input type="number" name="budget" id="budget" min="0" max="50000" value="0" />
 {{ Form::checkbox('staffonly', 'true') }}
 @endif
 {{ Form::label('description', 'Description:') }}<br />
-{{ Form::textarea('description') }}<br />
+{{ Form::textarea('description', "", array('class'=>'tiny')) }}<br />
 {{ Form::submit() }}
 {{ Form::close() }}
 

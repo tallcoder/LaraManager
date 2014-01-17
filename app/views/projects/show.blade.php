@@ -43,7 +43,8 @@
 		@if($project->staffonly)
 		<h4>Staff Project</h4><br/>
 		@endif
-		<h4>Summary:</h4><p>{{$project->description }}</p>
+		<h4>Summary:</h4><br />
+        {{$project->description }}<br />
 		<h4>Dev Link:</h4><p>{{ HTML::link($project->url, 'Click Here') }}</p>
 	</div>
 

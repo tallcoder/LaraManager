@@ -4,7 +4,7 @@ $(function() {
 		rules: {
 			name: {required:true},
 			client_name: {required:true},
-			budget: {min: "0", max: "50001"},
+			budget: {min: "0", max: "500001"},
 			description: {required:true}
 		},
 		messages: {
@@ -25,6 +25,8 @@ $(function() {
 			email: "Please enter your email address"
 		}
     });
+
+    tinymce.init({selector:"textarea.tiny"});
 
     $('.timer-btn').click(function() {
         var x = new Date();
