@@ -3,6 +3,7 @@
 	<head>
 		<title>{{ $title }}</title>
 		{{ HTML::style('/css/bootstrap.css') }}
+		{{ HTML::style('/css/custom.css') }}
 	</head>
 	<body>
 		<div id="container" class="col-md-10">

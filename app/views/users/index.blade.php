@@ -4,7 +4,7 @@
 <p>Username: {{ $me->username }}</p>
 <p>Email: {{ $me->email }}</p>
 <h3>Registered Users:</h3>
-	<table>
+	<table class="table-striped table-bordered">
 		<tr>
 			<th>Username</th>
 			<th>Name</th>

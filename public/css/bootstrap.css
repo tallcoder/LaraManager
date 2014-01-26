@@ -5812,3 +5812,5 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.narrow { max-width: 70px;}

@@ -76,4 +76,5 @@ class Task extends BaseModel {
 	public function uploads() {
 		return $this->hasMany('Upload', 'parent_id', 'id')->where('parent_type','=','task');
 	}
+
 }
