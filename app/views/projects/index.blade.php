@@ -2,7 +2,7 @@
 @section('content')
 
 <h3>Staff Overview - Projects</h3>
-<table class="projects">
+<table class="projects table-bordered table-striped">
 	<tr class="header">
 		<th>Name</th>
 		<th>Client</th>

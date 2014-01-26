@@ -11,6 +11,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     {{ HTML::script('/js/jquery.validate.min.js') }}
+		{{ HTML::script('/js/bootstrap.js') }}
 	{{ HTML::script('/js/custom.jquery.js') }}
 </body>
 </html>
