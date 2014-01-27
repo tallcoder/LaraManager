@@ -13,22 +13,17 @@
 @else
 <h2>ProManager Login</h2>
 {{ Form::open(array('route' => 'sessions.store', 'id' => 'login')) }}
-	<ul>
-		<li>
-			{{ Form::label('username', 'Username:') }}
-			{{ Form::text('username') }}
-		</li>
-
-		<li>
-			{{ Form::label('password', 'Password:') }}
-			{{ Form::password('password') }}
-		</li>
-		<li>
-			{{ Form::submit() }}
-		</li>
-	</ul>
-
+	<div class="input-group">
+			{{ Form::label('username', 'Username:', '', array('class' => 'form-control')) }}
+			{{ Form::text('username', '', array('class' => 'form-control')) }}
+	</div>
+	<div class="input-group">
+			{{ Form::label('password', 'Password:', '', array('class' => 'form-control')) }}
+			{{ Form::password('password', array('class' => 'form-control')) }}
+	</div>
+			<button type="submit" class="btn-primary btn-login">Login</button>
 {{ Form::close() }}
+
 <h4>{{ HTML::linkRoute('forgotpassword', 'Forgot Password?') }}</h4>
 @endunless
 @stop

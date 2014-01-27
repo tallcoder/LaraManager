@@ -1,5 +1,7 @@
 @extends('layouts.default')
 @section('content')
+
+<div class="edit-box col-md-6">
 <h3>Edit {{ $project->name }}</h3>
 {{ Form::open(array('url' => 'projects/' . $project->id, 'method' => 'PUT', 'enctype' => 'multipart/form-data')) }}
 @if($me->usertype == 'staff' || $me->usertype == 'admin')
@@ -57,5 +59,8 @@
     @if($me->usertype != 'client')
 	{{ Form::submit('Save') }}
 	{{ Form::close() }}
+	</div>
     @endif
 @stop
+
+ZqSuHNB3m7mvj2hk
