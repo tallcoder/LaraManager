@@ -305,3 +305,5 @@ h3 {
 p {
 	margin-bottom: 25px
 }
+
+table li a:hover { color: #ff533e; }

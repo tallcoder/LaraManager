@@ -42,3 +42,5 @@ nav.navbar
 }
 
 div.clear { clear:both;float:none }
+
+table li a:hover { color: #ff533e; }

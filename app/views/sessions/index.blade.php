@@ -11,7 +11,7 @@
     <p>Hello {{$me->first_name }}! Check out "My Overview" to see your current project(s) and add comments, attachments, and interact with the team!</p>
     @endif
 @else
-<h2>ProManager Login</h2>
+<h2>LaraManager Login</h2>
 {{ Form::open(array('route' => 'sessions.store', 'id' => 'login')) }}
 	<div class="input-group">
 			{{ Form::label('username', 'Username:', '', array('class' => 'form-control')) }}
