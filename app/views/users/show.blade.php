@@ -8,6 +8,7 @@
         <p>Email: <i>{{ $user->email }}</i></p>
         <p>Phone: <i>{{ $user->phone }}</i></p>
         <p>Account Expires: <i>{{ $user->expires }}</i></p>
+	      {{ HTML::linkRoute('users.options', 'Options', $user->id) }}
     </div>
     <div class="right">
         <h3>Your Projects:</h3>

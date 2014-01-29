@@ -27,13 +27,19 @@ button a {
 .pagination {
 	width: 20%;
 	margin: 0 auto;
+	border: 1px solid #fb523d;
+	padding: 5px;
 }
 
 .pagination li {
 	display: inline;
+	position: relative;
 	float: left;
 	margin-left: 5px;
+	border-left: 1px solid #dbdbdb;
 }
+
+.pagination li:first-child { border-left: none; }
 
 .pagination li a {
 	text-decoration: none;
@@ -301,10 +307,12 @@ th {
 }
 
 td {
-	border-left: 1px solid black;
+	border-right: 1px solid black;
 	padding-left: 5px;
 	width: 5%;
 }
+
+td:first-child { border-left: 1px solid black; }
 
 tr.description {
 	width: 100%;

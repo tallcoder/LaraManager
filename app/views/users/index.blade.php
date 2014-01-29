@@ -5,12 +5,16 @@
 <p>Email: {{ $me->email }}</p>
 <h3>Registered Users:</h3>
 	<table class="table-striped table-bordered">
+		<thead>
 		<tr>
-			<th>Username</th>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Status</th>
+			<th data-sort="string">Username</th>
+			<th data-sort="string">Name</th>
+			<th data-sort="string">Email</th>
+			<th data-sort="string">Status</th>
+			<th>Be Careful</th>
 		</tr>
+		</thead>
+		<tbody>
 		@foreach($users as $u)
 		<tr>
 			<td>{{ HTML::linkRoute('users.show', $u->username, $u->id) }}</td>
@@ -26,6 +30,7 @@
 			</td>
 		</tr>
 		@endforeach
+		</tbody>
 	</table>
 	
 @stop

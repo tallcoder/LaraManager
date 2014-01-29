@@ -91,6 +91,22 @@ class UsersController extends BaseController {
 		return View::make('users.show', $data);
 	}
 
+
+	/**
+	 * @param $id
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function options($id) {
+		$data = array(
+			'title' => 'User Options',
+			'user' => Auth::user()
+		);
+
+		return View::make('users.options', $data);
+	}
+
+
 	/*
 	 * gets the confirm delete page
 	 * @param int : user id
