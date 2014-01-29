@@ -358,3 +358,11 @@ h3 {
 p {
 	margin-bottom: 25px
 }
+
+th[data-sort="int"], th[data-sort="string"] {
+	cursor: pointer;
+}
+
+th[data-sort="int"]:after, th[data-sort="string"]:after {
+	content: "˚";
+}

@@ -1,5 +1,5 @@
 	<footer>
-		<p>&copy; LaraManager {{ date('Y') }}
+		<p>LaraManager &copy; {{ date('Y') }} <a href="http://github.com/mjdugan14">Mike Dugan</a>
 		@if($me)
 		{{ HTML::linkRoute('logout', 'Logout') }}</p>
 		@else
@@ -12,6 +12,7 @@
     <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     {{ HTML::script('/js/jquery.validate.min.js') }}
 		{{ HTML::script('/js/bootstrap.js') }}
+		{{ HTML::script('/js/stupidtable.min.js') }}
 	{{ HTML::script('/js/custom.jquery.js') }}
 </body>
 </html>

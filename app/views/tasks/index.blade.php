@@ -5,18 +5,21 @@
         @if($tasks)
      	<div class="task">
      		<table class="table table-striped table-bordered">
+		      <thead>
 		        <tr>
 			        <th>Name</th>
-			        <th>Task List</th>
-			        <th>Created By</th>
-			        <th>Assigned To</th>
-			        <th class="narrow">Total Budget</th>
-			        <th class="narrow">Used Budget</th>
+			        <th data-sort="string">Task List</th>
+			        <th data-sort="string">Created By</th>
+			        <th data-sort="string">Assigned To</th>
+			        <th data-sort="int" class="narrow">Total Budget</th>
+			        <th data-sort="int" class="narrow">Used Budget</th>
 			        <th>Begin On</th>
 			        <th>Due Date</th>
 			        <th>Completed</th>
 			        <th>Description</th>
 		        </tr>
+		      </thead>
+		      <tbody>
 		        @foreach($tasks as $t)
 		        <tr>
 	          <td>{{ HTML::linkRoute('projects.tasks.show', $t->name, array($t->project->id, $t->id)) }}</td>
@@ -31,14 +34,15 @@
 	          @else
 	          <td>unassigned</td>
 	          @endif
-	          <td class="narrow">{{ $t->budget_total }}</td>
-	          <td class="narrow">{{ $t->budget_used }}</td>
+	          <td data-sort-value="{{ $t->budget_total }}" class="narrow">{{ $t->budget_total }}</td>
+	          <td data-sort-value="{{ $t->budget_used }}" class="narrow">{{ $t->budget_used }}</td>
 	          <td>{{ getMdy($t->begin_date) }}</td>
 	          <td>{{ getMdy($t->due_date) }}</td>
 	          <td>{{ getMdy($t->end_date) }}</td>
 			      <td>{{ ellipsify($t->description) }}</td>
 		        </tr>
 		        @endforeach
+		      </tbody>
 		      </table>
      		</div>
      	</div>
