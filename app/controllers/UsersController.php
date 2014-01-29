@@ -114,7 +114,7 @@ class UsersController extends BaseController {
 	 */
 	public function saveOptions($id) {
 
-		$o = UserOption::where('user_id','=',$id)->get();
+		$o = UserOption::firstOrNew(array('user_id' => $id));
 		$o->notify = Input::get('notify');
 		$o->notify_frequency = Input::get('frequency');
 		if($o->save())
