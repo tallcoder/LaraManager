@@ -18,7 +18,8 @@ Route::get('reset', array('as' => 'forgotpassword', 'uses' => 'RemindersControll
 Route::post('remind', array('as' => 'remindpassword', 'uses' => 'RemindersController@postRemind'));
 
 //other GET routes
-Route::get('users/{user}/options', array('as' => 'users.options', 'uses' => 'UsersController@options'));
+Route::get('users/{user}/options', array('as' => 'users.options', 'uses' => 'UsersController@getOptions'));
+Route::post('users/{user}/options/save', array('as' => 'users.options.save', 'uses' => 'UsersController@saveOptions'));
 
 
 Route::resource('users', 'UsersController');

@@ -97,13 +97,33 @@ class UsersController extends BaseController {
 	 *
 	 * @return \Illuminate\View\View
 	 */
-	public function options($id) {
+	public function getOptions($id) {
 		$data = array(
 			'title' => 'User Options',
 			'user' => Auth::user()
 		);
 
 		return View::make('users.options', $data);
+	}
+
+
+	/**
+	 * @param $id
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function saveOptions($id) {
+
+		$o = UserOption::where('user_id','=',$id)->get();
+		$o->notify = Input::get('notify');
+		$o->notify_frequency = Input::get('frequency');
+		if($o->save())
+		{
+			return Redirect::back()->with('flash_message', 'Options saved successfully');
+		} else {
+			return Redirect::back()->with('flash_message', 'Error saving options!');
+		}
+
 	}
 
 
