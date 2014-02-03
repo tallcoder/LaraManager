@@ -46,6 +46,8 @@
 		      </table>
      		</div>
      	</div>
+				<div class="paginate-container">
         {{ $tasks->links() }}
+				</div>
         @endif
      @stop
