@@ -121,6 +121,7 @@ class ProjectsController extends BaseController {
 	{
         $p = Project::find($id);
         $data = array(
+	        'subscribed' => true,
         	'project' => $p,
         	'comments' => $p->comments,
         	'title' => 'Project View',

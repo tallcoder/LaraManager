@@ -26,4 +26,7 @@
             {{ HTML::linkRoute('projects.tasks.edit', 'Edit', array($project->id, $t->id)) }}
         </div>
 	@endforeach
+	<form id="subscribe" action="/subscribe/tasklist/{{ $project->id }}" method="post">
+		<button type="submit">Subscribe</button>
+	</form>
 @stop

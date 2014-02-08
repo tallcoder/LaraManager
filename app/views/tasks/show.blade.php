@@ -63,5 +63,8 @@
         {{ Form::hidden('task', $task->id) }}
         {{ Form::hidden('user', Auth::user()->id) }}
         {{ Form::close() }}
+	      <form id="subscribe" action="/subscribe/task/{{ $project->id }}" method="post">
+		      <button type="submit">Subscribe</button>
+	      </form>
     </div>
 @stop

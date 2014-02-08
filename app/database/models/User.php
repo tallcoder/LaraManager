@@ -83,8 +83,14 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->hasMany('Task', 'completed_by', 'id');
 	}
 
-	public function subscriptions() {
-		return $this->hasMany('Subscription', 'user_id', 'id');
+	public function subscriptions($type) {
+		return $this->hasMany('Subscription', 'user_id', 'id')->where('type', '=', $type);
+	}
+
+	public function isSubscribed($type, $id)
+	{
+		return Subscription::where('user_id', '=', $this->id)->where('type', '=', $type)->where('object_id', '=',
+			$id);
 	}
 
 	/**

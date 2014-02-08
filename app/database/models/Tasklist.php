@@ -16,4 +16,8 @@ class Tasklist extends BaseModel {
 	public function tasks() {
 		return $this->hasMany('Task', 'list_id', 'id');
 	}
+
+	public function subscribe() {
+		Subscription::create(['type' => 'tasklist', 'object_id' => $this->id, 'user_id' => Auth::user()->id]);
+	}
 }

@@ -77,4 +77,8 @@ class Task extends BaseModel {
 		return $this->hasMany('Upload', 'parent_id', 'id')->where('parent_type','=','task');
 	}
 
+	public function subscribe() {
+		Subscription::create(['type' => 'task', 'object_id' => $this->id, 'user_id' => Auth::user()->id]);
+	}
+
 }

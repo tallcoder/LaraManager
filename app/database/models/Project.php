@@ -42,4 +42,12 @@ class Project extends BaseModel {
 	public function getBudgetRemaining() {
 		return $this->budget_total - $this->budget_used;
 	}
+
+	public function subscribedUsers() {
+//		$s = Subscription::where()
+	}
+
+	public function subscribe() {
+		Subscription::create(['user_id' => Auth::user()->id, 'object_id' => $this->id, 'type' => 'project']);
+	}
 }
