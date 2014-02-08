@@ -21,6 +21,9 @@ Route::post('remind', array('as' => 'remindpassword', 'uses' => 'RemindersContro
 Route::get('users/{user}/options', array('as' => 'users.options', 'uses' => 'UsersController@getOptions'));
 Route::post('users/{user}/options/save', array('as' => 'users.options.save', 'uses' => 'UsersController@saveOptions'));
 
+//other POST routes
+Route::post('subscribe/{type}/{id}', array('uses' => 'AjaxController@subscribe'));
+
 
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');

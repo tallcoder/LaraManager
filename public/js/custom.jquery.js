@@ -15,6 +15,11 @@ $(function() {
 		}
 	});
 
+	$('#subscribe button').click(function(e) {
+		submitSubscription($('#subscribe'));
+		e.preventDefault();
+	});
+
 	$('#new_user').validate({
 		rules: {
 			password: {minlength: 6},

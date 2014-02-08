@@ -13,10 +13,6 @@ class Project extends BaseModel {
 		'budget_total' => 'min:0|numeric'
 		);
 
-	public function getProjects() {
-		return Project::all();
-	}
-
 	public function scopePublicProjects() {
 		return Project::all()->where('staffonly', '!=', 'true');
 	}

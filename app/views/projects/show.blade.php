@@ -12,6 +12,14 @@
 						{{ Form::close() }}
         @endif
       <a href="/edit"><button>Edit Project</button></a>
+
+		<form id="subscribe" action="/subscribe/project/{{ $project->id }}" method="post">
+			@if(! $subscribed)
+			<button type="submit">Subscribe</button>
+			@else
+			<button type="submit">Unsubscribe</button>
+			@endif
+		</form>
 	</div>
     @if($uploads)
     <div class="uploads">
