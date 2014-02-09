@@ -108,6 +108,8 @@ class ProjectsController extends BaseController {
 
         mail($e->email, "$co has created $p->name", $body, $fr);
 
+		Event::fire('project.store');
+
 		return Redirect::to('projects');
 	}
 
@@ -226,6 +228,8 @@ class ProjectsController extends BaseController {
 
 		$p->save();
 
+		Event::fire('project.update');
+
 		return Redirect::back()->with('flash_message', 'Project Updated Successfully');
 	}
 
@@ -247,6 +251,7 @@ class ProjectsController extends BaseController {
 	public function destroy($id)
 	{
 		if(Project::destroy($id)) {
+			Event::fire('project.delete');
 			return View::make('/')->with('flash_message', 'Project deleted successfully');
 		}
 

@@ -13,6 +13,8 @@
     {{ HTML::script('/js/jquery.validate.min.js') }}
 		{{ HTML::script('/js/stupidtable.min.js') }}
 		{{ HTML::script('/js/functions.js') }}
+		{{ HTML::script('/js/events.js') }}
+		{{ HTML::script('/js/validators.js') }}
 		{{ HTML::script('/js/custom.jquery.js') }}
 </body>
 </html>

@@ -53,16 +53,15 @@
     </div>
     <div class="right">
         @if(!$task->completed)
-       <a href="{{ Request::url() . '/completed' }}"> <button>Mark Completed</button></a>
+       <form id="complete" action="/tasks/complete/{{ $task->id }}" method="post">
+	       <button type="submit">Mark Completed</button>
+       </form>
         <br />
         @endif
         <a href="{{ Request::url() . '/edit' }}"><button>Start/Edit Task</button></a>
-        {{ Form::open(array('url' => 'projects/' . $task->project->id . '/tasks/' . $task->id, 'method' => 'DELETE')) }}
-        <button class="deleter" type="submit">Delete Task</button>
-        {{ Form::hidden('isdeleted', '1') }}
-        {{ Form::hidden('task', $task->id) }}
-        {{ Form::hidden('user', Auth::user()->id) }}
-        {{ Form::close() }}
+        <form id="deleteTask" action="/t/delete/{{ $task->id }}" method="post">
+	        <button id="btnDelete" type="submit">Delete</button>
+        </form>
 	      <form id="subscribe" action="/subscribe/task/{{ $project->id }}" method="post">
 		      <button type="submit">Subscribe</button>
 	      </form>

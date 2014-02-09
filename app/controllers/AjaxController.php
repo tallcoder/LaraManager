@@ -16,4 +16,24 @@ class AjaxController extends BaseController {
 		$name = Auth::user()->first_name;
 		return "$name been successfully subscribed to $type number $id";
 	}
+
+	public function complete($id)
+	{
+		$t = Task::find($id);
+		$t->completed = true;
+		$t->save();
+		Event::fire('task.complete');
+		return "$t->name successfully marked completed!";
+	}
+
+	public function deleteTask($id)
+	{
+		if(Auth::user()->usertype === 'admin' || Auth::user()->usertype === 'staff')
+		{
+			$t = Task::find($id);
+			$t->delete();
+			return "Task successfully deleted!";
+		}
+		else return "Insufficient permissions to delete this task!";
+	}
 } 

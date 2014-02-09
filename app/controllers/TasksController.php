@@ -13,7 +13,7 @@ class TasksController extends BaseController {
 			'title' => 'Tasks Overview',
 			'tasks' => Task::paginate(10)
 			);
-        return View::make('tasks.index', $data);
+    return View::make('tasks.index', $data);
 	}
 
 	/**
@@ -89,6 +89,7 @@ class TasksController extends BaseController {
 
         mail($assigned->email, 'You have been assigned a new task', $body, $fh);
 
+		Event::fire('task.store');
 		return Redirect::to('projects');
 	}
 
@@ -160,6 +161,7 @@ class TasksController extends BaseController {
             $t->completed = true;
             $t->completed_by = Input::get('user');
             $t->end_date = date('Y-m-d');
+	          Event::fire('task.complete');
         }
 
         if(Input::file('file1')) {
@@ -203,7 +205,7 @@ class TasksController extends BaseController {
 
 		$t->save();
 
-
+		Event::fire('task.update');
 		return Redirect::back()->with('flash_message', 'Task updated');
 	}
 
@@ -232,7 +234,8 @@ class TasksController extends BaseController {
 	public function destroy($pid, $id)
 	{
 		if(Task::destroy($id)) {
-		return Redirect::to('projects')->with('flash_message', 'Task successfully deleted');
+			Event::fire('task.delete');
+			return Redirect::to('projects')->with('flash_message', 'Task successfully deleted');
 		}
 		else {
 			$data = array(
