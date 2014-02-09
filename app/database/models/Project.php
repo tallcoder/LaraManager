@@ -16,6 +16,10 @@ class Project extends BaseModel {
 	public function scopePublicProjects() {
 		return Project::all()->where('staffonly', '!=', 'true');
 	}
+
+	public function scopeSearch($query, $q) {
+		return $query->where('name', 'LIKE', "%$q%")->orWhere('description', 'LIKE', "%$q%");
+	}
 	/*
 	*	ORM mappings
 	*/

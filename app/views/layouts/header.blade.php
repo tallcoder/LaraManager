@@ -50,6 +50,11 @@
                 </ul>
             </li>
 	                @endif
+						<li>
+						<form action="/search" method="GET">
+							{{ Form::input('search', 'q', null, ['placeholder' => 'Search...']) }}
+						</form>
+						</li>
 	                @endif
 					</ul>
 				</div>

@@ -42,7 +42,11 @@ class Task extends BaseModel {
 	}
 
 	public function scopeList($query, $id) {
-		return $query->where('list', '=', $id);
+		return $query->where('list_id', '=', $id);
+	}
+
+	public function scopeSearch($query, $q){
+		return $query->where('name', 'LIKE', "%$q%")->orWhere('description', 'LIKE', "%$q%");
 	}
 
 	/*

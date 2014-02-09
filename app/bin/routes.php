@@ -19,12 +19,13 @@ Route::post('remind', array('as' => 'remindpassword', 'uses' => 'RemindersContro
 
 //other GET routes
 Route::get('users/{user}/options', array('as' => 'users.options', 'uses' => 'UsersController@getOptions'));
-Route::post('users/{user}/options/save', array('as' => 'users.options.save', 'uses' => 'UsersController@saveOptions'));
+Route::get('search', array('uses' => 'SearchController@get'));
 
 //other POST routes
 Route::post('subscribe/{type}/{id}', array('uses' => 'AjaxController@subscribe'));
 Route::post('t/complete/{id}', array('uses' => 'AjaxController@complete'));
 Route::post('t/delete/{id}', array('uses' => 'AjaxController@deleteTask'));
+Route::post('users/{user}/options/save', array('as' => 'users.options.save', 'uses' => 'UsersController@saveOptions'));
 
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');

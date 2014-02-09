@@ -20,4 +20,8 @@ class Tasklist extends BaseModel {
 	public function subscribe() {
 		Subscription::create(['type' => 'tasklist', 'object_id' => $this->id, 'user_id' => Auth::user()->id]);
 	}
+
+	public function scopeSearch($query, $q){
+		return $query->where('name', 'LIKE', "%$q%")->orWhere('description', 'LIKE', "%$q%");
+	}
 }
