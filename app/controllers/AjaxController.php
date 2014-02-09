@@ -36,4 +36,15 @@ class AjaxController extends BaseController {
 		}
 		else return "Insufficient permissions to delete this task!";
 	}
+
+	public function deleteUser($id)
+	{
+		if(Auth::user()->usertype === 'admin')
+		{
+			User::destroy($id);
+			return "User successfully deleted!";
+		}
+
+		else return "Insufficient permissions to delete users!";
+	}
 } 

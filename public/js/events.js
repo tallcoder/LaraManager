@@ -25,10 +25,16 @@ $('.timer-btn').click(function() {
 	return false;
 });
 
+$('.confirmer').submit(function(e) {
+	e.preventDefault();
+	if(window.confirm('Are you sure?'))
+	{ submitAjax($(this)); }
+});
+
 $('#deleteTask').submit(function(e) {
 	e.preventDefault();
 	if(window.confirm('Are you SURE you want to delete this task?'))
-	{	submitAjax($(this), false); }
+	{	submitAjax($(this)); }
 });
 
 $('th').click(function() {

@@ -1,5 +1,5 @@
 	<footer>
-		<p>LaraManager &copy; {{ date('Y') }} <a href="http://github.com/mjdugan14">Mike Dugan</a>
+		<p>LaraManager &copy; 2013-{{ date('Y') }} <a href="http://github.com/mjdugan14">Mike Dugan</a>
 		@if($me)
 		{{ HTML::linkRoute('logout', 'Logout') }}</p>
 		@else

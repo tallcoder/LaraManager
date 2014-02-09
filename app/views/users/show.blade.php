@@ -9,6 +9,9 @@
         <p>Phone: <i>{{ $user->phone }}</i></p>
         <p>Account Expires: <i>{{ $user->expires }}</i></p>
 	      {{ HTML::linkRoute('users.options', 'Options', $user->id) }}
+	      <form id="dUser" class="confirmer" action="/u/delete/{{ $user->id }}" method="post">
+		      <button type="submit">Delete User</button>
+	      </form>
     </div>
     <div class="right">
         <h3>Your Projects:</h3>

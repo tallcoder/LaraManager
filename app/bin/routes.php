@@ -26,7 +26,9 @@ Route::post('subscribe/{type}/{id}', array('uses' => 'AjaxController@subscribe')
 Route::post('t/complete/{id}', array('uses' => 'AjaxController@complete'));
 Route::post('t/delete/{id}', array('uses' => 'AjaxController@deleteTask'));
 Route::post('users/{user}/options/save', array('as' => 'users.options.save', 'uses' => 'UsersController@saveOptions'));
+Route::post('u/delete/{id}', array('uses' => 'AjaxController@deleteUser'));
 
+//RESTful routes
 Route::resource('users', 'UsersController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('projects', 'ProjectsController');
