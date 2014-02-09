@@ -1,5 +1,4 @@
-LaraManager
-==========
+<h1>LaraManager</h1>
 
 Open source project manager built on Laravel
 
